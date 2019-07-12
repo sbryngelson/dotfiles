@@ -1,5 +1,6 @@
 [ -f $HOME/.aliasrc ]   &&  source $HOME/.aliasrc
 [ -f $HOME/.inputrc ]   &&  source $HOME/.inputrc
+[ -f $HOME/.bashrc ]    &&  source $HOME/.bashrc
 [ -f $HOME/.gnuplotrc ] &&  source $HOME/.gnuplotrc
 
 [ -f $HOME/.pathrc ]    &&  source $HOME/.pathrc
