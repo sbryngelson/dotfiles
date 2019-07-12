@@ -37,6 +37,6 @@ export BRIDGES
 
 alias dotpush="cd ~/ && git add ~/.bash_profile ~/.aliasrc ~/.inputrc ~/.gnuplotrc ~/.vimrc && git commit -m 'update to dotfiles' && git push -u origin master"
 
-alias dotpull="cd ~/ && git clone https://github.com/sbryngelson/dotfiles.git && mv -f ~/dotfiles/.* ./ && rm -rf dotfiles "
+alias dotpull="cd ~/ && git clone https://github.com/sbryngelson/dotfiles.git && mv -f ~/dotfiles/.* ./ && rm -rf dotfiles .git"
 
 alias vundle="git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim"
