@@ -9,8 +9,6 @@ alias tec360='/Applications/Tecplot\ 360\ EX\ 2018\ R1/Tecplot\ 360\ EX\ 2018\ R
 alias paraview='/Applications/ParaView-5.4.1.app/Contents/MacOS/paraview'
 
 alias clear="clear && printf '\e[3J'"
-alias vim="/opt/local/bin/vim"
-alias copy="pbcopy"
 
 #Servers
 alias legolas='ssh -Y bryngel2@legolas2.mechse.illinois.edu'
