@@ -1,11 +1,10 @@
 [ -f $HOME/.aliasrc ]   &&  source $HOME/.aliasrc
 [ -f $HOME/.inputrc ]   &&  source $HOME/.inputrc
-[ -f $HOME/.bashrc ]    &&  source $HOME/.bashrc
 [ -f $HOME/.gnuplotrc ] &&  source $HOME/.gnuplotrc
-
 [ -f $HOME/.pathrc ]    &&  source $HOME/.pathrc
 [ -f $HOME/.darwinrc ]  &&  source $HOME/.darwinrc
 [ -f $HOME/.fzf.bash ]  &&  source $HOME/.fzf.bash
+[ -f $HOME/.bashrc ]    &&  source $HOME/.bashrc
 
 set bell-style none
 set colored-stats on
