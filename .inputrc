@@ -1,0 +1,5 @@
+set completion-ignore-case On
+set colored-stats on
+set bell-style none
+set editing-mode vi
+set keymap vi-command

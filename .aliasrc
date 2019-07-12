@@ -1,0 +1,40 @@
+alias ls='ls -GFh'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias grep='grep --color=auto'
+
+alias tec360='/Applications/Tecplot\ 360\ EX\ 2018\ R1/Tecplot\ 360\ EX\ 2018\ R1.app/Contents/MacOS/Tecplot\ 360\ EX\ 2018\ R1'
+alias paraview='/Applications/ParaView-5.4.1.app/Contents/MacOS/paraview'
+
+alias clear="clear && printf '\e[3J'"
+alias vim="/opt/local/bin/vim"
+alias copy="pbcopy"
+
+#Servers
+alias legolas='ssh -Y bryngel2@legolas2.mechse.illinois.edu'
+alias taub='ssh -Y bryngel2@taub.campuscluster.illinois.edu'
+alias xpacc1='ssh -Y bryngel2@xpacc-serv-01.csl.illinois.edu'
+alias xpacc2='ssh -Y bryngel2@xpacc-serv-02.csl.illinois.edu'
+alias xpacc3='ssh -Y bryngel2@xpacc-serv-03.csl.illinois.edu'
+alias golub='ssh -Y bryngel2@golub.campuscluster.illinois.edu'
+alias richardson='ssh -Y spencer@richardson.caltech.edu'
+alias comet='ssh -Y bryngel@comet.sdsc.xsede.org'
+alias bridges='ssh -Y bryngel@bridges.psc.xsede.org -p 2222'
+
+GOLUB="bryngel2@golub.campuscluster.illinois.edu"
+XPACC="bryngel2@xpacc-serv-01.csl.illinois.edu"
+LEGOLAS="bryngel2@legolas2.mechse.illinois.edu"
+RICHARDSON="spencer@richardson.caltech.edu"
+COMET='bryngel@comet.sdsc.xsede.org'
+BRIDGES='bryngel@bridges.psc.edu'
+
+export GOLUB
+export XPACC
+export LEGOLAS
+export RICHARDSON
+export COMET
+export BRIDGES
+
+alias dotbak="cd ~/ && git add ~/.bash_profile ~/.aliasrc ~/.inputrc ~/.gnuplotrc ~/.vimrc && git commit -m 'update to dotfiles' && git push -u origin master"
