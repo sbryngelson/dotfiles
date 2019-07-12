@@ -128,33 +128,13 @@ set laststatus=2
 " Always display the status line, even if only one window is displayed
 set laststatus=2
 
-" Instead of failing a command because of unsaved changes, instead raise a
-" dialogue asking if you wish to save changed files.
 set confirm
-
 set visualbell
-
-" And reset the terminal code for the visual bell. If visualbell is set, and
-" this line is also included, vim will neither flash nor beep. If visualbell
-" is unset, this does nothing.
 set t_vb=
-
-" Enable use of the mouse for all modes
 set mouse=
-" set mouse=a 
-" Set the command window height to 2 lines, to avoid many cases of having to
-" "press <Enter> to continue"
-" set cmdheight=2
-
-" Display line numbers on the left
-" set number
 
 " Quickly time out on keycodes, but never time out on mappings
 set notimeout ttimeout ttimeoutlen=200
-
-" Use <F11> to toggle between 'paste' and 'nopaste'
-" set pastetoggle=<F11>
-
 
 "------------------------------------------------------------
 " Indentation options {{{1
@@ -172,15 +152,6 @@ set expandtab
 "set shiftwidth=4
 "set tabstop=4
 
-
-"------------------------------------------------------------
-" Mappings {{{1
-"
-" Useful mappings
-
-" Map Y to act like D and C, i.e. to yank until EOL, rather than act as yy,
-" which is the default
-" map Y y$
 
 " Map <C-L> (redraw screen) to also turn off search highlighting until the
 " next search
@@ -203,6 +174,3 @@ function! XTermPasteBegin()
 endfunction
 
 set tabpagemax=100
-
-execute pathogen#infect()
-call pathogen#helptags()
