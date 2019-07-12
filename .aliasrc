@@ -38,3 +38,5 @@ export COMET
 export BRIDGES
 
 alias dotbak="cd ~/ && git add ~/.bash_profile ~/.aliasrc ~/.inputrc ~/.gnuplotrc ~/.vimrc && git commit -m 'update to dotfiles' && git push -u origin master"
+
+alias vundle="git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim"
