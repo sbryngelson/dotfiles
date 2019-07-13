@@ -19,6 +19,7 @@ alias golub='ssh -Y bryngel2@golub.campuscluster.illinois.edu'
 alias richardson='ssh -Y spencer@richardson.caltech.edu'
 alias comet='ssh -Y bryngel@comet.sdsc.xsede.org'
 alias bridges='ssh -Y bryngel@bridges.psc.xsede.org -p 2222'
+alias xsede='ssh -l bryngel login.xsede.org'
 
 GOLUB="bryngel2@golub.campuscluster.illinois.edu"
 XPACC="bryngel2@xpacc-serv-01.csl.illinois.edu"

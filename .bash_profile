@@ -18,7 +18,7 @@ shopt -s autocd #Allows you to cd into directory merely by typing the directory 
 
 #PS1="\[\033[1;32m\][\[\033[0m\] \[\033[1;36m\]\w\[\033[0m\] \[\033[1;32m\]]$\[\033[0m\] "
 
-export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 3)\]\u\[$(tput setaf 2)\]@\[$(tput setaf 4)\]\h \[$(tput setaf 5)\]\W\[$(tput setaf 1)\]]\[$(tput setaf 7)\]\\$ \[$(tput sgr0)\]"
+export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 3)\]\u\[$(tput setaf 2)\]@\[$(tput setaf 4)\]\H \[$(tput setaf 5)\]\W\[$(tput setaf 1)\]]\[$(tput setaf 7)\]\\$ \[$(tput sgr0)\]"
 
 [ -z "$PS1" ] && return
 function cd {
