@@ -15,6 +15,9 @@ export PROMPT_COMMAND='echo -ne "\033]0;${PWD/#$HOME/~}\007"'
 export EXPAT_LIBS='-L/opt/local/lib -lexpat'
 export EXPAT_CFLAGS=' '
 
+export CLICOLOR=1
+export LSCOLORS=GxFxCxDxBxegedabagaced
+
 shopt -s autocd #Allows you to cd into directory merely by typing the directory name.
 
 #PS1="\[\033[1;32m\][\[\033[0m\] \[\033[1;36m\]\w\[\033[0m\] \[\033[1;32m\]]$\[\033[0m\] "
