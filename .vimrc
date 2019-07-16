@@ -23,10 +23,16 @@ call vundle#begin()
     let g:airline#extensions#tabline#enabled = 1 
     let g:airline_powerline_fonts = 1
     let g:airline#extensions#hunks#enabled = 0 
+    let g:airline#extensions#whitespace#enabled = 0
 
     Plugin 'tpope/vim-fugitive'
     Plugin 'tpope/vim-commentary'
     autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
+    Plugin 'terryma/vim-multiple-cursors'
+
+    Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+    Plugin 'junegunn/fzf.vim'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
