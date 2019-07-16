@@ -33,15 +33,13 @@ call vundle#begin()
 
     Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plugin 'junegunn/fzf.vim'
+
+    Plugin 'flazz/vim-colorschemes'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
+colorscheme darkZ
 set t_Co=256
-
-"call plug#begin('~/.vim/plugged')
-"    Plug '/usr/local/opt/fzf'
-"    Plug 'junegunn/fzf.vim'
-"call plug#end()
 
 "autocmd StdinReadPre * let s:std_in=1
 "autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
@@ -149,15 +147,15 @@ set notimeout ttimeout ttimeoutlen=200
 
 " Indentation settings for using 4 spaces instead of tabs.
 " Do not change 'tabstop' from its default value of 8 with this setup.
-set shiftwidth=4
-set softtabstop=4
-set expandtab
+" set shiftwidth=4
+" set softtabstop=4
+" set expandtab
 
 " Indentation settings for using hard tabs for indent. Display tabs as
 " four characters wide.
-"set shiftwidth=4
-"set tabstop=4
-
+set shiftwidth=4
+set tabstop=4
+set expandtab
 
 " Map <C-L> (redraw screen) to also turn off search highlighting until the
 " next search
