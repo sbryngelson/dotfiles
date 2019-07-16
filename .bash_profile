@@ -8,6 +8,7 @@
 set bell-style none
 set colored-stats on
 set colored-completion-prefix on
+set completion-ignore-case On
 set -o vi
 
 export PROMPT_COMMAND='echo -ne "\033]0;${PWD/#$HOME/~}\007"'
