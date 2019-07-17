@@ -5,10 +5,12 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
     Plugin 'lervag/vimtex'
     let g:tex_flavor='latexmk'
-    let g:vimtex_view_method='zathura'
+    " let g:vimtex_view_method='zathura'
+    let g:vimtex_view_method='skim'
     let g:vimtex_quickfix_mode=0
     set conceallevel=1
     let g:tex_conceal='abdmg'
+    let g:tex_comment_nospell= 1
     
     "Plugin 'sirver/ultisnips'
     "let g:UltiSnipsExpandTrigger = '<tab>'
@@ -62,9 +64,13 @@ set spelllang=en_us
 set wildmode=list:longest
 set wildmenu
 set wildcharm=<tab>
+set lazyredraw
 
 nmap { :bprev<CR>
 nmap } :bnext<CR>
+
+nmap gs :setlocal spell<CR>
+nmap dw daw
 
 " Remap home row to escape
 imap jk <Esc><Esc>
@@ -75,6 +81,11 @@ cmap kj <C-c>
 
 " Remap omnicompletion
 imap qqq <C-x><C-o>
+
+" Copy to clipboard
+
+vnoremap <C-c> :w !pbcopy<CR><CR>
+noremap <C-v> :r !pbpaste<CR><CR>
 
 " Move to end of previous word or beginning of next word
 noremap H ge
@@ -110,6 +121,8 @@ set hlsearch
 set ignorecase
 set smartcase
 
+set clipboard=unnamed
+
 " Allow backspacing over autoindent, line breaks and start of insert action
 set backspace=indent,eol,start
 
@@ -143,14 +156,6 @@ set notimeout ttimeout ttimeoutlen=200
 "------------------------------------------------------------
 " Indentation options {{{1
 "
-" Indentation settings according to personal preference.
-
-" Indentation settings for using 4 spaces instead of tabs.
-" Do not change 'tabstop' from its default value of 8 with this setup.
-" set shiftwidth=4
-" set softtabstop=4
-" set expandtab
-
 " Indentation settings for using hard tabs for indent. Display tabs as
 " four characters wide.
 set shiftwidth=4
