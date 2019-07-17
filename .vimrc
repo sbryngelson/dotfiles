@@ -7,7 +7,7 @@ call vundle#begin()
     let g:tex_flavor='latexmk'
     " let g:vimtex_view_method='zathura'
     let g:vimtex_view_method='skim'
-    " let g:vimtex_quickfix_mode=0
+    let g:vimtex_quickfix_mode=0
     set conceallevel=1
     let g:tex_conceal='abdmg'
     let g:tex_comment_nospell= 1
