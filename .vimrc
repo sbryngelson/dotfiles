@@ -40,7 +40,7 @@ call vundle#begin()
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-colorscheme darkZ
+colorscheme SHB
 set t_Co=256
 
 "autocmd StdinReadPre * let s:std_in=1
