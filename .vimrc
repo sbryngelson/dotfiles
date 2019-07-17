@@ -7,7 +7,7 @@ call vundle#begin()
     let g:tex_flavor='latexmk'
     " let g:vimtex_view_method='zathura'
     let g:vimtex_view_method='skim'
-    let g:vimtex_quickfix_mode=0
+    " let g:vimtex_quickfix_mode=0
     set conceallevel=1
     let g:tex_conceal='abdmg'
     let g:tex_comment_nospell= 1
@@ -93,6 +93,33 @@ noremap L w
 
 noremap K 10k
 noremap J 10j
+
+nnoremap d "_d
+xnoremap d "_d
+vnoremap d "_d
+
+nnoremap F :FZF<CR>
+
+function! Bye()
+     if len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
+         :q
+     else
+         :bdelete
+    endif
+endfunction
+map Q :call Bye()<CR>
+
+function! WriteBye()
+     if len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
+         :x
+     else
+         :write|bdelete
+    endif
+endfunction
+map X :call WriteBye()<CR>
+
+map W :w<CR>
+
 
 " Runs a script that cleans out tex build files whenever I close out of a .tex file.
 "	autocmd VimLeave *.tex :!$HOME/Fixed/texclear.sh
