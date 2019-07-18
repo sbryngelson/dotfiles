@@ -47,3 +47,24 @@ alias dotpush="cd ~/ && git add ~/.bash_profile ~/.aliasrc ~/.inputrc ~/.gnuplot
 alias dotpull="cd ~/ && git clone https://github.com/sbryngelson/dotfiles.git && mv -f ~/dotfiles/.*rc ./ && mv -f ~/dotfiles/.bash_profile ./ && mkdir .vim/colors && mv ~/dotfiles/.vim/colors/SHB.vim ~/.vim/colors/ && rm -rf dotfiles .git & source ~/.bash_profile"
 
 alias vundle="git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim"
+
+
+
+# v - open files in ~/.viminfo
+v() {
+    local files
+    if [ $# -eq 0 ]; then
+        if [ -f $HOME/.fzf/BUILD.md ] || [ -f /usr/local/bin/fzf ]; then
+            files=$(grep '^>' ~/.viminfo | cut -c3- |
+                while read line; do
+                    [ -f "${line/\~/$HOME}" ] && echo "$line"
+                done | fzf-tmux -d -m -q "$*" -1) && vim ${files//\~/$HOME}
+        else
+            echo 'no fzf!'
+            vim
+        fi
+    else
+        vim $@
+    fi
+}
+
