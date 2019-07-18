@@ -54,7 +54,7 @@ alias vundle="git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundl
 v() {
     local files
     if [ $# -eq 0 ]; then
-        if [ -f $HOME/.fzf/BUILD.md ] || [ -f /usr/local/bin/fzf ]; then
+        if [ -f /usr/local/bin/fzf ]; then
             files=$(grep '^>' ~/.viminfo | cut -c3- |
                 while read line; do
                     [ -f "${line/\~/$HOME}" ] && echo "$line"
