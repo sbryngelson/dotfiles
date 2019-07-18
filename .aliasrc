@@ -7,9 +7,9 @@ alias diff="diff --color=auto"
 alias untar='tar -zxvf '
 alias rs='rsync -avz '
 
-if [ "$(uname -s)" != "Darwin" ]; then
-    alias v='vim'
-fi
+#if [ "$(uname -s)" != "Darwin" ]; then
+#    alias v='vim'
+#fi
 
 alias tec360='/Applications/Tecplot\ 360\ EX\ 2018\ R1/Tecplot\ 360\ EX\ 2018\ R1.app/Contents/MacOS/Tecplot\ 360\ EX\ 2018\ R1'
 alias paraview='/Applications/ParaView-5.4.1.app/Contents/MacOS/paraview'
@@ -47,7 +47,6 @@ alias dotpush="cd ~/ && git add ~/.bash_profile ~/.aliasrc ~/.inputrc ~/.gnuplot
 alias dotpull="cd ~/ && rm -rf dotfiles && git clone https://github.com/sbryngelson/dotfiles.git && mv -f ~/dotfiles/.*rc ./ && mv -f ~/dotfiles/.bash_profile ./ && mkdir .vim/colors && mv ~/dotfiles/.vim/colors/SHB.vim ~/.vim/colors/ && rm -rf dotfiles/.vim dotfiles/.git dotfiles .git & source ~/.bash_profile"
 
 alias vundle="git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim"
-
 
 
 # v - open files in ~/.viminfo
