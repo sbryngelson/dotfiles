@@ -4,7 +4,7 @@ alias ....='cd ../../..'
 alias .....='cd ../../../..'
 alias grep='grep --color=auto'
 alias diff="diff --color=auto" 
-#alias v='vim'
+alias v='vim'
 alias untar='tar -zxvf '
 alias rs='rsync -avz '
 
