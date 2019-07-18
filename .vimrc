@@ -60,7 +60,7 @@ set hidden
 set spelllang=en_us
 set wildmode=longest,list,full
 set wildcharm=<tab>
-set lazyredraw
+" set lazyredraw
 set confirm
 set visualbell
 set noerrorbells

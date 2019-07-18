@@ -9,7 +9,13 @@ if version > 580
 	syntax reset
     endif
 endif
-let g:colors_name="darkZ"
+
+" Load the syntax highlighting defaults, if it's enabled.
+if exists("syntax_on")
+  syntax reset
+endif
+
+let g:colors_name="SHB"
 
 hi Normal	guifg=#DFD6C1 guibg=gray14 gui=none
 

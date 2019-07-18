@@ -3,81 +3,10 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 alias grep='grep --color=auto'
-alias diff="diff --color=auto" \
-alias v='vim'
+alias diff="diff --color=auto" 
+#alias v='vim'
 alias untar='tar -zxvf '
 alias rs='rsync -avz '
-
-bind '"\C-r": "\C-x1\e^\er"'
-bind -x '"\C-x1": __fzf_history';
-
-__fzf_history ()
-{
-__ehc $(history | fzf --tac --tiebreak=index | perl -ne 'm/^\s*([0-9]+)/ and print "!$1"')
-}
-
-__ehc()
-{
-if
-        [[ -n $1 ]]
-then
-        bind '"\er": redraw-current-line'
-        bind '"\e^": magic-space'
-        READLINE_LINE=${READLINE_LINE:+${READLINE_LINE:0:READLINE_POINT}}${1}${READLINE_LINE:+${READLINE_LINE:READLINE_POINT}}
-        READLINE_POINT=$(( READLINE_POINT + ${#1} ))
-else
-        bind '"\er":'
-        bind '"\e^":'
-fi
-}
-
-# Search a file with fzf inside a Tmux pane and then open it in an editor
-fzfo () {
-  local file=$(fzf)
-  if [ -n "$file" ]; then
-    if [ ${file: -4} == ".tex" ] || [ ${file: -4} == ".txt" ] || [ ${file: -3} == ".sh" ] || [ ${file: -4} == ".f90" ] || [ ${file: -4} == ".F90" ] || [ ${file: -3} == ".py" ]; then
-        vim "$file" 
-    else
-        open "$file"
-    fi
-  fi
-}
-
-# Install (one or multiple) selected application(s)
-# using "brew search" as source input
-# mnemonic [B]rew [I]nstall [P]lugin
-bip() {
-  local inst=$(brew search | fzf -m)
-
-  if [[ $inst ]]; then
-    for prog in $(echo $inst);
-    do
-        brew install $prog
-    done
-  fi
-}
-
-animate2d () {
-local arg="w l"
-while [ $# -gt 1 ]
-        do #str="$str '$2' $arg,"
-           files="$files $2"
-        shift
-done
-local counter=1
-local newfiles=$files
-while [ $counter -le $its ]
-    do
-        newfiles="$newfiles $files"
-        ((counter++))
-done
-local plt="filelist= '$newfiles'
-do for [filename in filelist] { plot filename with image; pause 0.5 }
-"
-echo "$str $plt" | gnuplot -persist
-}
-
-
 
 alias tec360='/Applications/Tecplot\ 360\ EX\ 2018\ R1/Tecplot\ 360\ EX\ 2018\ R1.app/Contents/MacOS/Tecplot\ 360\ EX\ 2018\ R1'
 alias paraview='/Applications/ParaView-5.4.1.app/Contents/MacOS/paraview'
