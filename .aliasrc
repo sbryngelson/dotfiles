@@ -3,6 +3,10 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 alias grep='grep --color=auto'
+alias diff="diff --color=auto" \
+alias v='vim'
+alias untar='tar -zxvf '
+alias rs='rsync -avz '
 
 bind '"\C-r": "\C-x1\e^\er"'
 bind -x '"\C-x1": __fzf_history';
