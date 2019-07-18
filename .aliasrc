@@ -47,7 +47,7 @@ alias dotpush="cd ~/ && git add ~/.bash_profile ~/.aliasrc ~/.inputrc ~/.gnuplot
 alias dotpull="cd ~/ && rm -rf dotfiles && git clone https://github.com/sbryngelson/dotfiles.git && mv -f ~/dotfiles/.*rc ./ && mv -f ~/dotfiles/.bash_profile ./ && mkdir .vim/colors && mv ~/dotfiles/.vim/colors/SHB.vim ~/.vim/colors/ && rm -rf dotfiles/.vim dotfiles/.git dotfiles .git & source ~/.bash_profile"
 
 alias vundle="git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim"
-
+alias installfzf="git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install"
 
 # v - open files in ~/.viminfo
 v() {
