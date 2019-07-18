@@ -4,9 +4,12 @@ alias ....='cd ../../..'
 alias .....='cd ../../../..'
 alias grep='grep --color=auto'
 alias diff="diff --color=auto" 
-alias v='vim'
 alias untar='tar -zxvf '
 alias rs='rsync -avz '
+
+if [ "$(uname -s)" != "Darwin" ]; then
+    alias v='vim'
+fi
 
 alias tec360='/Applications/Tecplot\ 360\ EX\ 2018\ R1/Tecplot\ 360\ EX\ 2018\ R1.app/Contents/MacOS/Tecplot\ 360\ EX\ 2018\ R1'
 alias paraview='/Applications/ParaView-5.4.1.app/Contents/MacOS/paraview'
