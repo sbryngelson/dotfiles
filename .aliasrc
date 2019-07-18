@@ -60,7 +60,6 @@ v() {
                     [ -f "${line/\~/$HOME}" ] && echo "$line"
                 done | fzf-tmux -d -m -q "$*" -1) && vim ${files//\~/$HOME}
         else
-            echo 'no fzf!'
             vim
         fi
     else
