@@ -50,6 +50,8 @@ colorscheme SHB
 set t_Co=256
 set nocompatible
 set noswapfile
+set relativenumber
+set numberwidth=2
 set nobackup
 set cursorline
 set scrolloff=4
@@ -84,6 +86,7 @@ set whichwrap+=<,h
 set tabpagemax=100
 set splitbelow splitright
 
+
 " Replace all
 nnoremap <leader>r :%s//gc<Left><Left><Left>
 
@@ -116,6 +119,9 @@ nmap } :bnext<CR>
 vnoremap <C-c> :w !pbcopy<CR><CR>
 noremap <C-v> :r !pbpaste<CR><CR>
 
+" Remap paragraph wrapping
+nnoremap <leader>w gqip
+
 " Move to end of previous word or beginning of next word
 noremap H ge
 noremap L w
@@ -126,6 +132,11 @@ noremap J 10j
 nnoremap d "_d
 xnoremap d "_d
 vnoremap d "_d
+
+" Use spaces in normal mode
+nnoremap <Space> i<Space><Right><ESC>
+
+nnoremap <bs> <Left>x
 
 " Map (redraw screen) to turn off search highlighting until next search
 nnoremap <C-L> :nohl<CR><C-L>

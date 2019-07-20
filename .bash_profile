@@ -15,15 +15,19 @@ export PROMPT_COMMAND='echo -ne "\033]0;${PWD/#$HOME/~}\007"'
 export EXPAT_LIBS='-L/opt/local/lib -lexpat'
 export EXPAT_CFLAGS=' '
 
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --inline-info'
+
 export CLICOLOR=1
+export LS_COLORS='di=1;36:ln=1;35:so=1;32:pi=1;33:ex=1;31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=34;43'
 if [ "$(uname -s)" == "Darwin" ]; then
-    export LSCOLORS=GxFxCxDxBxegedabagGxGx
-    # export LSCOLORS=GxFxCxDxBxegedabagaced
-    export LS_COLORS=GxFxCxDxBxegedabagGxGx
+    alias ls='gls -GFh --color --group-directories-first'
+    # export LSCOLORS=GxFxCxDxBxegedabagGxGx
 else
-    export LSCOLORS='di=1;36:ln=1;35:so=1;32:pi=1;33:ex=1;31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=34;43'
-    export LS_COLORS='di=1;36:ln=1;35:so=1;32:pi=1;33:ex=1;31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=34;43'
+    alias ls='ls -GFh --color --group-directories-first'
 fi
+
+
+alias ls='gls -GFh --color --group-directories-first'
 
 shopt -s autocd #Allows you to cd into directory merely by typing the directory name.
 
