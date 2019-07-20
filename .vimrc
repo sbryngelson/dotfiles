@@ -50,8 +50,7 @@ colorscheme SHB
 set t_Co=256
 set nocompatible
 set noswapfile
-set relativenumber
-set numberwidth=2
+set number relativenumber
 set nobackup
 set cursorline
 set scrolloff=4
@@ -176,3 +175,5 @@ function! XTermPasteBegin()
     set paste
     return ""
 endfunction
+
+set numberwidth=2
