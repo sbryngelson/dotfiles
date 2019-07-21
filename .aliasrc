@@ -56,7 +56,7 @@ v() {
                 while read line; do
                     [ -f "${line/\~/$HOME}" ] && echo "$line"
                 done | fzf-tmux -d -m -q "$*" -1)
-                cd $(dirname ${files}) > /dev/null
+                #cd $(dirname ${files}) > /dev/null
                 vim ${files//\~/$HOME}
         else
             vim
