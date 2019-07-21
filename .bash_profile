@@ -55,6 +55,7 @@ else
         ')"
         cd "$dir"
     }
+    export PATH="$HOME/.cargo/bin/:$PATH"
 fi
 
 
