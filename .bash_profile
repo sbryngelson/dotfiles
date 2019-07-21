@@ -27,10 +27,10 @@ if [ "$(uname -s)" == "Darwin" ]; then
     export FZF_DEFAULT_COMMAND='fdd -t d --color=auto . $HOME'
     # export FZF_DEFAULT_COMMAND='fdd . $HOME'
     # export FZF_DEFAULT_COMMAND='rg --files --sort-files $HOME'
-
+ 
     alias ls='gls -GFh --color --group-directories-first'
     # export LSCOLORS=GxFxCxDxBxegedabagGxGx
-
+ 
     # interactive cd
     function fd() {
         local dir="$(fzf --reverse --preview '
@@ -44,11 +44,12 @@ if [ "$(uname -s)" == "Darwin" ]; then
     }
 else
     alias ls='ls -GFh --color --group-directories-first'
+    export FZF_DEFAULT_COMMAND='find $HOME -type d '
     fd() {
        local file
-       local dir
+       # local dir
        file=$(fzf +m -q "$1")
-       dir=$(dirname "$file")
+       # dir=$(dirname "$file")
        cd "$file"
     }
 fi
