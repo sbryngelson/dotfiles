@@ -19,18 +19,43 @@ export EXPAT_LIBS='-L/opt/local/lib -lexpat'
 export EXPAT_CFLAGS=' '
 
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --inline-info'
-# export FZF_DEFAULT_COMMAND='rg --files --sort-files $HOME'
-# export FZF_DEFAULT_COMMAND='fdd . $HOME'
-export FZF_DEFAULT_COMMAND='fdd -t d --color=auto . $HOME'
 
 export CLICOLOR=1
 export LS_COLORS='di=1;36:ln=1;35:so=1;32:pi=1;33:ex=1;31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=34;43'
+
 if [ "$(uname -s)" == "Darwin" ]; then
+    export FZF_DEFAULT_COMMAND='fdd -t d --color=auto . $HOME'
+    # export FZF_DEFAULT_COMMAND='fdd . $HOME'
+    # export FZF_DEFAULT_COMMAND='rg --files --sort-files $HOME'
+
     alias ls='gls -GFh --color --group-directories-first'
     # export LSCOLORS=GxFxCxDxBxegedabagGxGx
+
+    # interactive cd
+    function fd() {
+        local dir="$(fzf --reverse --preview '
+        __cd_nxt="$(echo {})";
+        __cd_path="$(echo ${__cd_nxt} | sed "s;//;/;")";
+        echo $__cd_nxt; 
+        echo;
+        gls -GFh --color --group-directories-first ${__cd_path};
+        ')"
+        cd "$dir"
+    }
 else
     alias ls='ls -GFh --color --group-directories-first'
+    fd() {
+       local file
+       local dir
+       file=$(fzf +m -q "$1")
+       dir=$(dirname "$file")
+       cd "$file"
+    }
 fi
+
+
+
+
 
 export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 3)\]\u\[$(tput setaf 2)\]@\[$(tput setaf 4)\]\H \[$(tput setaf 5)\]\W\[$(tput setaf 1)\]]\[$(tput setaf 7)\]\\$ \[$(tput sgr0)\]"
 
