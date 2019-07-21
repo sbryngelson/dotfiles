@@ -31,7 +31,6 @@ if [ "$(uname -s)" == "Darwin" ]; then
     alias ls='gls -GFh --color --group-directories-first'
     # export LSCOLORS=GxFxCxDxBxegedabagGxGx
  
-    # interactive cd
     function fd() {
         local dir="$(fzf --reverse --preview '
         __cd_nxt="$(echo {})";
@@ -44,18 +43,19 @@ if [ "$(uname -s)" == "Darwin" ]; then
     }
 else
     alias ls='ls -GFh --color --group-directories-first'
-    export FZF_DEFAULT_COMMAND='find $HOME -type d '
-    fd() {
-       local file
-       # local dir
-       file=$(fzf +m -q "$1")
-       # dir=$(dirname "$file")
-       cd "$file"
+    export FZF_DEFAULT_COMMAND='fdd -t d --color=auto . $HOME'
+
+    function fd() {
+        local dir="$(fzf --reverse --preview '
+        __cd_nxt="$(echo {})";
+        __cd_path="$(echo ${__cd_nxt} | sed "s;//;/;")";
+        echo $__cd_nxt; 
+        echo;
+        ls -GFh --color --group-directories-first ${__cd_path};
+        ')"
+        cd "$dir"
     }
 fi
-
-
-
 
 
 export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 3)\]\u\[$(tput setaf 2)\]@\[$(tput setaf 4)\]\H \[$(tput setaf 5)\]\W\[$(tput setaf 1)\]]\[$(tput setaf 7)\]\\$ \[$(tput sgr0)\]"
