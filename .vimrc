@@ -8,12 +8,18 @@ call vundle#begin()
     Plugin 'tpope/vim-fugitive'
     Plugin 'tpope/vim-commentary'
     Plugin 'terryma/vim-multiple-cursors'
-    Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-    Plugin 'junegunn/fzf.vim'
+    " Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+    " Plugin 'junegunn/fzf.vim'
     Plugin 'flazz/vim-colorschemes'
+    Plugin 'kien/ctrlp.vim'
     "Plugin 'sirver/ultisnips'
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+" CtrlP
+let g:ctrlp_working_path_mode = 'c'
+let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
+let g:ctrlp_max_files = 200
 
 " Airline
 let g:airline_theme='solarized'
@@ -98,8 +104,8 @@ imap <leader>c <C-x><C-o>
 " Remap multiline edit
 vmap <leader>m <C-n>
 
-" Remap FZF
-nnoremap F :FZF<CR>
+" Remap CtrlP
+nnoremap F :CtrlP<CR>
 
 " Remap delete around a word
 nmap dw daw

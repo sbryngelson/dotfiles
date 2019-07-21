@@ -23,12 +23,22 @@ alias comet='ssh -Y bryngel@comet.sdsc.xsede.org'
 alias bridges='ssh -Y bryngel@bridges.psc.xsede.org -p 2222'
 alias xsede='ssh -l bryngel login.xsede.org'
 
-alias GOLUB="bryngel2@golub.campuscluster.illinois.edu"
-alias XPACC="bryngel2@xpacc-serv-01.csl.illinois.edu"
-alias LEGOLAS="bryngel2@legolas2.mechse.illinois.edu"
-alias RICHARDSON="spencer@richardson.caltech.edu"
-alias COMET='bryngel@comet.sdsc.xsede.org'
-alias BRIDGES='bryngel@bridges.psc.edu'
+GOLUB="bryngel2@golub.campuscluster.illinois.edu"
+XPACC="bryngel2@xpacc-serv-01.csl.illinois.edu"
+LEGOLAS="bryngel2@legolas2.mechse.illinois.edu"
+RICHARDSON="spencer@richardson.caltech.edu"
+COMET='bryngel@comet.sdsc.xsede.org'
+BRIDGES='bryngel@bridges.psc.edu'
+export GOLUB
+export XPACC
+export LEGOLAS
+export RICHARDSON
+export COMET
+export BRIDGES
+
+# shortcut directories
+export research='/Users/spencerbryngelson/Documents/Caltech/Research/'
+export export d="/Users/spencerbryngelson/Desktop"
 
 alias dotpush="cd ~/ && git add ~/.bash_profile ~/.aliasrc ~/.inputrc ~/.gnuplotrc ~/.vimrc .vim/colors/SHB.vim && git commit -m 'update to dotfiles' && git push -u origin master"
 
@@ -45,7 +55,9 @@ v() {
             files=$(grep '^>' ~/.viminfo | cut -c3- |
                 while read line; do
                     [ -f "${line/\~/$HOME}" ] && echo "$line"
-                done | fzf-tmux -d -m -q "$*" -1) && vim ${files//\~/$HOME}
+                done | fzf-tmux -d -m -q "$*" -1)
+                cd $(dirname ${files}) > /dev/null
+                vim ${files//\~/$HOME}
         else
             vim
         fi
