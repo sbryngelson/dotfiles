@@ -90,7 +90,9 @@ set whichwrap+=>,l
 set whichwrap+=<,h
 set tabpagemax=100
 set splitbelow splitright
-
+set undofile
+set undodir=~/.vim/undodir
+set termguicolors
 
 " Replace all
 nnoremap <leader>r :%s//gc<Left><Left><Left>
@@ -99,7 +101,7 @@ nnoremap <leader>r :%s//gc<Left><Left><Left>
 nmap <leader>s :setlocal spell<CR>
 
 " Remap omnicompletion
-imap <leader>c <C-x><C-o>
+imap qqq <C-x><C-o>
 
 " Remap multiline edit
 vmap <leader>m <C-n>
