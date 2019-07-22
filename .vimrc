@@ -92,7 +92,7 @@ set tabpagemax=100
 set splitbelow splitright
 set undofile
 set undodir=~/.vim/undodir
-set termguicolors
+" set termguicolors
 
 " Replace all
 nnoremap <leader>r :%s//gc<Left><Left><Left>
