@@ -12,6 +12,7 @@ call vundle#begin()
     " Plugin 'junegunn/fzf.vim'
     Plugin 'flazz/vim-colorschemes'
     Plugin 'kien/ctrlp.vim'
+    Plugin 'vifm/vifm.vim'
     "Plugin 'sirver/ultisnips'
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -36,6 +37,9 @@ let g:vimtex_quickfix_mode=0
 let g:tex_conceal='abdmg'
 let g:tex_comment_nospell= 1
 set conceallevel=1
+
+" vifm
+let g:vifm_embed_term = 0
 
 " Ultisnips
 "let g:UltiSnipsExpandTrigger = '<tab>'
