@@ -2,4 +2,9 @@ set completion-ignore-case On
 set colored-stats on
 set bell-style none
 set editing-mode vi
-set keymap vi-command
+
+set show-mode-in-prompt on
+# set vi-ins-mode-string "\1\e[2 q\2[ins]"
+# set vi-cmd-mode-string "\1\e[2 q\2[cmd]"
+set vi-ins-mode-string "\1\e[2;31m\2[I]\1\e[0m\2"
+set vi-cmd-mode-string "\1\e[2;36;100m\2[C]\1\e[0m\2"

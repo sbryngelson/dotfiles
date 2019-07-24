@@ -12,11 +12,11 @@ set bell-style none
 set colored-stats on
 set colored-completion-prefix on
 set completion-ignore-case On
+
 set -o vi
-bind '"jk":vi-movement-mode'
-bind "H":vi-prev-word
-bind "L":vi-next-word
-bind 'set show-mode-in-prompt on'
+bind -m vi-insert '"jk":vi-movement-mode'
+bind -m vi-command "H":vi-prev-word
+bind -m vi-command "L":vi-next-word
 
 export PROMPT_COMMAND='echo -ne "\033]0;${PWD/#$HOME/~}\007"'
 export EXPAT_LIBS='-L/opt/local/lib -lexpat'
