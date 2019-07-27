@@ -123,8 +123,8 @@ cmap jk <C-c>
 cmap kj <C-c>
 
 " Remap tab switch
-nmap { :bprev<CR>
-nmap } :bnext<CR>
+nmap <S-Tab> :bprev<CR>
+nmap <Tab> :bnext<CR>
 
 " Remap copy to clipboard
 vnoremap <C-c> :w !pbcopy<CR><CR>
