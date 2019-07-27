@@ -69,7 +69,8 @@ set noshowmode
 set nocompatible
 set hidden
 set spelllang=en_us
-set wildmode=longest,list,full
+" set wildmode=longest,list,full
+set wildmode=longest:list
 set wildcharm=<tab>
 " set lazyredraw
 set confirm

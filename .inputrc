@@ -2,6 +2,11 @@ set completion-ignore-case On
 set colored-stats on
 set bell-style none
 set editing-mode vi
+set show-all-if-ambiguous on
+set completion-map-case on
+set completion-query-items -1
+set page-completions off
+set completion-query-items 2000
 
 set show-mode-in-prompt on
 # set vi-ins-mode-string "\1\e[2 q\2[ins]"

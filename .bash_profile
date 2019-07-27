@@ -13,6 +13,7 @@ set colored-stats on
 set colored-completion-prefix on
 set completion-ignore-case On
 
+
 set -o vi
 bind -m vi-insert '"jk":vi-movement-mode'
 bind -m vi-command "H":vi-prev-word
