@@ -5,7 +5,7 @@ set editing-mode vi
 set show-all-if-ambiguous on
 set completion-map-case on
 
-set completion-query-items -1
+# set completion-query-items -1
 set page-completions off
 set completion-query-items 2000
 
