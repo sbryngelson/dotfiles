@@ -86,7 +86,7 @@ set clipboard=unnamed
 set backspace=indent,eol,start
 set autoindent
 set nostartofline
-set ruler
+" set ruler
 set notimeout ttimeout ttimeoutlen=200
 set shiftwidth=4
 set tabstop=4
