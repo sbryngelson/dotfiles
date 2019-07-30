@@ -19,6 +19,9 @@ bind -m vi-insert '"jk":vi-movement-mode'
 bind -m vi-command "H":vi-prev-word
 bind -m vi-command "L":vi-next-word
 
+# bind '"\e\I": menu-complete'
+bind '"\e[Z": menu-complete-backward'
+
 export PROMPT_COMMAND='echo -ne "\033]0;${PWD/#$HOME/~}\007"'
 export EXPAT_LIBS='-L/opt/local/lib -lexpat'
 export EXPAT_CFLAGS=' '
