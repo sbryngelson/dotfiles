@@ -2,6 +2,7 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
+
 alias grep='grep --color=auto'
 alias untar='tar -zxvf '
 alias tarup='tar -zcvf'
@@ -40,18 +41,11 @@ export RICHARDSON
 export COMET
 export BRIDGES
 
-# shortcut directories
-export research='/Users/spencerbryngelson/Documents/Caltech/Research/'
-export export d="/Users/spencerbryngelson/Desktop"
-
 alias dotpush="cd ~/ && git add ~/.bash_profile ~/.aliasrc ~/.inputrc ~/.gnuplotrc ~/.vimrc .vim/colors/SHB.vim && git commit -m 'update to dotfiles' && git push -u origin master"
-
 alias dotpull="cd ~/ && rm -rf dotfiles && git clone https://github.com/sbryngelson/dotfiles.git && mv -f ~/dotfiles/.*rc ./ && mv -f ~/dotfiles/.bash_profile ./ && mkdir .vim/colors && mkdir .vim/undodir && mv ~/dotfiles/.vim/colors/SHB.vim ~/.vim/colors/ && rm -rf dotfiles/.vim dotfiles/.git dotfiles .git & source ~/.bash_profile"
 
 alias vundle="git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim"
-
 alias installfzf="git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install"
-
 alias installfd="cd ~ && curl https://sh.rustup.rs -sSf | sh && source $HOME/.cargo/env && cargo install fd-find && mv .cargo/bin/fd .cargo/bin/fdd"
 
 # v - open files in ~/.viminfo

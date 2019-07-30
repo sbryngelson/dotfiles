@@ -19,6 +19,10 @@ filetype plugin indent on    " required
 
 " FZF
 let $FZF_DEFAULT_COMMAND='fdd -t f'
+let g:fzf_action = {
+      \ 'ctrl-s': 'split',
+      \ 'ctrl-v': 'vsplit'
+      \ }
 
 " CtrlP
 " let g:ctrlp_working_path_mode = 'c'
@@ -102,6 +106,12 @@ set undofile
 set undodir=~/.vim/undodir
 " set termguicolors
 
+" Navigate splits
+map <C-J> <C-W>j
+map <C-K> <C-W>k
+map <C-H> <C-W>h
+map <C-L> <C-W>l
+
 " Replace all
 nnoremap <leader>r :%s//gc<Left><Left><Left>
 
@@ -154,7 +164,7 @@ nnoremap <Space> i<Space><Right><ESC>
 nnoremap <bs> <Left>x
 
 " Map (redraw screen) to turn off search highlighting until next search
-nnoremap <C-L> :nohl<CR><C-L>
+" nnoremap <C-L> :nohl<CR><C-L>
 
 function! Bye()
      if len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
