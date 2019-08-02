@@ -153,10 +153,20 @@ noremap L w
 noremap K 10k
 noremap J 10j
 
+" Remap redo
+noremap U <C-r>
+
 " Make delete really delete
 nnoremap d "_d
 xnoremap d "_d
 vnoremap d "_d
+
+" Don't enter insert mode after inserting a new empty line
+nnoremap o o<Esc>
+nnoremap O O<Esc>
+
+" Move line down
+nnoremap m i<CR><ESC>
 
 " Use spaces in normal mode
 nnoremap <Space> i<Space><Right><ESC>
