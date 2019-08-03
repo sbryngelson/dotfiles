@@ -43,7 +43,7 @@ export COMET
 export BRIDGES
 
 alias dotpush="cd ~/ && git add ~/.bash_profile ~/.aliasrc ~/.inputrc ~/.gnuplotrc_x11 ~/.gnuplotrc_qt ~/.vimrc .vim/colors/SHB.vim && git commit -m 'update to dotfiles' && git push -u origin master"
-alias dotpull="cd ~/ && rm -rf dotfiles && git clone https://github.com/sbryngelson/dotfiles.git && mv -f ~/dotfiles/.*rc ./ && mv -f ~/dotfiles/.bash_profile ./ && rm -r .vim/colors && mkdir .vim/colors && mv ~/dotfiles/.gnuplotrc* ./ && rm -r .vim/undodir && mkdir .vim/undodir && mv ~/dotfiles/.vim/colors/SHB.vim ~/.vim/colors/ && rm -rf ~/dotfiles ~/.git && source ~/.bash_profile"
+alias dotpull="cd ~/ && rm -rf dotfiles && git clone https://github.com/sbryngelson/dotfiles.git && mv -f ~/dotfiles/.*rc ./ && mv -f ~/dotfiles/.bash_profile ./ && rm -fr .vim/colors && mkdir .vim/colors && mv ~/dotfiles/.gnuplotrc* ./ && rm -rf .vim/undodir && mkdir .vim/undodir && mv ~/dotfiles/.vim/colors/SHB.vim ~/.vim/colors/ && rm -rf ~/dotfiles ~/.git && source ~/.bash_profile"
 
 alias vundle="git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim"
 alias installfzf="git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install"
