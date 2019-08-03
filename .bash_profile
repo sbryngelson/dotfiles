@@ -31,12 +31,13 @@ export FZF_DEFAULT_COMMAND='fdd -t d --color=auto . $HOME'
 # export FZF_DEFAULT_COMMAND='rg --files --sort-files $HOME'
 
 export CLICOLOR=1
-export LS_COLORS='di=1;36:ln=1;35:so=1;32:pi=1;33:ex=1;31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=34;43'
+export LS_COLORS='di=1;34:ln=1;35:so=1;32:pi=1;33:ex=00:bd=34;46:cd=00;34:su=30;41:sg=30;46:tw=30;42:ow=1;34'
+# export LS_COLORS='di=1;36:ln=1;35:so=1;32:pi=1;33:ex=1;31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=34;43'
 
-export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 3)\]\u\[$(tput setaf 2)\]@\[$(tput setaf 4)\]\H \[$(tput setaf 5)\]\W\[$(tput setaf 1)\]]\[$(tput setaf 7)\]\\$ \[$(tput sgr0)\]"
+export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 1)\]\u\[$(tput setaf 2)\]@\[$(tput setaf 5)\]\H \[$(tput setaf 3)\]\W\[$(tput setaf 3)\]]\[$(tput setaf 7)\]\\$ \[$(tput sgr0)\]"
 
 if [ "$(uname -s)" == "Darwin" ]; then
-    alias ls='gls -GFh --color --group-directories-first'
+    alias ls='gls -GFhN --color --group-directories-first'
     # export LSCOLORS=GxFxCxDxBxegedabagGxGx
     function fd() {
         local dir="$(fzf --reverse --preview '
@@ -48,8 +49,13 @@ if [ "$(uname -s)" == "Darwin" ]; then
         ')"
         cd "$dir"
     }
+    [ -z "$PS1" ] && return
+    function cd {
+        # builtin cd "$@" && ls -F
+        builtin cd "$@" && gls -GFhN --color --group-directories-first
+        }
 else
-    alias ls='ls -GFh --color --group-directories-first'
+    alias ls='ls -GFhN --color --group-directories-first'
     function fd() {
         local dir="$(fzf --reverse --preview '
         __cd_nxt="$(echo {})";
@@ -61,11 +67,10 @@ else
         cd "$dir"
     }
     export PATH="$HOME/.cargo/bin/:$PATH"
+    function cd {
+        # builtin cd "$@" && ls -F
+        builtin cd "$@" && ls -GFhN --color --group-directories-first
+        }
 fi
-
-[ -z "$PS1" ] && return
-function cd {
-    builtin cd "$@" && ls -F
-    }
 
 
