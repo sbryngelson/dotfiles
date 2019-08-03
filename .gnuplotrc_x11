@@ -1,6 +1,6 @@
 myplot () {
 local arg="w l"
-local str="set term qt size 900,500 '
+local str="set term x11 size 900,500 '
 set format y '%g'
 plot"
 while [ $# -gt 0 ]
@@ -12,7 +12,7 @@ echo "$str" | gnuplot -persist
 
 myplots () {
 local arg="using 1:$1 w l"
-local str="set term qt size 900,500 '
+local str="set term x11 size 900,500 '
 set format y '%g'
 plot"
 while [ $# -gt 1 ]
@@ -24,7 +24,7 @@ echo "$str" | gnuplot -persist
 
 animate1d () {
 local arg="w l"
-local str="set term qt size 900,500'
+local str="set term x11 size 900,500'
 set format y '%g'
 "
 local its=$1
@@ -50,7 +50,7 @@ echo "$str $plt" | gnuplot -persist
 animate2d () {
 local arg="w l"
 local str="
-set term qt
+set term x11
 set autoscale xy
 set size ratio -1
 set format y '%g'
