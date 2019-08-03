@@ -1,6 +1,5 @@
 [ -f $HOME/.aliasrc ]   &&  source $HOME/.aliasrc
 [ -f $HOME/.inputrc ]   &&  source $HOME/.inputrc
-[ -f $HOME/.gnuplotrc ] &&  source $HOME/.gnuplotrc
 [ -f $HOME/.pathrc ]    &&  source $HOME/.pathrc
 [ -f $HOME/.bashrc ]    &&  source $HOME/.bashrc
 [ -f $HOME/.fzf.bash ]  &&  source $HOME/.fzf.bash
@@ -37,6 +36,7 @@ export LS_COLORS='di=1;34:ln=1;35:so=1;32:pi=1;33:ex=00:bd=34;46:cd=00;34:su=30;
 export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 1)\]\u\[$(tput setaf 2)\]@\[$(tput setaf 5)\]\H \[$(tput setaf 3)\]\W\[$(tput setaf 3)\]]\[$(tput setaf 7)\]\\$ \[$(tput sgr0)\]"
 
 if [ "$(uname -s)" == "Darwin" ]; then
+    [ -f $HOME/.gnuplotrc ] &&  source $HOME/.gnuplotrc_qt
     alias ls='gls -GFhN --color --group-directories-first'
     # export LSCOLORS=GxFxCxDxBxegedabagGxGx
     function fd() {
@@ -55,6 +55,7 @@ if [ "$(uname -s)" == "Darwin" ]; then
         builtin cd "$@" && gls -GFhN --color --group-directories-first
         }
 else
+    [ -f $HOME/.gnuplotrc ] &&  source $HOME/.gnuplotrc_x11
     alias ls='ls -GFhN --color --group-directories-first'
     function fd() {
         local dir="$(fzf --reverse --preview '
