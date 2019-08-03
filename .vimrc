@@ -10,6 +10,7 @@ call vundle#begin()
     Plugin 'terryma/vim-multiple-cursors'
     Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plugin 'junegunn/fzf.vim'
+    Plugin 'junegunn/goyo.vim'
     Plugin 'flazz/vim-colorschemes'
     " Plugin 'kien/ctrlp.vim'
     " Plugin 'vifm/vifm.vim'
@@ -62,9 +63,9 @@ set conceallevel=1
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 syntax on
+set t_Co=256
 colorscheme SHB
 
-set t_Co=256
 set nocompatible
 set noswapfile
 set number relativenumber
