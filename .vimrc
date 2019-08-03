@@ -5,7 +5,7 @@ call vundle#begin()
     Plugin 'lervag/vimtex'
     Plugin 'bling/vim-airline'
     Plugin 'vim-airline/vim-airline-themes'
-    Plugin 'tpope/vim-fugitive'
+    " Plugin 'tpope/vim-fugitive'
     Plugin 'tpope/vim-commentary'
     Plugin 'terryma/vim-multiple-cursors'
     Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -31,8 +31,7 @@ let g:fzf_action = {
 " let g:ctrlp_max_files = 200
 
 " Airline
-let g:airline_theme='solarized'
-let g:airline_solarized_bg='dark'
+let g:airline_theme='bubblegum'
 let g:airline#extensions#tabline#enabled = 1 
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#hunks#enabled = 0 
