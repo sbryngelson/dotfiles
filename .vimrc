@@ -92,11 +92,13 @@ set smartcase
 set clipboard=unnamed
 set backspace=indent,eol,start
 set autoindent
+set smartindent
 set nostartofline
 " set ruler
 set notimeout ttimeout ttimeoutlen=200
-set shiftwidth=4
 set tabstop=4
+set shiftwidth=0
+set softtabstop=-1
 set expandtab
 set whichwrap+=>,l
 set whichwrap+=<,h
@@ -123,6 +125,10 @@ imap qqq <C-x><C-o>
 
 " Remap multiline edit
 vmap <leader>m <C-n>
+
+" Remap indent in visual mode such that it reselects lines
+vnoremap > >gv
+vnoremap < <gv
 
 " Remap FZF
 nnoremap F :Files<CR>
