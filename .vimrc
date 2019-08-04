@@ -62,9 +62,9 @@ set conceallevel=1
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 syntax on
-set t_Co=256
 colorscheme SHB
 
+set t_Co=256
 set nocompatible
 set noswapfile
 set number relativenumber
@@ -76,7 +76,6 @@ set noshowmode
 set nocompatible
 set hidden
 set spelllang=en_us
-" set wildmode=longest,list,full
 set wildmode=longest:list
 set wildcharm=<tab>
 " set lazyredraw
@@ -106,6 +105,7 @@ set tabpagemax=100
 set splitbelow splitright
 set undofile
 set undodir=~/.vim/undodir
+set numberwidth=2
 " set termguicolors
 
 " Navigate splits
@@ -118,7 +118,19 @@ map <C-L> <C-W>l
 nnoremap <leader>r :%s//gc<Left><Left><Left>
 
 " Remap spellcheck
-nmap <leader>s :setlocal spell<CR>
+" nmap <leader>s :setlocal spell<CR>
+nnoremap <leader>s :call SpellToggle()<CR>
+
+function! SpellToggle()
+    if &spell
+        setlocal spell!
+    else
+        setlocal spell
+    endif
+endfunction
+
+" Remap Goyo
+nnoremap <leader>g :Goyo<CR>
 
 " Remap omnicompletion
 imap qqq <C-x><C-o>
@@ -141,6 +153,9 @@ imap jk <Esc><Esc>
 imap kj <Esc><Esc>
 cmap jk <C-c>
 cmap kj <C-c>
+vmap <C-a> <Esc><Esc>
+imap <C-a> <Esc><Esc>
+nmap <C-a> <Esc><Esc>
 
 " Remap tab switch
 nmap <S-Tab> :bprev<CR>
@@ -180,7 +195,7 @@ nnoremap <Space> i<Space><Right><ESC>
 nnoremap <bs> <Left>x
 
 " Map (redraw screen) to turn off search highlighting until next search
-" nnoremap <C-L> :nohl<CR><C-L>
+nnoremap <leader>d :nohl<CR><C-L>
 
 function! Bye()
      if len(filter(range(1, bufnr('$')), 'buflisted(v:val)')) == 1
@@ -218,4 +233,4 @@ function! XTermPasteBegin()
     return ""
 endfunction
 
-set numberwidth=2
+
