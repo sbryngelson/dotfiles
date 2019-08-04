@@ -8,6 +8,7 @@ call vundle#begin()
     " Plugin 'tpope/vim-fugitive'
     Plugin 'tpope/vim-commentary'
     Plugin 'terryma/vim-multiple-cursors'
+    Plugin 'scrooloose/syntastic'
     Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plugin 'junegunn/fzf.vim'
     Plugin 'junegunn/goyo.vim'
@@ -17,6 +18,16 @@ call vundle#begin()
     " Plugin 'sirver/ultisnips'
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 
 " FZF
 let $FZF_DEFAULT_COMMAND='fdd -t f'
