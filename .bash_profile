@@ -30,7 +30,7 @@ export FZF_DEFAULT_COMMAND='fdd -t d --color=auto . $HOME'
 # export FZF_DEFAULT_COMMAND='rg --files --sort-files $HOME'
 
 export CLICOLOR=1
-export LS_COLORS='di=1;34:ln=1;35:so=1;32:pi=1;33:ex=00:bd=34;46:cd=00;34:su=30;41:sg=30;46:tw=30;42:ow=1;34'
+export LS_COLORS='di=1;34:ln=1;35:so=1;32:pi=1;33:ex=1;37:bd=34;46:cd=00;34:su=30;41:sg=30;46:tw=30;42:ow=1;34'
 # export LS_COLORS='di=1;36:ln=1;35:so=1;32:pi=1;33:ex=1;31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=34;43'
 
 export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 1)\]\u\[$(tput setaf 2)\]@\[$(tput setaf 5)\]\H \[$(tput setaf 3)\]\W\[$(tput setaf 3)\]]\[$(tput setaf 7)\]\\$ \[$(tput sgr0)\]"
