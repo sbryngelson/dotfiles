@@ -38,6 +38,7 @@ export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 1)\]\u\[$(tput se
 if [ "$(uname -s)" == "Darwin" ]; then
     [ -f $HOME/.gnuplotrc ] &&  source $HOME/.gnuplotrc_qt
     alias ls='gls -GFhN --color --group-directories-first'
+    alias copy="pbcopy"
     # export LSCOLORS=GxFxCxDxBxegedabagGxGx
     function fd() {
         local dir="$(fzf --reverse --preview '
@@ -56,6 +57,7 @@ if [ "$(uname -s)" == "Darwin" ]; then
         }
 else
     [ -f $HOME/.gnuplotrc ] &&  source $HOME/.gnuplotrc_x11
+    alias copy="xclip -selection c"
     alias ls='ls -GFhN --color --group-directories-first'
     function fd() {
         local dir="$(fzf --reverse --preview '
