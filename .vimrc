@@ -23,11 +23,22 @@ filetype plugin indent on    " required
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_tex_lacheck_quiet_messages = { 'regex': '\Vpossible unwanted space at' }
+let g:syntastic_ignore_files = ['preamble.tex', 'tikz_preamble.tex']
+let g:syntastic_quiet_messages = { 'regex': [ 
+    \ '\VUser Regex: 1:Capitalize before references.', 
+    \ '\VWrong length of dash',  
+    \ '\VDelete this space',
+    \ '\VYou should put a space in front',
+    \ '\VCommand terminated with space',
+    \ '\VYou should enclose the previous',
+    \ 'mpi.mod'
+    \ ] }
+let g:syntastic_fortran_compiler_options = '-ffree-line-length-none'
 
 " FZF
 let $FZF_DEFAULT_COMMAND='fdd -t f'

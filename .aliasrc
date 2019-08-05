@@ -10,6 +10,7 @@ alias rs='rsync -avz '
 alias c="clear && printf '\e[3J'"
 alias ccat='highlight --out-format=ansi --force'
 alias ll='ls -lhtr'
+alias cnt='ls -1 | wc -l'
 
 alias gc='git commit'
 alias ga='git add'
