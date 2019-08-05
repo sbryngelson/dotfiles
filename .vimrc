@@ -25,20 +25,24 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_tex_lacheck_quiet_messages = { 'regex': '\Vpossible unwanted space at' }
-let g:syntastic_ignore_files = ['preamble.tex', 'tikz_preamble.tex']
+let g:syntastic_check_on_wq = 1
 let g:syntastic_quiet_messages = { 'regex': [ 
-    \ '\VUser Regex: 1:Capitalize before references.', 
-    \ '\VWrong length of dash',  
-    \ '\VDelete this space',
-    \ '\VYou should put a space in front',
-    \ '\VCommand terminated with space',
-    \ '\VYou should enclose the previous',
-    \ 'mpi.mod'
+    \ '\Vis not a GNU Fortran module',
+    \ '\Vmpi.mod'
     \ ] }
+" let g:syntastic_quiet_messages = {"!level":  "errors"}
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_ignore_files = ['preamble.tex', 'tikz_preamble.tex']
+
 let g:syntastic_fortran_compiler_options = '-ffree-line-length-none'
+function! SyntasticCheckHook(errors)
+    if !empty(a:errors)
+        let g:syntastic_loc_list_height = min([len(a:errors), 4])
+    endif
+endfunction
+
+let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+nnoremap <leader>e :SyntasticToggleMode<CR> :SyntasticCheck<CR> 
 
 " FZF
 let $FZF_DEFAULT_COMMAND='fdd -t f'
