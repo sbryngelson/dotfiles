@@ -5,7 +5,6 @@ call vundle#begin()
     Plugin 'lervag/vimtex'
     Plugin 'bling/vim-airline'
     Plugin 'vim-airline/vim-airline-themes'
-    " Plugin 'tpope/vim-fugitive'
     Plugin 'tpope/vim-commentary'
     Plugin 'terryma/vim-multiple-cursors'
     Plugin 'scrooloose/syntastic'
@@ -13,11 +12,19 @@ call vundle#begin()
     Plugin 'junegunn/fzf.vim'
     Plugin 'junegunn/goyo.vim'
     Plugin 'flazz/vim-colorschemes'
+    Plugin 'Konfekt/vim-sentence-chopper'
+    " Plugin 'dbmrq/vim-bucky'
+    " Plugin 'tpope/vim-fugitive'
     " Plugin 'kien/ctrlp.vim'
     " Plugin 'vifm/vifm.vim'
     " Plugin 'sirver/ultisnips'
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+" Sentence chopper 
+nmap <leader>w <plug>(ChopSentences)ip<CR>
+xmap <leader>w <plug>(ChopSentences)ip<CR>
+" nnoremap <leader>w gqip
 
 " Syntastic
 set statusline+=%#warningmsg#
@@ -69,6 +76,7 @@ let g:vimtex_view_method='skim'
 let g:vimtex_quickfix_mode=0
 let g:tex_conceal='abdmg'
 let g:tex_comment_nospell= 1
+" set conceallevel=0
 set conceallevel=1
 
 " vifm
@@ -87,16 +95,17 @@ set conceallevel=1
 " Disables automatic commenting on newline:
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
+" Don't wrap partial words
+set formatoptions+=w
+
 syntax on
 colorscheme SHB
-
 set t_Co=256
 set nocompatible
 set noswapfile
 set number relativenumber
 set nobackup
 set cursorline
-set scrolloff=4
 set re=1
 set noshowmode
 set nocompatible
@@ -104,7 +113,6 @@ set hidden
 set spelllang=en_us
 set wildmode=longest:list
 set wildcharm=<tab>
-" set lazyredraw
 set confirm
 set visualbell
 set noerrorbells
@@ -119,7 +127,6 @@ set backspace=indent,eol,start
 set autoindent
 set smartindent
 set nostartofline
-" set ruler
 set notimeout ttimeout ttimeoutlen=200
 set tabstop=4
 set shiftwidth=0
@@ -133,6 +140,9 @@ set undofile
 set undodir=~/.vim/undodir
 set numberwidth=2
 " set termguicolors
+" set tw=80
+" set ruler
+" set scrolloff=4
 
 " Navigate splits
 map <C-J> <C-W>j
@@ -191,9 +201,6 @@ nmap <Tab> :bnext<CR>
 vnoremap <C-c> :w !pbcopy<CR><CR>
 noremap <C-v> :r !pbpaste<CR><CR>
 
-" Remap paragraph wrapping
-nnoremap <leader>w gqip
-
 " Move to end of previous word or beginning of next word
 noremap H ge
 noremap L w
@@ -208,6 +215,10 @@ nnoremap d "_d
 xnoremap d "_d
 vnoremap d "_d
 
+nnoremap x "_x
+xnoremap x "_x
+vnoremap x "_x
+
 " Don't enter insert mode after inserting a new empty line
 nnoremap o o<Esc>
 nnoremap O O<Esc>
@@ -215,9 +226,8 @@ nnoremap O O<Esc>
 " Move line down
 nnoremap m i<CR><ESC>
 
-" Use spaces in normal mode
+" Use spaces and back spaces in normal mode
 nnoremap <Space> i<Space><Right><ESC>
-
 nnoremap <bs> <Left>x
 
 " Map (redraw screen) to turn off search highlighting until next search
@@ -258,5 +268,3 @@ function! XTermPasteBegin()
     set paste
     return ""
 endfunction
-
-

@@ -36,7 +36,7 @@ export LS_COLORS='di=1;34:ln=1;35:so=1;32:pi=1;33:ex=1;37:bd=34;46:cd=00;34:su=3
 export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 1)\]\u\[$(tput setaf 2)\]@\[$(tput setaf 5)\]\H \[$(tput setaf 3)\]\W\[$(tput setaf 3)\]]\[$(tput setaf 7)\]\\$ \[$(tput sgr0)\]"
 
 if [ "$(uname -s)" == "Darwin" ]; then
-    [ -f $HOME/.gnuplotrc ] &&  source $HOME/.gnuplotrc_qt
+    [ -f $HOME/.gnuplotrc_qt ] &&  source $HOME/.gnuplotrc_qt
     alias ls='gls -GFhN --color --group-directories-first'
     alias copy="pbcopy"
     # export LSCOLORS=GxFxCxDxBxegedabagGxGx
@@ -56,7 +56,7 @@ if [ "$(uname -s)" == "Darwin" ]; then
         builtin cd "$@" && gls -GFhN --color --group-directories-first
         }
 else
-    [ -f $HOME/.gnuplotrc ] &&  source $HOME/.gnuplotrc_x11
+    [ -f $HOME/.gnuplotrc_x11 ] &&  source $HOME/.gnuplotrc_x11
     alias copy="xclip -selection c"
     alias ls='ls -GFhN --color --group-directories-first'
     function fd() {
