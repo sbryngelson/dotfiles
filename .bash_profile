@@ -76,4 +76,4 @@ else
         }
 fi
 
-
+export PATH="$PATH:$HOME/.rvm/bin"

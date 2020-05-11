@@ -13,6 +13,7 @@ call vundle#begin()
     Plugin 'junegunn/goyo.vim'
     Plugin 'flazz/vim-colorschemes'
     Plugin 'Konfekt/vim-sentence-chopper'
+    Plugin 'arnoudbuzing/wolfram-vim'
     " Plugin 'dbmrq/vim-bucky'
     " Plugin 'tpope/vim-fugitive'
     " Plugin 'kien/ctrlp.vim'
@@ -20,6 +21,9 @@ call vundle#begin()
     " Plugin 'sirver/ultisnips'
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+autocmd BufNewFile,BufRead *.wl set syntax=wl
+autocmd BufNewFile,BufRead *.wls set syntax=wl
 
 " Sentence chopper 
 nmap <leader>w <plug>(ChopSentences)ip<CR>
