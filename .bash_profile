@@ -37,7 +37,14 @@ export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 1)\]\u\[$(tput se
 
 if [ "$(uname -s)" == "Darwin" ]; then
     [ -f $HOME/.gnuplotrc_qt ] &&  source $HOME/.gnuplotrc_qt
-    alias ls='gls -GFhN --color --group-directories-first'
+    # if [ -f /usr/local/bin/gls ]; then
+    if ! command -v gls &> /dev/null
+    then
+        alias ls='ls -G'
+    else
+        alias ls='gls -GFhN --color --group-directories-first'
+    fi
+
     alias copy="pbcopy"
     # export LSCOLORS=GxFxCxDxBxegedabagGxGx
     function fd() {
