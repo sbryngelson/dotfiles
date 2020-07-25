@@ -76,4 +76,11 @@ else
         }
 fi
 
-export PATH="$PATH:$HOME/.rvm/bin"
+# Setting PATH for Python 3.8
+# The original version is saved in .bash_profile.pysave
+PATH="/Library/Frameworks/Python.framework/Versions/3.8/bin:${PATH}"
+export PATH
+
+eval "$(rbenv init -)"
+
+export PATH="$HOME/.gem/ruby/X.X.0/bin:$PATH"

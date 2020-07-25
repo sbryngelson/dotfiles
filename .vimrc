@@ -14,6 +14,7 @@ call vundle#begin()
     Plugin 'flazz/vim-colorschemes'
     Plugin 'Konfekt/vim-sentence-chopper'
     Plugin 'arnoudbuzing/wolfram-vim'
+    " Plugin 'alok/notational-fzf-vim'
     " Plugin 'dbmrq/vim-bucky'
     " Plugin 'tpope/vim-fugitive'
     " Plugin 'kien/ctrlp.vim'
@@ -22,6 +23,9 @@ call vundle#begin()
 call vundle#end()            " required
 filetype plugin indent on    " required
 
+
+
+" Wolfram language syntax highlighting
 autocmd BufNewFile,BufRead *.wl set syntax=wl
 autocmd BufNewFile,BufRead *.wls set syntax=wl
 
