@@ -10,20 +10,11 @@ call vundle#begin()
     Plugin 'scrooloose/syntastic'
     Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plugin 'junegunn/fzf.vim'
-    Plugin 'junegunn/goyo.vim'
     Plugin 'flazz/vim-colorschemes'
     Plugin 'Konfekt/vim-sentence-chopper'
     Plugin 'arnoudbuzing/wolfram-vim'
-    " Plugin 'alok/notational-fzf-vim'
-    " Plugin 'dbmrq/vim-bucky'
-    " Plugin 'tpope/vim-fugitive'
-    " Plugin 'kien/ctrlp.vim'
-    " Plugin 'vifm/vifm.vim'
-    " Plugin 'sirver/ultisnips'
-call vundle#end()            " required
-filetype plugin indent on    " required
-
-
+call vundle#end()
+filetype plugin indent on
 
 " Wolfram language syntax highlighting
 autocmd BufNewFile,BufRead *.wl set syntax=wl
