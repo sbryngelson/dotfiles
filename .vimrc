@@ -1,18 +1,42 @@
+set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
 
-call vundle#begin()
-    Plugin 'lervag/vimtex'
-    Plugin 'bling/vim-airline'
-    Plugin 'vim-airline/vim-airline-themes'
-    Plugin 'tpope/vim-commentary'
-    Plugin 'terryma/vim-multiple-cursors'
-    Plugin 'scrooloose/syntastic'
-    Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-    Plugin 'junegunn/fzf.vim'
-    Plugin 'flazz/vim-colorschemes'
-    Plugin 'Konfekt/vim-sentence-chopper'
-    Plugin 'arnoudbuzing/wolfram-vim'
+" START - Setting up Vundle - the vim plugin bundler
+let haveVundle=1
+let vundle_readme=expand('~/.vim/bundle/Vundle.vim/README.md')
+if !filereadable(vundle_readme)
+  echo "Installing Vundle.."
+  echo ""
+  silent !mkdir -p ~/.vim/bundle
+  silent !git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+  let haveVundle=0
+endif
+set rtp+=~/.vim/bundle/Vundle.vim/
+call vundle#rc()
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+if haveVundle == 0
+  echo "Installing Bundles, please ignore key map error messages"
+  echo ""
+  :PluginInstall
+endif
+
+" set rtp+=~/.vim/bundle/Vundle.vim
+
+" call vundle#begin()
+Plugin 'lervag/vimtex'
+Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'tpope/vim-commentary'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plugin 'junegunn/fzf.vim'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'Konfekt/vim-sentence-chopper'
+Plugin 'arnoudbuzing/wolfram-vim'
+Plugin 'scrooloose/syntastic'
+
 call vundle#end()
 filetype plugin indent on
 
@@ -100,7 +124,7 @@ set formatoptions+=w
 syntax on
 colorscheme SHB
 set t_Co=256
-set nocompatible
+
 set noswapfile
 set number relativenumber
 set nobackup
