@@ -1,52 +1,50 @@
 [ -f $HOME/.aliasrc ]   &&  source $HOME/.aliasrc
-[ -f $HOME/.inputrc ]   &&  source $HOME/.inputrc
-[ -f $HOME/.pathrc ]    &&  source $HOME/.pathrc
 [ -f $HOME/.bashrc ]    &&  source $HOME/.bashrc
 [ -f $HOME/.fzf.bash ]  &&  source $HOME/.fzf.bash
+# [ -f $HOME/.pathrc ]    &&  source $HOME/.pathrc
 
 shopt -s autocd
 shopt -s cdspell
 shopt -s dirspell
 
-set bell-style none
-set colored-stats on
-set colored-completion-prefix on
-set completion-ignore-case On
-
 set -o vi
 bind -m vi-insert '"jk":vi-movement-mode'
 bind -m vi-command "H":vi-prev-word
 bind -m vi-command "L":vi-next-word
-
-# bind '"\e\I": menu-complete'
 bind '"\e[Z": menu-complete-backward'
 
 export PROMPT_COMMAND='echo -ne "\033]0;${PWD/#$HOME/~}\007"'
+
 export EXPAT_LIBS='-L/opt/local/lib -lexpat'
 export EXPAT_CFLAGS=' '
 
+# Fuzzy file finder options
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --inline-info'
 export FZF_DEFAULT_COMMAND='fdd -t d --color=auto . $HOME'
-# export FZF_DEFAULT_COMMAND='rg --files --sort-files $HOME'
 
+# Prompt 
+
+## Colors
 export CLICOLOR=1
 export LS_COLORS='di=1;34:ln=1;35:so=1;32:pi=1;33:ex=1;37:bd=34;46:cd=00;34:su=30;41:sg=30;46:tw=30;42:ow=1;34'
-# export LS_COLORS='di=1;36:ln=1;35:so=1;32:pi=1;33:ex=1;31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=34;43'
 
+## Statement
 export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 1)\]\u\[$(tput setaf 2)\]@\[$(tput setaf 5)\]\H \[$(tput setaf 3)\]\W\[$(tput setaf 3)\]]\[$(tput setaf 7)\]\\$ \[$(tput sgr0)\]"
+
+export EDITOR=vim
+export VISUAL="$EDITOR"
+export TERM=xterm-256color
 
 if [ "$(uname -s)" == "Darwin" ]; then
     [ -f $HOME/.gnuplotrc_qt ] &&  source $HOME/.gnuplotrc_qt
     # if [ -f /usr/local/bin/gls ]; then
-    if ! command -v gls &> /dev/null
-    then
+    if [ ! command -v gls &> /dev/null ]; then
         alias ls='ls -G'
     else
         alias ls='gls -GFhN --color --group-directories-first'
     fi
 
     alias copy="pbcopy"
-    # export LSCOLORS=GxFxCxDxBxegedabagGxGx
     function fd() {
         local dir="$(fzf --reverse --preview '
         __cd_nxt="$(echo {})";
@@ -57,7 +55,7 @@ if [ "$(uname -s)" == "Darwin" ]; then
         ')"
         cd "$dir"
     }
-    [ -z "$PS1" ] && return
+    # [ -z "$PS1" ] && return
     function cd {
         # builtin cd "$@" && ls -F
         builtin cd "$@" && gls -GFhN --color --group-directories-first
@@ -83,11 +81,4 @@ else
         }
 fi
 
-# Setting PATH for Python 3.8
-# The original version is saved in .bash_profile.pysave
-PATH="/Library/Frameworks/Python.framework/Versions/3.8/bin:${PATH}"
-export PATH
-
 eval "$(rbenv init -)"
-
-export PATH="$HOME/.gem/ruby/X.X.0/bin:$PATH"

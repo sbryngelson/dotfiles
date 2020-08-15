@@ -1,23 +1,18 @@
-set completion-ignore-case On
+set colored-completion-prefix on
+set completion-ignore-case on
 set colored-stats on
 set bell-style none
+
 set editing-mode vi
 set completion-map-case on
 
-# set show-all-if-ambiguous on
 set completion-query-items -1
 set page-completions off
 set completion-query-items 2000
 
 set show-mode-in-prompt on
-# set vi-ins-mode-string "\1\e[2 q\2[ins]"
-# set vi-cmd-mode-string "\1\e[2 q\2[cmd]"
 set vi-ins-mode-string "\1\e[2;31m\2[I]\1\e[0m\2"
 set vi-cmd-mode-string "\1\e[2;36;100m\2[C]\1\e[0m\2"
 
-# set show-all-if-ambiguous on
 set show-all-if-unmodified on
 set menu-complete-display-prefix on
-
-# bind '"\e\t": menu-complete'
-# "\e[Z": menu-complete-backward

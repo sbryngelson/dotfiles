@@ -1,7 +1,7 @@
 set nocompatible
+
 filetype off
 
-" START - Setting up Vundle - the vim plugin bundler
 let haveVundle=1
 let vundle_readme=expand('~/.vim/bundle/Vundle.vim/README.md')
 if !filereadable(vundle_readme)
@@ -25,9 +25,12 @@ endif
 " set rtp+=~/.vim/bundle/Vundle.vim
 
 " call vundle#begin()
+
 Plugin 'lervag/vimtex'
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'shime/vim-livedown'
 Plugin 'tpope/vim-commentary'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
@@ -36,17 +39,40 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'Konfekt/vim-sentence-chopper'
 Plugin 'arnoudbuzing/wolfram-vim'
 Plugin 'scrooloose/syntastic'
+Plugin 'danro/rename.vim'
+Plugin 'lukelbd/vim-scrollwrapped'
 
 call vundle#end()
 filetype plugin indent on
+
+" Pair with npm install -g git+https://github.com/hcgatewood/livedown
+
+" Livedown
+
+" should markdown preview get shown automatically upon opening markdown buffer
+nmap <leader>p :LivedownToggle<CR>
+let g:livedown_autorun = 0
+" should the browser window pop-up upon previewing
+let g:livedown_open = 1
+" the port on which Livedown server will run
+let g:livedown_port = 1337
+" the browser to use, can also be firefox, chrome or other, depending on your executable
+" let g:livedown_browser = "chrome"
+
+" Vim markdown
+let g:vim_markdown_folding_disabled = 1
+" let g:vim_markdown_math = 1
+
 
 " Wolfram language syntax highlighting
 autocmd BufNewFile,BufRead *.wl set syntax=wl
 autocmd BufNewFile,BufRead *.wls set syntax=wl
 
 " Sentence chopper 
+let g:latexindent = 0
 nmap <leader>w <plug>(ChopSentences)ip<CR>
 xmap <leader>w <plug>(ChopSentences)ip<CR>
+vmap <leader>w <plug>(ChopSentences)i<CR>
 " nnoremap <leader>w gqip
 
 " Syntastic
@@ -81,11 +107,6 @@ let g:fzf_action = {
       \ 'ctrl-v': 'vsplit'
       \ }
 
-" CtrlP
-" let g:ctrlp_working_path_mode = 'c'
-" let g:ctrlp_user_command = 'find %s -type f'        " MacOSX/Linux
-" let g:ctrlp_max_files = 200
-
 " Airline
 let g:airline_theme='bubblegum'
 let g:airline#extensions#tabline#enabled = 1 
@@ -99,7 +120,6 @@ let g:vimtex_view_method='skim'
 let g:vimtex_quickfix_mode=0
 let g:tex_conceal='abdmg'
 let g:tex_comment_nospell= 1
-" set conceallevel=0
 set conceallevel=1
 
 " vifm
@@ -110,10 +130,6 @@ set conceallevel=1
 "let g:UltiSnipsJumpForwardTrigger = '<tab>'
 "let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
 "let g:UltiSnipsSnippetsDirectories=["/Users/spencerbryngelson/.vim/UltiSnips/"]
-
-" Nerdtree
-"autocmd StdinReadPre * let s:std_in=1
-"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " Disables automatic commenting on newline:
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -162,10 +178,12 @@ set splitbelow splitright
 set undofile
 set undodir=~/.vim/undodir
 set numberwidth=2
+set autoread
 " set termguicolors
 " set tw=80
 " set ruler
-" set scrolloff=4
+set scrolloff=4
+set display=lastline
 
 " Navigate splits
 map <C-J> <C-W>j
@@ -188,9 +206,6 @@ function! SpellToggle()
     endif
 endfunction
 
-" Remap Goyo
-nnoremap <leader>g :Goyo<CR>
-
 " Remap omnicompletion
 imap qqq <C-x><C-o>
 
@@ -207,14 +222,14 @@ nnoremap F :Files<CR>
 " Remap delete around a word
 nmap dw daw
 
-" Remap home row to escape
-imap jk <Esc><Esc>
-imap kj <Esc><Esc>
-cmap jk <C-c>
-cmap kj <C-c>
+" Map Ctrl-A to escape
+map <C-a> <Nop>
+map <C-a> <Esc><Esc>
 vmap <C-a> <Esc><Esc>
-imap <C-a> <Esc><Esc>
-nmap <C-a> <Esc><Esc>
+map <C-A> <Nop>
+map <C-A> <Esc><Esc>
+vmap <C-A> <Esc><Esc>
+
 
 " Remap tab switch
 nmap <S-Tab> :bprev<CR>
@@ -222,13 +237,20 @@ nmap <Tab> :bnext<CR>
 
 " Remap copy to clipboard
 vnoremap <C-c> :w !pbcopy<CR><CR>
-noremap <C-v> :r !pbpaste<CR><CR>
+" noremap <C-v> :r !pbpaste<CR><CR>
+" vnoremap <C-c> "*y
+
+" Remap home row to escape
+imap jk <Esc><Esc>
+imap kj <Esc><Esc>
+cmap jk <C-c>
+cmap kj <C-c>
 
 " Move to end of previous word or beginning of next word
 noremap H ge
 noremap L w
-noremap K 10k
-noremap J 10j
+noremap K 10gk
+noremap J 10gj
 
 " Remap redo
 noremap U <C-r>
@@ -285,6 +307,10 @@ let &t_SI .= "\<Esc>[?2004h"
 let &t_EI .= "\<Esc>[?2004l"
 
 inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+
+if &term =~ '256color'
+    set t_ut=
+endif
 
 function! XTermPasteBegin()
     set pastetoggle=<Esc>[201~
