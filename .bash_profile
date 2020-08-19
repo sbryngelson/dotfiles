@@ -1,20 +1,30 @@
 [ -f $HOME/.aliasrc ]   &&  source $HOME/.aliasrc
 [ -f $HOME/.bashrc ]    &&  source $HOME/.bashrc
 [ -f $HOME/.fzf.bash ]  &&  source $HOME/.fzf.bash
-# [ -f $HOME/.pathrc ]    &&  source $HOME/.pathrc
 
+# Input
 shopt -s autocd
 shopt -s cdspell
 shopt -s dirspell
+shopt -s direxpand
+shopt -s cdable_vars
 
+# Vi mode in shell
 set -o vi
 bind -m vi-insert '"jk":vi-movement-mode'
 bind -m vi-command "H":vi-prev-word
 bind -m vi-command "L":vi-next-word
 bind '"\e[Z": menu-complete-backward'
 
-export PROMPT_COMMAND='echo -ne "\033]0;${PWD/#$HOME/~}\007"'
+# Add to path
+export PATH="/usr/local/sbin:$PATH"
 
+# Environment variables
+export EDITOR=vim
+export VISUAL="$EDITOR"
+export TERM=xterm-256color
+
+# Expat?
 export EXPAT_LIBS='-L/opt/local/lib -lexpat'
 export EXPAT_CFLAGS=' '
 
@@ -25,16 +35,14 @@ export FZF_DEFAULT_COMMAND='fdd -t d --color=auto . $HOME'
 # Prompt 
 
 ## Colors
+export PROMPT_COMMAND='echo -ne "\033]0;${PWD/#$HOME/~}\007"'
 export CLICOLOR=1
 export LS_COLORS='di=1;34:ln=1;35:so=1;32:pi=1;33:ex=1;37:bd=34;46:cd=00;34:su=30;41:sg=30;46:tw=30;42:ow=1;34'
 
 ## Statement
 export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 1)\]\u\[$(tput setaf 2)\]@\[$(tput setaf 5)\]\H \[$(tput setaf 3)\]\W\[$(tput setaf 3)\]]\[$(tput setaf 7)\]\\$ \[$(tput sgr0)\]"
 
-export EDITOR=vim
-export VISUAL="$EDITOR"
-export TERM=xterm-256color
-
+# OS-specific stuff
 if [ "$(uname -s)" == "Darwin" ]; then
     [ -f $HOME/.gnuplotrc_qt ] &&  source $HOME/.gnuplotrc_qt
     # if [ -f /usr/local/bin/gls ]; then
@@ -60,6 +68,7 @@ if [ "$(uname -s)" == "Darwin" ]; then
         # builtin cd "$@" && ls -F
         builtin cd "$@" && gls -GFhN --color --group-directories-first
         }
+    eval "$(rbenv init -)"
 else
     [ -f $HOME/.gnuplotrc_x11 ] &&  source $HOME/.gnuplotrc_x11
     alias copy="xclip -selection c"
@@ -80,5 +89,3 @@ else
         builtin cd "$@" && ls -GFhN --color --group-directories-first
         }
 fi
-
-eval "$(rbenv init -)"

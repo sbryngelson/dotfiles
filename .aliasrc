@@ -1,4 +1,4 @@
-# Directories 
+# Directory navigation
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -11,6 +11,7 @@ alias tarup='tar -zcvf'
 alias rs='rsync -avz '
 alias c="clear && printf '\e[3J'"
 alias ccat='highlight --out-format=ansi --force'
+alias v='vim'
 alias l='ls'
 alias la='ls -a'
 alias ll='ls -lhtr'
@@ -20,12 +21,8 @@ alias jek='bundle exec jekyll serve'
 # Common git commands 
 alias gc='git commit'
 alias ga='git add'
-alias gp='git push -u origin master'
+alias gp='git push'
 alias gf='git fetch --all && git reset --hard origin/master'
-
-# Vizualization
-alias tec360='/Applications/Tecplot\ 360\ EX\ 2018\ R1/Tecplot\ 360\ EX\ 2018\ R1.app/Contents/MacOS/Tecplot\ 360\ EX\ 2018\ R1'
-alias paraview='/Applications/ParaView-5.4.1.app/Contents/MacOS/paraview'
 
 # Servers 
 export GOLUB="bryngel2@golub.campuscluster.illinois.edu"
@@ -58,20 +55,20 @@ alias installfd="cd ~ && curl https://sh.rustup.rs -sSf | sh && source $HOME/.ca
 alias ff="fdd -t f . | fzf"
 
 # v - open files in ~/.viminfo
-v() {
-    local files
-    if [ $# -eq 0 ]; then
-        if [ -f /usr/local/bin/fzf ] || [ -f $HOME/.fzf/BUILD.md ]; then
-            files=$(grep '^>' ~/.viminfo | cut -c3- |
-                while read line; do
-                    [ -f "${line/\~/$HOME}" ] && echo "$line"
-                done | fzf-tmux -d -m -q "$*" -1)
-                #cd $(dirname ${files}) > /dev/null
-                vim ${files//\~/$HOME}
-        else
-            vim
-        fi
-    else
-        vim $@
-    fi
-}
+#v() {
+#    local files
+#    if [ $# -eq 0 ]; then
+#        if [ -f /usr/local/bin/fzf ] || [ -f $HOME/.fzf/BUILD.md ]; then
+#            files=$(grep '^>' ~/.viminfo | cut -c3- |
+#                while read line; do
+#                    [ -f "${line/\~/$HOME}" ] && echo "$line"
+#                done | fzf-tmux -d -m -q "$*" -1)
+#                #cd $(dirname ${files}) > /dev/null
+#                vim ${files//\~/$HOME}
+#        else
+#            vim
+#        fi
+#    else
+#        vim $@
+#    fi
+#}
