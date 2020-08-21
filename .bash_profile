@@ -35,12 +35,16 @@ export FZF_DEFAULT_COMMAND='fdd -t d --color=auto . $HOME'
 # Prompt 
 
 ## Colors
-export PROMPT_COMMAND='echo -ne "\033]0;${PWD/#$HOME/~}\007"'
 export CLICOLOR=1
 export LS_COLORS='di=1;34:ln=1;35:so=1;32:pi=1;33:ex=1;37:bd=34;46:cd=00;34:su=30;41:sg=30;46:tw=30;42:ow=1;34'
 
 ## Statement
 export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 1)\]\u\[$(tput setaf 2)\]@\[$(tput setaf 5)\]\H \[$(tput setaf 3)\]\W\[$(tput setaf 3)\]]\[$(tput setaf 7)\]\\$ \[$(tput sgr0)\]"
+
+## Push to bottom
+# tput cup $LINES
+# export PROMPT_COMMAND='echo -ne "\033]0;${PWD/#$HOME/~}\007"'
+export PROMPT_COMMAND='(retval=$?;tput cup "$LINES";exit $retval)'
 
 # OS-specific stuff
 if [ "$(uname -s)" == "Darwin" ]; then
