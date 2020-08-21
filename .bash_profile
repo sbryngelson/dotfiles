@@ -46,6 +46,8 @@ export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 1)\]\u\[$(tput se
 # export PROMPT_COMMAND='echo -ne "\033]0;${PWD/#$HOME/~}\007"'
 export PROMPT_COMMAND='(retval=$?;tput cup "$LINES";exit $retval)'
 
+
+
 # OS-specific stuff
 if [ "$(uname -s)" == "Darwin" ]; then
     [ -f $HOME/.gnuplotrc_qt ] &&  source $HOME/.gnuplotrc_qt
