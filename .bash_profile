@@ -1,6 +1,9 @@
+test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+
 [ -f $HOME/.aliasrc ]   &&  source $HOME/.aliasrc
 [ -f $HOME/.bashrc ]    &&  source $HOME/.bashrc
 [ -f $HOME/.fzf.bash ]  &&  source $HOME/.fzf.bash
+
 
 # Input
 shopt -s autocd
@@ -43,8 +46,8 @@ export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 1)\]\u\[$(tput se
 
 ## Push to bottom
 # tput cup $LINES
-# export PROMPT_COMMAND='echo -ne "\033]0;${PWD/#$HOME/~}\007"'
-export PROMPT_COMMAND='(retval=$?;tput cup "$LINES";exit $retval)'
+export PROMPT_COMMAND='echo -ne "\033]0;${PWD/#$HOME/~}\007"'
+# export PROMPT_COMMAND='(retval=$?;tput cup "$LINES";exit $retval)'
 
 
 

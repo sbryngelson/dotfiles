@@ -236,9 +236,9 @@ nmap <S-Tab> :bprev<CR>
 nmap <Tab> :bnext<CR>
 
 " Remap copy to clipboard
-vnoremap <C-c> :w !pbcopy<CR><CR>
+" vnoremap <C-c> :w !pbcopy<CR><CR>
 " noremap <C-v> :r !pbpaste<CR><CR>
-" vnoremap <C-c> "*y
+vnoremap <C-c> "*y
 
 " Remap home row to escape
 imap jk <Esc><Esc>
