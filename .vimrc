@@ -30,6 +30,7 @@ Plugin 'lervag/vimtex'
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'plasticboy/vim-markdown'
+" Pair with npm install -g git+https://github.com/hcgatewood/livedown
 Plugin 'shime/vim-livedown'
 Plugin 'tpope/vim-commentary'
 Plugin 'terryma/vim-multiple-cursors'
@@ -40,12 +41,11 @@ Plugin 'Konfekt/vim-sentence-chopper'
 Plugin 'arnoudbuzing/wolfram-vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'danro/rename.vim'
-Plugin 'lukelbd/vim-scrollwrapped'
+" Plugin 'lukelbd/vim-scrollwrapped'
 
 call vundle#end()
 filetype plugin indent on
 
-" Pair with npm install -g git+https://github.com/hcgatewood/livedown
 
 " Livedown
 
@@ -129,7 +129,7 @@ set conceallevel=1
 "let g:UltiSnipsExpandTrigger = '<tab>'
 "let g:UltiSnipsJumpForwardTrigger = '<tab>'
 "let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
-"let g:UltiSnipsSnippetsDirectories=["/Users/spencerbryngelson/.vim/UltiSnips/"]
+"let g:UltiSnipsSnippetsDirectories=["$HOME/.vim/UltiSnips/"]
 
 " Disables automatic commenting on newline:
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -184,6 +184,7 @@ set autoread
 " set ruler
 set scrolloff=4
 set display=lastline
+set wrap
 
 " Navigate splits
 map <C-J> <C-W>j
