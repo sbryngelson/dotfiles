@@ -1,6 +1,6 @@
 # LS commands
-if [ ! command -v gls &> /dev/null ]; then
-    # alias ls='ls -G'
+if ! command -v gls &> /dev/null
+then
     alias ls='ls -GFhN --color --group-directories-first'
 else
     alias ls='gls -GFhN --color --group-directories-first'
