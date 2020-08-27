@@ -4,6 +4,7 @@ test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shel
 [ -f $HOME/.fzf.bash ]  &&  source $HOME/.fzf.bash
 
 # OS-specific stuff
+
 if [ "$(uname -s)" == "Darwin" ]; then
     [ -f $HOME/.gnuplotrc_qt ] &&  source $HOME/.gnuplotrc_qt
 
@@ -28,6 +29,7 @@ else
 fi
 
 # Input
+
 shopt -s autocd
 shopt -s cdspell
 shopt -s dirspell
@@ -35,6 +37,7 @@ shopt -s direxpand
 shopt -s cdable_vars
 
 # Vi mode in shell
+
 set -o vi
 bind -m vi-insert '"jk":vi-movement-mode'
 bind -m vi-command "H":vi-prev-word
@@ -42,18 +45,22 @@ bind -m vi-command "L":vi-next-word
 bind '"\e[Z": menu-complete-backward'
 
 # Add to path
+
 export PATH="/usr/local/sbin:$PATH"
 
 # Environment variables
+
 export EDITOR=vim
 export VISUAL="$EDITOR"
 export TERM=xterm-256color
 
 # Expat?
+
 export EXPAT_LIBS='-L/opt/local/lib -lexpat'
 export EXPAT_CFLAGS=' '
 
 # Fuzzy file finder options
+
 bind '"\C-r": "\C-x1\e^\er"'
 bind -x '"\C-x1": __fzf_history';
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --inline-info'
@@ -86,9 +93,8 @@ function DIR_LAST {
 }
 # LOCATION=' \[\033[01;34m\]`pwd | sed "s#\(/[^/]\{1,\}/[^/]\{1,\}/[^/]\{1,\}/\).*\(/[^/]\{1,\}/[^/]\{1,\}\)/\{0,1\}#\1_\2#g"`'
 # export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 1)\]\u\[$(tput setaf 2)\]@\[$(tput setaf 5)\]\h \[$(tput setaf 3)\]$LOCATION\[$(tput setaf 3)\]]\[$(tput setaf 7)\]\\$ \[$(tput sgr0)\]"
-export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 1)\]\u\[$(tput setaf 2)\]@\[$(tput setaf 5)\]\h \[$(tput setaf 3)\]\$(DIR_LAST 2)\[$(tput setaf 3)\]]\[$(tput setaf 7)\]\\$ \[$(tput sgr0)\]"
-
 # export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 1)\]\u\[$(tput setaf 2)\]@\[$(tput setaf 5)\]\h \[$(tput setaf 3)\]\W\[$(tput setaf 3)\]]\[$(tput setaf 7)\]\\$ \[$(tput sgr0)\]"
+export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 1)\]\u\[$(tput setaf 2)\]@\[$(tput setaf 5)\]\h \[$(tput setaf 3)\]\$(DIR_LAST 2)\[$(tput setaf 3)\]]\[$(tput setaf 7)\]\\$ \[$(tput sgr0)\]"
 
 ## Push to bottom
 # tput cup $LINES
