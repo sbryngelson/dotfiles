@@ -92,7 +92,7 @@ function DIR_LAST {
     done
 }
 if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_CONNECTION" ] ; then
-    MYHOST=$(hostname -s)'$ '
+    MYHOST=$(hostname -s)
     MYHOST='@'$MYHOST
 fi
 # LOCATION=' \[\033[01;34m\]`pwd | sed "s#\(/[^/]\{1,\}/[^/]\{1,\}/[^/]\{1,\}/\).*\(/[^/]\{1,\}/[^/]\{1,\}\)/\{0,1\}#\1_\2#g"`'
