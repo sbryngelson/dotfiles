@@ -91,10 +91,15 @@ function DIR_LAST {
         echo -n ${array[$i]}
     done
 }
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_CONNECTION" ] ; then
+    MYHOST=$(hostname -s)'$ '
+    MYHOST='@'$MYHOST
+fi
 # LOCATION=' \[\033[01;34m\]`pwd | sed "s#\(/[^/]\{1,\}/[^/]\{1,\}/[^/]\{1,\}/\).*\(/[^/]\{1,\}/[^/]\{1,\}\)/\{0,1\}#\1_\2#g"`'
 # export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 1)\]\u\[$(tput setaf 2)\]@\[$(tput setaf 5)\]\h \[$(tput setaf 3)\]$LOCATION\[$(tput setaf 3)\]]\[$(tput setaf 7)\]\\$ \[$(tput sgr0)\]"
 # export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 1)\]\u\[$(tput setaf 2)\]@\[$(tput setaf 5)\]\h \[$(tput setaf 3)\]\W\[$(tput setaf 3)\]]\[$(tput setaf 7)\]\\$ \[$(tput sgr0)\]"
-export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 1)\]\u\[$(tput setaf 2)\]@\[$(tput setaf 5)\]\h \[$(tput setaf 3)\]\$(DIR_LAST 2)\[$(tput setaf 3)\]]\[$(tput setaf 7)\]\\$ \[$(tput sgr0)\]"
+# export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 1)\]\u\[$(tput setaf 2)\]@\[$(tput setaf 5)\]\h \[$(tput setaf 3)\]\$(DIR_LAST 2)\[$(tput setaf 3)\]]\[$(tput setaf 7)\]\\$ \[$(tput sgr0)\]"
+export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 1)\]\u\[$(tput setaf 5)\]$MYHOST \[$(tput setaf 3)\]\$(DIR_LAST 2)\[$(tput setaf 3)\]]\[$(tput setaf 7)\]\\$ \[$(tput sgr0)\]"
 
 ## Push to bottom
 # tput cup $LINES

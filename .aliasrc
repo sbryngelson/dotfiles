@@ -60,6 +60,13 @@ alias v='vim'
 alias cnt='ls -1 | wc -l'
 alias jek='bundle exec jekyll serve'
 
+
+if command -v colordiff &> /dev/null
+then
+    alias diff="colordiff"
+fi
+
+
 # FZF command
 alias ff="fdd -H -t f . | fzf"
 
