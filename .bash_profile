@@ -1,9 +1,31 @@
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
-
 [ -f $HOME/.aliasrc ]   &&  source $HOME/.aliasrc
 [ -f $HOME/.bashrc ]    &&  source $HOME/.bashrc
 [ -f $HOME/.fzf.bash ]  &&  source $HOME/.fzf.bash
 
+# OS-specific stuff
+if [ "$(uname -s)" == "Darwin" ]; then
+    [ -f $HOME/.gnuplotrc_qt ] &&  source $HOME/.gnuplotrc_qt
+
+    export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
+    export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/lib/pkgconfig
+
+    export LDFLAGS="-L/usr/local/opt/readline/lib"
+    export CPPFLAGS="-I/usr/local/opt/readline/include"
+    export PKG_CONFIG_PATH="/usr/local/opt/readline/lib/pkgconfig"
+
+    # Fix OpenMPI issue
+    export PMIX_MCA_gds=hash
+
+    # Homebrew stuff
+    # . $(brew --prefix bash-completion)/etc/bash_completion
+    . /usr/local/opt/bash-completion/etc/bash_completion
+
+    eval "$(rbenv init -)"
+else
+    [ -f $HOME/.gnuplotrc_x11 ] &&  source $HOME/.gnuplotrc_x11
+    export PATH="$HOME/.cargo/bin:$PATH"
+fi
 
 # Input
 shopt -s autocd
@@ -32,6 +54,8 @@ export EXPAT_LIBS='-L/opt/local/lib -lexpat'
 export EXPAT_CFLAGS=' '
 
 # Fuzzy file finder options
+bind '"\C-r": "\C-x1\e^\er"'
+bind -x '"\C-x1": __fzf_history';
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --inline-info'
 export FZF_DEFAULT_COMMAND='fdd -t d --color=auto . $HOME'
 
@@ -66,61 +90,7 @@ export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 1)\]\u\[$(tput se
 
 # export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 1)\]\u\[$(tput setaf 2)\]@\[$(tput setaf 5)\]\h \[$(tput setaf 3)\]\W\[$(tput setaf 3)\]]\[$(tput setaf 7)\]\\$ \[$(tput sgr0)\]"
 
-
-
-
-
 ## Push to bottom
 # tput cup $LINES
-export PROMPT_COMMAND='echo -ne "\033]0;${PWD/#$HOME/~}\007"'
 # export PROMPT_COMMAND='(retval=$?;tput cup "$LINES";exit $retval)'
-
-
-
-# OS-specific stuff
-if [ "$(uname -s)" == "Darwin" ]; then
-    [ -f $HOME/.gnuplotrc_qt ] &&  source $HOME/.gnuplotrc_qt
-    # if [ -f /usr/local/bin/gls ]; then
-    if [ ! command -v gls &> /dev/null ]; then
-        alias ls='ls -G'
-    else
-        alias ls='gls -GFhN --color --group-directories-first'
-    fi
-
-    alias copy="pbcopy"
-    function fd() {
-        local dir="$(fzf --reverse --preview '
-        __cd_nxt="$(echo {})";
-        __cd_path="$(echo ${__cd_nxt} | sed "s;//;/;")";
-        echo $__cd_nxt; 
-        echo;
-        gls -GFh --color --group-directories-first ${__cd_path};
-        ')"
-        cd "$dir"
-    }
-    # [ -z "$PS1" ] && return
-    function cd {
-        # builtin cd "$@" && ls -F
-        builtin cd "$@" && gls -GFhN --color --group-directories-first
-        }
-    eval "$(rbenv init -)"
-else
-    [ -f $HOME/.gnuplotrc_x11 ] &&  source $HOME/.gnuplotrc_x11
-    alias copy="xclip -selection c"
-    alias ls='ls -GFhN --color --group-directories-first'
-    function fd() {
-        local dir="$(fzf --reverse --preview '
-        __cd_nxt="$(echo {})";
-        __cd_path="$(echo ${__cd_nxt} | sed "s;//;/;")";
-        echo $__cd_nxt; 
-        echo;
-        ls -GFh --color --group-directories-first ${__cd_path};
-        ')"
-        cd "$dir"
-    }
-    export PATH="$HOME/.cargo/bin:$PATH"
-    function cd {
-        # builtin cd "$@" && ls -F
-        builtin cd "$@" && ls -GFhN --color --group-directories-first
-        }
-fi
+export PROMPT_COMMAND='echo -ne "\033]0;${PWD/#$HOME/~}\007"'
