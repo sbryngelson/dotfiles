@@ -32,7 +32,7 @@ else
 
     if command -v sacct &> /dev/null
     then
-        alias q='squeue --format="%.9i %.11P %.30j %.8u %.8T %.10M %.12l %.6D %C" | grep --color=auto "$(whoami)\|$"'
+        alias q='squeue -S "i" --format="%.9i %.11P %.30j %.8u %.8T %.10M %.12l %.6D %C" | grep --color=auto "$(whoami)\|$"'
         alias myq="sacct -u $(whoami) --format=jobid,jobname%30,alloccpus,state,elapsed -X --starttime=$(eval $DATE) | grep    --color=auto 'RUNNING\|$'"
     fi 
 fi
