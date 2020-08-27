@@ -25,9 +25,9 @@ else
     fi
 
     if date -v -1d > /dev/null 2>&1; then
-        DATE='date -v -4d "+ %Y-%m-%d"'
+        DATE='date -v -14d "+ %Y-%m-%d"'
     else
-        DATE='date --date="4 days ago" +%Y-%m-%d'
+        DATE='date --date="14 days ago" +%Y-%m-%d'
     fi
 
     if command -v sacct &> /dev/null
