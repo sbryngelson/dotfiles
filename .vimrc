@@ -101,11 +101,25 @@ let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_
 nnoremap <leader>e :SyntasticToggleMode<CR> :SyntasticCheck<CR> 
 
 " FZF
-let $FZF_DEFAULT_COMMAND='fdd -t f'
+let $FZF_DEFAULT_COMMAND='fdd -t f -H'
 let g:fzf_action = {
       \ 'ctrl-s': 'split',
       \ 'ctrl-v': 'vsplit'
       \ }
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
 
 " Airline
 let g:airline_theme='bubblegum'
@@ -150,8 +164,6 @@ set noshowmode
 set nocompatible
 set hidden
 set spelllang=en_us
-set wildmode=longest:list
-set wildcharm=<tab>
 set confirm
 set visualbell
 set noerrorbells
@@ -179,12 +191,13 @@ set undofile
 set undodir=~/.vim/undodir
 set numberwidth=2
 set autoread
-" set termguicolors
-" set tw=80
-" set ruler
-set scrolloff=4
+set scrolloff=10
 set display=lastline
 set wrap
+set linebreak 
+set wildmenu
+set wildmode=longest:full,full
+set wildcharm=<tab>
 
 " Navigate splits
 map <C-J> <C-W>j
@@ -220,6 +233,7 @@ vnoremap < <gv
 " Remap FZF
 nnoremap F :Files<CR>
 
+
 " Remap delete around a word
 nmap dw daw
 
@@ -250,8 +264,13 @@ cmap kj <C-c>
 " Move to end of previous word or beginning of next word
 noremap H ge
 noremap L w
+
+" Move ten lines down (by rows)
 noremap K 10gk
 noremap J 10gj
+
+nnoremap j gj
+nnoremap k gk
 
 " Remap redo
 noremap U <C-r>
@@ -264,6 +283,10 @@ vnoremap d "_d
 nnoremap x "_x
 xnoremap x "_x
 vnoremap x "_x
+
+" Center window when searching
+nnoremap n nzz
+nnoremap N Nzz
 
 " Don't enter insert mode after inserting a new empty line
 nnoremap o o<Esc>
