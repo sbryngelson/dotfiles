@@ -11,8 +11,10 @@ set page-completions off
 set completion-query-items 2000
 
 set show-mode-in-prompt on
-set vi-ins-mode-string "\1\e[2;31m\2I\1\e[0m\2"
-set vi-cmd-mode-string "\1\e[2;36;100m\2C\1\e[0m\2"
+set vi-ins-mode-string "I"
+set vi-cmd-mode-string "N"
+# set vi-ins-mode-string "\1\e[2;31m\2I\1\e[0m\2"
+# set vi-cmd-mode-string "\1\e[2;36;100m\2C\1\e[0m\2"
 
 set show-all-if-unmodified on
 set menu-complete-display-prefix on
