@@ -238,12 +238,13 @@ nnoremap F :Files<CR>
 nmap dw daw
 
 " Map Ctrl-A to escape
-map <C-a> <Nop>
-map <C-a> <Esc><Esc>
-vmap <C-a> <Esc><Esc>
-map <C-A> <Nop>
-map <C-A> <Esc><Esc>
-vmap <C-A> <Esc><Esc>
+noremap <C-a> <Nop>
+noremap <C-a> <Esc><Esc>
+xnoremap <C-a> <Esc><Esc>
+
+noremap <C-A> <Nop>
+noremap <C-A> <Esc><Esc>
+xnoremap <C-A> <Esc><Esc>
 
 
 " Remap tab switch
