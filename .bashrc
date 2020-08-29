@@ -1,6 +1,7 @@
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 [ -f $HOME/.aliasrc ]   &&  source $HOME/.aliasrc
 [ -f $HOME/.fzf.bash ]  &&  source $HOME/.fzf.bash
+[ -f $HOME/.localrc ]   &&  source $HOME/.localrc
 
 # OS-specific stuff
 
