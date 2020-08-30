@@ -27,7 +27,7 @@ endif
 " call vundle#begin()
 
 Plugin 'lervag/vimtex'
-Plugin 'itchyny/lightline.vim'
+" Plugin 'itchyny/lightline.vim'
 Plugin 'plasticboy/vim-markdown'
 " Pair with npm install -g git+https://github.com/hcgatewood/livedown
 Plugin 'shime/vim-livedown'
@@ -40,9 +40,8 @@ Plugin 'Konfekt/vim-sentence-chopper'
 Plugin 'arnoudbuzing/wolfram-vim'
 Plugin 'scrooloose/syntastic'
 Plugin 'danro/rename.vim'
-
-" Plugin 'bling/vim-airline'
-" Plugin 'vim-airline/vim-airline-themes'
+Plugin 'bling/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 " Plugin 'lukelbd/vim-scrollwrapped'
 
 call vundle#end()
@@ -124,21 +123,24 @@ let g:fzf_colors =
   \ 'header':  ['fg', 'Comment'] }
 
 " Airline
-" let g:airline_theme='bubblegum'
-" let g:airline#extensions#tabline#enabled = 1 
+let g:airline_theme='bubblegum'
+let g:airline#extensions#tabline#enabled = 1 
 " let g:airline_powerline_fonts = 1
-" let g:airline#extensions#hunks#enabled = 0 
-" let g:airline#extensions#whitespace#enabled = 0
+let g:airline#extensions#hunks#enabled = 0 
+let g:airline#extensions#whitespace#enabled = 0
+let g:airline_section_y = ''
+let g:airline_section_z = '%3p%% %3l/%L:%3v'
+
 
 " Lightline
-let g:lightline = {
-      \ 'colorscheme': 'jellybeans',
-      \ 'active': {
-      \   'right': [ [ 'lineinfo' ],
-      \              [ 'percent' ]
-      \            ]
-      \ }
-      \ }
+" let g:lightline = {
+"       \ 'colorscheme': 'jellybeans',
+"       \ 'active': {
+"       \   'right': [ [ 'lineinfo' ],
+"       \              [ 'percent' ]
+"       \            ]
+"       \ }
+"       \ }
 
 
 " Vimtex
@@ -210,8 +212,9 @@ set linebreak
 set wildmenu
 set wildmode=longest:full,full
 set wildcharm=<tab>
-set laststatus=2
+" set laststatus=2
 set noshowmode
+
 
 
 " Navigate splits
