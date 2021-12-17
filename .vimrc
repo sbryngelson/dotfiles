@@ -42,10 +42,19 @@ Plugin 'scrooloose/syntastic'
 Plugin 'danro/rename.vim'
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
+Plugin 'dense-analysis/ale'
 " Plugin 'lukelbd/vim-scrollwrapped'
 
 call vundle#end()
 filetype plugin indent on
+
+" ALE
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_save = 0
+let g:ale_lint_on_text_changed = 0
+let g:ale_lint_on_insert_leave = 0
+nmap <leader>a :ALEToggle<CR>
+
 
 
 " Livedown
@@ -62,6 +71,7 @@ let g:livedown_port = 1337
 
 " Vim markdown
 let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_new_list_item_indent = 2
 " let g:vim_markdown_math = 1
 
 
