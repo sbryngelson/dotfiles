@@ -1,0 +1,21 @@
+anaconda3
+Library/Caches
+Library/Containers/com.apple.mail
+.matlab
+.cpan
+Library/Containers/com.microsoft.*
+miniconda3
+.cargo
+.cache
+.git
+Library/Application\ Support
+Library/Containers
+Zotero/storage
+.npm
+.julia
+Library
+.rbenv
+.vscode
+.gem
+.cmake
+books

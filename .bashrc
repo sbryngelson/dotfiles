@@ -1,4 +1,4 @@
-test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
+# test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 [ -f $HOME/.aliasrc ]   &&  source $HOME/.aliasrc
 [ -f $HOME/.fzf.bash ]  &&  source $HOME/.fzf.bash
 [ -f $HOME/.localrc ]   &&  source $HOME/.localrc
@@ -10,11 +10,14 @@ if [ "$(uname -s)" == "Darwin" ]; then
 
     export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
     export PATH="$HOME/.local/bin:$PATH"
+    export PATH="/usr/local/bin:$PATH"
     export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/lib/pkgconfig
 
     export LDFLAGS="-L/usr/local/opt/readline/lib"
     export CPPFLAGS="-I/usr/local/opt/readline/include"
     export PKG_CONFIG_PATH="/usr/local/opt/readline/lib/pkgconfig"
+
+    export BAT_THEME="Nord"
 
     # Fix OpenMPI issue
     export PMIX_MCA_gds=hash
@@ -63,7 +66,7 @@ export EXPAT_CFLAGS=' '
 bind '"\C-r": "\C-x1\e^\er"'
 bind -x '"\C-x1": __fzf_history';
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --inline-info'
-export FZF_DEFAULT_COMMAND='fdd -t d -H --color=auto . $HOME'
+export FZF_DEFAULT_COMMAND='fdd -t d --color=auto . --base-directory $HOME'
 
 # Prompt 
 
@@ -109,3 +112,21 @@ export PS1="\[$(tput bold)\]\[$(tput setaf 5)\]$PROMP \[$(tput setaf 3)\]\$(DIR_
 export PROMPT_COMMAND='echo -ne "\033]0;${PWD/#$HOME/~}\007"'
 
 # eval "$(rbenv init -)"
+#tauu
+# do not remove these lines!
+# uninstall may not work if modified
+export PATH="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/bin/:/Applications/TAU/tau/apple/bin:$PATH"
+# end modification
+#tauend
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+
+# --- [Added by MFC | Start Section] --- #
+if [[ -z "${MFC_ENV_SH_HEADER_GUARD}" ]]; then 
+	export MFC_ENV_SH_HEADER_GUARD="SET" 
+	export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/Users/spencer/research/solvers/MFC-develop/dependencies/build/lib" 
+fi 
+# --- [Added by MFC | End Section] --- #
+
+. "$HOME/.cargo/env"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
