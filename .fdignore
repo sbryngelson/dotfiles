@@ -19,3 +19,4 @@ Library
 .gem
 .cmake
 books
+.rustup
