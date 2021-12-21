@@ -1,5 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhistcnt =1
+let g:netrw_dirhistcnt =4
+let g:netrw_dirhist_4='/Users/spencer/research/grants/fvm-risc/CloverLeaf-Henry-Bench-Results/cpu'
+let g:netrw_dirhist_3='/Users/spencer/research/grants/fvm-risc/CloverLeaf-Henry-Bench-Results/gpu'
+let g:netrw_dirhist_2='/Users/spencer/.local'
 let g:netrw_dirhist_1='/Users/spencer/research/solvers/MFC-develop/src'
 let g:netrw_dirhist_0='/Users/spencer/research/solvers/MFC-develop/src/simulation_code'
 let g:netrw_dirhist_9='/Users/spencer/Downloads/MFC-develop/example_cases/1D_bubblescreen'
@@ -7,6 +10,3 @@ let g:netrw_dirhist_8='/Users/spencer/websites/comp-physics.github.io/_pages'
 let g:netrw_dirhist_7='/Users/spencer/websites/comp-physics.github.io'
 let g:netrw_dirhist_6='/Users/spencer/websites/comp-physics.github.io/_pages'
 let g:netrw_dirhist_5='/Users/spencer/websites/comp-physics.github.io/_data'
-let g:netrw_dirhist_4='/Users/spencer/websites/comp-physics.github.io'
-let g:netrw_dirhist_3='/Users/spencer/websites/comp-physics.github.io/_data'
-let g:netrw_dirhist_2='/Users/spencer/research/solvers/MFC-Caltech/src/master_scripts/__pycache__'
