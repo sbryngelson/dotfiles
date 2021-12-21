@@ -10,7 +10,7 @@ if [ "$(uname -s)" == "Darwin" ]; then
 
     export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
     export PATH="$HOME/.local/bin:$PATH"
-    export PATH="/usr/local/bin:$PATH"
+    export PATH="/opt/homebrew/bin:$PATH"
     export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/lib/pkgconfig
 
     export LDFLAGS="-L/usr/local/opt/readline/lib"
@@ -24,7 +24,8 @@ if [ "$(uname -s)" == "Darwin" ]; then
 
     # Homebrew stuff
     # . $(brew --prefix bash-completion)/etc/bash_completion
-    . /usr/local/opt/bash-completion/etc/bash_completion
+    # . /opt/homebrew/bin/bash-completion/etc/bash_completion
+    . /opt/homebrew/etc/bash_completion
 else
     [ -f $HOME/.gnuplotrc_x11 ] &&  source $HOME/.gnuplotrc_x11
     export PATH="$HOME/.cargo/bin:$PATH"
@@ -100,10 +101,6 @@ if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_CONNECTION" ] ; then
     UNAME=$(whoami)
     PROMP=$UNAME$MYHOST
 fi
-# LOCATION=' \[\033[01;34m\]`pwd | sed "s#\(/[^/]\{1,\}/[^/]\{1,\}/[^/]\{1,\}/\).*\(/[^/]\{1,\}/[^/]\{1,\}\)/\{0,1\}#\1_\2#g"`'
-# export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 1)\]\u\[$(tput setaf 2)\]@\[$(tput setaf 5)\]\h \[$(tput setaf 3)\]$LOCATION\[$(tput setaf 3)\]]\[$(tput setaf 7)\]\\$ \[$(tput sgr0)\]"
-# export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 1)\]\u\[$(tput setaf 2)\]@\[$(tput setaf 5)\]\h \[$(tput setaf 3)\]\W\[$(tput setaf 3)\]]\[$(tput setaf 7)\]\\$ \[$(tput sgr0)\]"
-# export PS1="\[$(tput bold)\]\[$(tput setaf 1)\][\[$(tput setaf 1)\]\u\[$(tput setaf 2)\]@\[$(tput setaf 5)\]\h \[$(tput setaf 3)\]\$(DIR_LAST 2)\[$(tput setaf 3)\]]\[$(tput setaf 7)\]\\$ \[$(tput sgr0)\]"
 export PS1="\[$(tput bold)\]\[$(tput setaf 5)\]$PROMP \[$(tput setaf 3)\]\$(DIR_LAST 2)\[$(tput setaf 3)\] \[$(tput setaf 2)\]\\$ \[$(tput sgr0)\]"
 
 ## Push to bottom
@@ -111,14 +108,7 @@ export PS1="\[$(tput bold)\]\[$(tput setaf 5)\]$PROMP \[$(tput setaf 3)\]\$(DIR_
 # export PROMPT_COMMAND='(retval=$?;tput cup "$LINES";exit $retval)'
 export PROMPT_COMMAND='echo -ne "\033]0;${PWD/#$HOME/~}\007"'
 
-# eval "$(rbenv init -)"
-#tauu
-# do not remove these lines!
-# uninstall may not work if modified
-export PATH="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/bin/:/Applications/TAU/tau/apple/bin:$PATH"
-# end modification
-#tauend
-export PATH="/usr/local/opt/ruby/bin:$PATH"
+# export PATH="/usr/local/opt/ruby/bin:$PATH"
 
 # --- [Added by MFC | Start Section] --- #
 if [[ -z "${MFC_ENV_SH_HEADER_GUARD}" ]]; then 
