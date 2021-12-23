@@ -11,11 +11,11 @@ if [ "$(uname -s)" == "Darwin" ]; then
     export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
     export PATH="$HOME/.local/bin:$PATH"
     export PATH="/opt/homebrew/bin:$PATH"
-    export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/lib/pkgconfig
 
-    export LDFLAGS="-L/usr/local/opt/readline/lib"
-    export CPPFLAGS="-I/usr/local/opt/readline/include"
-    export PKG_CONFIG_PATH="/usr/local/opt/readline/lib/pkgconfig"
+    export LDFLAGS="-L/opt/homebrew/opt/readline/lib"
+    export CPPFLAGS="-I/opt/homebrew/opt/readline/include"
+    export PKG_CONFIG_PATH="/opt/homebrew/opt/readline/lib/pkgconfig"
+    export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/lib/pkgconfig
 
     export BAT_THEME="Nord"
 
@@ -26,6 +26,9 @@ if [ "$(uname -s)" == "Darwin" ]; then
     # . $(brew --prefix bash-completion)/etc/bash_completion
     # . /opt/homebrew/bin/bash-completion/etc/bash_completion
     . /opt/homebrew/etc/bash_completion
+
+    # Ruby 
+    export PATH="/opt/homebrew/opt/ruby/bin:/opt/homebrew/lib/ruby/gems/3.0.0/bin:$PATH"
 else
     [ -f $HOME/.gnuplotrc_x11 ] &&  source $HOME/.gnuplotrc_x11
     export PATH="$HOME/.cargo/bin:$PATH"
@@ -110,13 +113,12 @@ export PROMPT_COMMAND='echo -ne "\033]0;${PWD/#$HOME/~}\007"'
 
 # export PATH="/usr/local/opt/ruby/bin:$PATH"
 
+# Cargo
+. "$HOME/.cargo/env"
+
 # --- [Added by MFC | Start Section] --- #
 if [[ -z "${MFC_ENV_SH_HEADER_GUARD}" ]]; then 
 	export MFC_ENV_SH_HEADER_GUARD="SET" 
 	export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/Users/spencer/research/solvers/MFC-develop/dependencies/build/lib" 
 fi 
 # --- [Added by MFC | End Section] --- #
-
-. "$HOME/.cargo/env"
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
