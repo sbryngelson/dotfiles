@@ -113,6 +113,8 @@ nnoremap <leader>e :SyntasticToggleMode<CR> :SyntasticCheck<CR>
 
 " FZF
 let $FZF_DEFAULT_COMMAND='fdd -t f -H'
+let g:fzf_layout= {'down':'15'}
+
 let g:fzf_action = {
       \ 'ctrl-s': 'split',
       \ 'ctrl-v': 'vsplit'
@@ -370,3 +372,17 @@ function! XTermPasteBegin()
     set paste
     return ""
 endfunction
+
+if empty(v:servername) && exists('*remote_startserver')
+  call remote_startserver('VIM')
+endif
+
+" function! s:write_server_name() abort
+"   let nvim_server_file = (has('win32') ? $TEMP : '/tmp') . '/vimtexserver.txt'
+"   call writefile([v:servername], nvim_server_file)
+" endfunction
+
+" augroup vimtex_common
+"   autocmd!
+"   autocmd FileType tex call s:write_server_name()
+" augroup END
