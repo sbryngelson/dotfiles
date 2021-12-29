@@ -13,7 +13,6 @@ if !filereadable(vundle_readme)
 endif
 set rtp+=~/.vim/bundle/Vundle.vim/
 call vundle#rc()
-
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 if haveVundle == 0
@@ -21,13 +20,9 @@ if haveVundle == 0
   echo ""
   :PluginInstall
 endif
-
 " set rtp+=~/.vim/bundle/Vundle.vim
-
 " call vundle#begin()
-
 Plugin 'lervag/vimtex'
-" Plugin 'itchyny/lightline.vim'
 Plugin 'plasticboy/vim-markdown'
 " Pair with npm install -g git+https://github.com/hcgatewood/livedown
 Plugin 'shime/vim-livedown'
@@ -38,13 +33,14 @@ Plugin 'junegunn/fzf.vim'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'Konfekt/vim-sentence-chopper'
 Plugin 'arnoudbuzing/wolfram-vim'
-Plugin 'scrooloose/syntastic'
 Plugin 'danro/rename.vim'
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'dense-analysis/ale'
+Plugin 'vim-pandoc/vim-pandoc'
+Plugin 'vim-pandoc/vim-pandoc-syntax'
+" Plugin 'scrooloose/syntastic'
 " Plugin 'lukelbd/vim-scrollwrapped'
-
 call vundle#end()
 filetype plugin indent on
 
@@ -54,8 +50,6 @@ let g:ale_lint_on_save = 0
 let g:ale_lint_on_text_changed = 0
 let g:ale_lint_on_insert_leave = 0
 nmap <leader>a :ALEToggle<CR>
-
-
 
 " Livedown
 
@@ -74,7 +68,6 @@ let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_new_list_item_indent = 2
 " let g:vim_markdown_math = 1
 
-
 " Wolfram language syntax highlighting
 autocmd BufNewFile,BufRead *.wl set syntax=wl
 autocmd BufNewFile,BufRead *.wls set syntax=wl
@@ -87,29 +80,29 @@ vmap <leader>w <plug>(ChopSentences)i<CR>
 " nnoremap <leader>w gqip
 
 " Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_wq = 1
-let g:syntastic_quiet_messages = { 'regex': [ 
-    \ '\Vis not a GNU Fortran module',
-    \ '\Vmpi.mod'
-    \ ] }
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 1
+" let g:syntastic_check_on_wq = 1
+" let g:syntastic_quiet_messages = { 'regex': [ 
+"     \ '\Vis not a GNU Fortran module',
+"     \ '\Vmpi.mod'
+"     \ ] }
 " let g:syntastic_quiet_messages = {"!level":  "errors"}
 " let g:syntastic_check_on_open = 1
 " let g:syntastic_ignore_files = ['preamble.tex', 'tikz_preamble.tex']
 
-let g:syntastic_fortran_compiler_options = '-ffree-line-length-none'
-function! SyntasticCheckHook(errors)
-    if !empty(a:errors)
-        let g:syntastic_loc_list_height = min([len(a:errors), 4])
-    endif
-endfunction
+" let g:syntastic_fortran_compiler_options = '-ffree-line-length-none'
+" function! SyntasticCheckHook(errors)
+"     if !empty(a:errors)
+"         let g:syntastic_loc_list_height = min([len(a:errors), 4])
+"     endif
+" endfunction
 
-let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
-nnoremap <leader>e :SyntasticToggleMode<CR> :SyntasticCheck<CR> 
+" let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
+" nnoremap <leader>e :SyntasticToggleMode<CR> :SyntasticCheck<CR> 
 
 " FZF
 let $FZF_DEFAULT_COMMAND='fdd -t f -H'
@@ -143,18 +136,6 @@ let g:airline#extensions#whitespace#enabled = 0
 let g:airline_section_y = ''
 let g:airline_section_z = '%3p%% %3l/%L:%3v'
 
-
-" Lightline
-" let g:lightline = {
-"       \ 'colorscheme': 'jellybeans',
-"       \ 'active': {
-"       \   'right': [ [ 'lineinfo' ],
-"       \              [ 'percent' ]
-"       \            ]
-"       \ }
-"       \ }
-
-
 " Vimtex
 let g:tex_flavor='latexmk'
 let g:vimtex_view_method='skim'
@@ -162,15 +143,6 @@ let g:vimtex_quickfix_mode=0
 let g:tex_conceal='abdmg'
 let g:tex_comment_nospell= 1
 set conceallevel=1
-
-" vifm
-" let g:vifm_embed_term = 0
-
-" Ultisnips
-"let g:UltiSnipsExpandTrigger = '<tab>'
-"let g:UltiSnipsJumpForwardTrigger = '<tab>'
-"let g:UltiSnipsJumpBackwardTrigger = '<s-tab>'
-"let g:UltiSnipsSnippetsDirectories=["$HOME/.vim/UltiSnips/"]
 
 " Disables automatic commenting on newline:
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -199,7 +171,6 @@ set hlsearch
 set showcmd
 set ignorecase
 set smartcase
-set clipboard=unnamed
 set backspace=indent,eol,start
 set autoindent
 set smartindent
@@ -226,8 +197,11 @@ set wildmode=longest:full,full
 set wildcharm=<tab>
 " set laststatus=2
 set noshowmode
+set clipboard=unnamed
 
 
+" Pandoc 
+autocmd FileType pandoc nmap <leader>lc :Pandoc pdf<CR><CR>
 
 " Navigate splits
 map <C-J> <C-W>j
@@ -376,13 +350,3 @@ endfunction
 if empty(v:servername) && exists('*remote_startserver')
   call remote_startserver('VIM')
 endif
-
-" function! s:write_server_name() abort
-"   let nvim_server_file = (has('win32') ? $TEMP : '/tmp') . '/vimtexserver.txt'
-"   call writefile([v:servername], nvim_server_file)
-" endfunction
-
-" augroup vimtex_common
-"   autocmd!
-"   autocmd FileType tex call s:write_server_name()
-" augroup END
