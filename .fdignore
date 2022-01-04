@@ -20,3 +20,10 @@ Library
 .cmake
 books
 .rustup
+*.aux
+*.bbl
+*.blg
+*.log
+*_latexmk
+*.fls
+*.synctex.gz

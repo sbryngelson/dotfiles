@@ -11,11 +11,13 @@ if [ "$(uname -s)" == "Darwin" ]; then
     export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
     export PATH="$HOME/.local/bin:$PATH"
     export PATH="/opt/homebrew/bin:$PATH"
+    export PATH="/Applications/Julia-1.7.app/Contents/Resources/julia/bin:$PATH"
 
     export LDFLAGS="-L/opt/homebrew/opt/readline/lib"
     export CPPFLAGS="-I/opt/homebrew/opt/readline/include"
     export PKG_CONFIG_PATH="/opt/homebrew/opt/readline/lib/pkgconfig"
     export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/lib/pkgconfig
+    export JULIA_HDF5_PATH="/opt/homebrew/opt/hdf5"
 
     export BAT_THEME="Nord"
 
@@ -27,8 +29,14 @@ if [ "$(uname -s)" == "Darwin" ]; then
     # . /opt/homebrew/bin/bash-completion/etc/bash_completion
     . /opt/homebrew/etc/bash_completion
 
+    export HOMEBREW_CC=gcc-11
+    export HOMEBREW_CXX=g++-11
+
     # Ruby 
     export PATH="/opt/homebrew/opt/ruby/bin:/opt/homebrew/lib/ruby/gems/3.0.0/bin:$PATH"
+    
+    # Fixed
+    export PATH="$HOME/Fixed/bin:$PATH"
 else
     [ -f $HOME/.gnuplotrc_x11 ] &&  source $HOME/.gnuplotrc_x11
     export PATH="$HOME/.cargo/bin:$PATH"

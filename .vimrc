@@ -201,7 +201,12 @@ set clipboard=unnamed
 
 
 " Pandoc 
+set nofoldenable    " disable folding
 autocmd FileType pandoc nmap <leader>lc :Pandoc pdf<CR><CR>
+let g:pandoc#folding#level = 9
+let g:pandoc#folding#mode = ''
+
+
 
 " Navigate splits
 map <C-J> <C-W>j
@@ -350,3 +355,10 @@ endfunction
 if empty(v:servername) && exists('*remote_startserver')
   call remote_startserver('VIM')
 endif
+
+function! MyFormatExpr(start, end)
+    silent execute a:start.','.a:end.'s/[.!?]\zs /\r/g'
+endfunction
+
+set formatexpr=MyFormatExpr(v:lnum,v:lnum+v:count-1)
+nnoremap <leader>w gqip
