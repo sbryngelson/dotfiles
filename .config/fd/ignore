@@ -1,0 +1,6 @@
+/Volumes/*back*
+/Volumes/.timemachine
+/Volumes/*.TimeMachine.*
+System/Volumes/*back*
+System/Volumes/.timemachine
+System/Volumes/*.TimeMachine.*

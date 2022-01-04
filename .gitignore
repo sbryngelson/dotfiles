@@ -42,8 +42,6 @@ research/
 .config/ParaView/
 .config/com.nvidia.devtools/
 .config/configstore/
-.config/fd/
-.config/fzf-notes
 .config/gtk-2.0/
 .config/htop/
 .config/inkscape/
