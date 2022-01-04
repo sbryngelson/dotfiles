@@ -73,7 +73,7 @@ then
 fi
 
 # FZF command
-alias ff="fdd -H -t f . | fzf"
+alias ff="fdd --no-ignore-vcs -H -t f . | fzf"
 
 function fd() {
     local dir="$(fzf --reverse --preview '
