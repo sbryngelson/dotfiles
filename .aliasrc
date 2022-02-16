@@ -67,9 +67,15 @@ alias cnt='ls -1 | wc -l'
 alias jek='bundle exec jekyll serve'
 alias jekcheck="bundle exec jekyll build; bundle exec htmlproofer ./_site --alt-ignore '/.*/' --http_status_ignore='999,403,301,302' --assume-extension"
 
+
 if command -v colordiff &> /dev/null
 then
-    alias diff="colordiff"
+    alias diff='colordiff'
+fi
+
+if command -v blacktex &> /dev/null
+then
+    alias blacktex='blacktex -c -d'
 fi
 
 # FZF command
@@ -138,6 +144,7 @@ alias ascent='ssh -Y sbryngelson@login1.ascent.olcf.ornl.gov'
 alias expanse='ssh -Y bryngel@login.expanse.sdsc.edu'
 alias summit='ssh -Y sbryngelson@summit.olcf.ornl.gov'
 alias phoenix='ssh -Y sbryngelson3@login-phoenix.pace.gatech.edu'
+alias cocice='ssh -Y sbryngelson3@coc-ice.pace.gatech.edu'
 
 # Dotfile stuff (some of this is deprecated?)
 alias dotpush="cd ~/ && git add ~/.bash_profile ~/.aliasrc ~/.inputrc ~/.gnuplotrc_x11 ~/.gnuplotrc_qt ~/.vimrc .vim/colors/SHB.vim && git commit -m 'update to dotfiles' && git push -u origin master"

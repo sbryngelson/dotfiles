@@ -128,6 +128,9 @@ let g:fzf_colors =
   \ 'header':  ['fg', 'Comment'] }
 
 " Airline
+let g:airline#extensions#wordcount#enabled = 1
+let g:airline#extensions#wordcount#filetypes =
+    \ ['asciidoc', 'help', 'mail', 'markdown', 'nroff', 'org', 'plaintex', 'rst', 'tex', 'text', 'pandoc', 'md']
 let g:airline_theme='bubblegum'
 let g:airline#extensions#tabline#enabled = 1 
 " let g:airline_powerline_fonts = 1
@@ -202,7 +205,7 @@ set clipboard=unnamed
 
 " Pandoc 
 set nofoldenable    " disable folding
-autocmd FileType pandoc nmap <leader>lc :Pandoc pdf<CR><CR>
+autocmd FileType pandoc nmap <leader>lc :Pandoc pdf -Vgeometry:margin=1in<CR><CR>
 let g:pandoc#folding#level = 9
 let g:pandoc#folding#mode = ''
 

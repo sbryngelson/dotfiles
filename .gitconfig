@@ -17,3 +17,5 @@
 	rebase = false
 [init]
 	defaultBranch = master
+[url "https://"]
+	insteadOf = git://

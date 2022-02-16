@@ -1,5 +1,4 @@
 # test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
-[ -f $HOME/.aliasrc ]   &&  source $HOME/.aliasrc
 [ -f $HOME/.fzf.bash ]  &&  source $HOME/.fzf.bash
 [ -f $HOME/.localrc ]   &&  source $HOME/.localrc
 
@@ -11,7 +10,7 @@ if [ "$(uname -s)" == "Darwin" ]; then
     export PATH="/usr/local/opt/gnu-getopt/bin:$PATH"
     export PATH="$HOME/.local/bin:$PATH"
     export PATH="/opt/homebrew/bin:$PATH"
-    export PATH="/Applications/Julia-1.7.app/Contents/Resources/julia/bin:$PATH"
+    export PATH="~/Applications/julia:$PATH"
 
     export LDFLAGS="-L/opt/homebrew/opt/readline/lib"
     export CPPFLAGS="-I/opt/homebrew/opt/readline/include"
@@ -124,9 +123,4 @@ export PROMPT_COMMAND='echo -ne "\033]0;${PWD/#$HOME/~}\007"'
 # Cargo
 . "$HOME/.cargo/env"
 
-# --- [Added by MFC | Start Section] --- #
-if [[ -z "${MFC_ENV_SH_HEADER_GUARD}" ]]; then 
-	export MFC_ENV_SH_HEADER_GUARD="SET" 
-	export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/Users/spencer/research/solvers/MFC-develop/dependencies/build/lib" 
-fi 
-# --- [Added by MFC | End Section] --- #
+[ -f $HOME/.aliasrc ]   &&  source $HOME/.aliasrc
