@@ -85,7 +85,7 @@ research/
 .rbenv/
 .rustup/
 .screenrc
-.serverauth.62763
+.serverauth.*
 .ssh/
 .swo
 .swt/
@@ -93,3 +93,4 @@ research/
 .viminfo
 .wget-hsts
 .zshenv
+
