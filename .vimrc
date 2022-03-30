@@ -41,6 +41,7 @@ Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
 " Plugin 'scrooloose/syntastic'
 " Plugin 'lukelbd/vim-scrollwrapped'
+Plugin 'junegunn/seoul256.vim'
 call vundle#end()
 filetype plugin indent on
 
@@ -131,7 +132,7 @@ let g:fzf_colors =
 let g:airline#extensions#wordcount#enabled = 1
 let g:airline#extensions#wordcount#filetypes =
     \ ['asciidoc', 'help', 'mail', 'markdown', 'nroff', 'org', 'plaintex', 'rst', 'tex', 'text', 'pandoc', 'md']
-let g:airline_theme='bubblegum'
+let g:airline_theme='angr'
 let g:airline#extensions#tabline#enabled = 1 
 " let g:airline_powerline_fonts = 1
 let g:airline#extensions#hunks#enabled = 0 
@@ -154,7 +155,14 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 set formatoptions+=w
 
 syntax on
-colorscheme SHB
+" colorscheme SHB
+
+" Switch
+colo seoul256
+set background=dark
+let g:seoul_background = 233
+colo seoul256
+
 set t_Co=256
 
 set noswapfile

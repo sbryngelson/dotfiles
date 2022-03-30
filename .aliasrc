@@ -66,6 +66,7 @@ alias v='vim'
 alias cnt='ls -1 | wc -l'
 alias jek='bundle exec jekyll serve'
 alias jekcheck="bundle exec jekyll build; bundle exec htmlproofer ./_site --alt-ignore '/.*/' --http_status_ignore='999,403,301,302' --assume-extension"
+alias pngtompeg="ffmpeg -y -f image2 -r 20 -i D/img_%04d.png -b 5000k movie.mpeg"
 
 
 if command -v colordiff &> /dev/null
@@ -131,6 +132,7 @@ export ASCENT='sbryngelson@login1.ascent.olcf.ornl.gov'
 export EXPANSE='bryngel@login.expanse.sdsc.edu'
 export SUMMIT='sbryngelson@summit.olcf.ornl.gov'
 export PHOENIX='sbryngelson3@login-phoenix.pace.gatech.edu'
+export WOMBAT='sbryngelson@wombat-login1.ccs.ornl.gov'
 
 alias golub='ssh -Y bryngel2@golub.campuscluster.illinois.edu'
 alias legolas='ssh -Y bryngel2@legolas2.mechse.illinois.edu'
@@ -145,6 +147,7 @@ alias expanse='ssh -Y bryngel@login.expanse.sdsc.edu'
 alias summit='ssh -Y sbryngelson@summit.olcf.ornl.gov'
 alias phoenix='ssh -Y sbryngelson3@login-phoenix.pace.gatech.edu'
 alias cocice='ssh -Y sbryngelson3@coc-ice.pace.gatech.edu'
+alias wombat='ssh -Y sbryngelson@wombat-login1.ccs.ornl.gov'
 
 # Dotfile stuff (some of this is deprecated?)
 alias dotpush="cd ~/ && git add ~/.bash_profile ~/.aliasrc ~/.inputrc ~/.gnuplotrc_x11 ~/.gnuplotrc_qt ~/.vimrc .vim/colors/SHB.vim && git commit -m 'update to dotfiles' && git push -u origin master"

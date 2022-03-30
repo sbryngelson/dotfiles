@@ -27,3 +27,4 @@ books
 *_latexmk
 *.fls
 *.synctex.gz
+Pictures/

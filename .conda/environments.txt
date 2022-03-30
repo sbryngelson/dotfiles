@@ -1,1 +1,4 @@
 /Users/spencer/.julia/conda/3
+/Users/spencer/Downloads/tensorflow-test/python=3.9
+/Users/spencer/Downloads/tensorflow-test/env
+/Users/spencer/miniforge3
