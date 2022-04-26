@@ -36,6 +36,7 @@ if [ "$(uname -s)" == "Darwin" ]; then
     
     # Fixed
     export PATH="$HOME/Fixed/bin:$PATH"
+    export PATH="$HOME/.julia/bin:$PATH"
 else
     [ -f $HOME/.gnuplotrc_x11 ] &&  source $HOME/.gnuplotrc_x11
     export PATH="$HOME/.cargo/bin:$PATH"
@@ -105,12 +106,12 @@ function DIR_LAST {
     done
 }
 
-if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_CONNECTION" ] ; then
-    MYHOST=$(hostname -s)
-    MYHOST='@'$MYHOST
-    UNAME=$(whoami)
-    PROMP=$UNAME$MYHOST
-fi
+# if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_CONNECTION" ] ; then
+#     MYHOST=$(hostname -s)
+#     MYHOST='@'$MYHOST
+#     UNAME=$(whoami)
+#     PROMP=$UNAME$MYHOST
+# fi
 export PS1="\[$(tput bold)\]\[$(tput setaf 5)\]$PROMP \[$(tput setaf 3)\]\$(DIR_LAST 2)\[$(tput setaf 3)\] \[$(tput setaf 2)\]\\$ \[$(tput sgr0)\]"
 
 ## Push to bottom

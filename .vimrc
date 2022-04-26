@@ -36,33 +36,26 @@ Plugin 'arnoudbuzing/wolfram-vim'
 Plugin 'danro/rename.vim'
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'dense-analysis/ale'
 Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
-" Plugin 'scrooloose/syntastic'
-" Plugin 'lukelbd/vim-scrollwrapped'
 Plugin 'junegunn/seoul256.vim'
+Plugin 'junegunn/rainbow_parentheses.vim'
+Plugin 'junegunn/vim-slash'
+Plugin 'davidbeckingsale/writegood.vim'
 call vundle#end()
 filetype plugin indent on
 
-" ALE
-let g:ale_lint_on_enter = 0
-let g:ale_lint_on_save = 0
-let g:ale_lint_on_text_changed = 0
-let g:ale_lint_on_insert_leave = 0
-nmap <leader>a :ALEToggle<CR>
 
 " Livedown
-
-" should markdown preview get shown automatically upon opening markdown buffer
+"" should markdown preview get shown automatically upon opening markdown buffer
 nmap <leader>p :LivedownToggle<CR>
 let g:livedown_autorun = 0
-" should the browser window pop-up upon previewing
+"" should the browser window pop-up upon previewing
 let g:livedown_open = 1
-" the port on which Livedown server will run
+"" the port on which Livedown server will run
 let g:livedown_port = 1337
-" the browser to use, can also be firefox, chrome or other, depending on your executable
-" let g:livedown_browser = "chrome"
+"" the browser to use, can also be firefox, chrome or other, depending on your executable
+"" let g:livedown_browser = "chrome"
 
 " Vim markdown
 let g:vim_markdown_folding_disabled = 1
@@ -79,31 +72,6 @@ nmap <leader>w <plug>(ChopSentences)ip<CR>
 xmap <leader>w <plug>(ChopSentences)ip<CR>
 vmap <leader>w <plug>(ChopSentences)i<CR>
 " nnoremap <leader>w gqip
-
-" Syntastic
-" set statusline+=%#warningmsg#
-" set statusline+=%{SyntasticStatuslineFlag()}
-" set statusline+=%*
-" let g:syntastic_always_populate_loc_list = 1
-" let g:syntastic_auto_loc_list = 1
-" let g:syntastic_check_on_wq = 1
-" let g:syntastic_quiet_messages = { 'regex': [ 
-"     \ '\Vis not a GNU Fortran module',
-"     \ '\Vmpi.mod'
-"     \ ] }
-" let g:syntastic_quiet_messages = {"!level":  "errors"}
-" let g:syntastic_check_on_open = 1
-" let g:syntastic_ignore_files = ['preamble.tex', 'tikz_preamble.tex']
-
-" let g:syntastic_fortran_compiler_options = '-ffree-line-length-none'
-" function! SyntasticCheckHook(errors)
-"     if !empty(a:errors)
-"         let g:syntastic_loc_list_height = min([len(a:errors), 4])
-"     endif
-" endfunction
-
-" let g:syntastic_mode_map = { 'mode': 'passive', 'active_filetypes': [],'passive_filetypes': [] }
-" nnoremap <leader>e :SyntasticToggleMode<CR> :SyntasticCheck<CR> 
 
 " FZF
 let $FZF_DEFAULT_COMMAND='fdd -t f -H'
@@ -127,6 +95,9 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
+
+" RainbowParentheses
+au VimEnter * RainbowParentheses
 
 " Airline
 let g:airline#extensions#wordcount#enabled = 1
@@ -166,7 +137,7 @@ colo seoul256
 set t_Co=256
 
 set noswapfile
-set number relativenumber
+" set number relativenumber
 set nobackup
 set cursorline
 set re=1
@@ -210,13 +181,14 @@ set wildcharm=<tab>
 set noshowmode
 set clipboard=unnamed
 
+" backslash
+noremap <plug>(slash-after) zz
 
 " Pandoc 
 set nofoldenable    " disable folding
 autocmd FileType pandoc nmap <leader>lc :Pandoc pdf -Vgeometry:margin=1in<CR><CR>
 let g:pandoc#folding#level = 9
 let g:pandoc#folding#mode = ''
-
 
 
 " Navigate splits
@@ -252,6 +224,7 @@ vnoremap < <gv
 
 " Remap FZF
 nnoremap F :Files<CR>
+nnoremap S :Lines<CR>
 
 
 " Remap delete around a word
@@ -274,7 +247,7 @@ nmap <Tab> :bnext<CR>
 " Remap copy to clipboard
 " vnoremap <C-c> :w !pbcopy<CR><CR>
 " noremap <C-v> :r !pbpaste<CR><CR>
-vnoremap <C-c> "*y
+vnoremap <C-x> "*y
 
 " Remap home row to escape
 imap jk <Esc><Esc>
@@ -373,3 +346,4 @@ endfunction
 
 set formatexpr=MyFormatExpr(v:lnum,v:lnum+v:count-1)
 nnoremap <leader>w gqip
+
