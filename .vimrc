@@ -96,6 +96,8 @@ let g:fzf_colors =
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
 
+" nmap T :Tags
+
 " RainbowParentheses
 au VimEnter * RainbowParentheses
 
@@ -225,6 +227,7 @@ vnoremap < <gv
 " Remap FZF
 nnoremap F :Files<CR>
 nnoremap S :Lines<CR>
+nnoremap T :Tags<CR>
 
 
 " Remap delete around a word
