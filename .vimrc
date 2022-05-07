@@ -40,8 +40,9 @@ Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
 Plugin 'junegunn/seoul256.vim'
 Plugin 'junegunn/rainbow_parentheses.vim'
-Plugin 'junegunn/vim-slash'
+" Plugin 'junegunn/vim-slash'
 Plugin 'davidbeckingsale/writegood.vim'
+Plugin 'easymotion/vim-easymotion'
 call vundle#end()
 filetype plugin indent on
 
@@ -327,6 +328,7 @@ endif
 let &t_SI .= "\<Esc>[?2004h"
 let &t_EI .= "\<Esc>[?2004l"
 
+
 inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 
 if &term =~ '256color'
@@ -350,3 +352,14 @@ endfunction
 set formatexpr=MyFormatExpr(v:lnum,v:lnum+v:count-1)
 nnoremap <leader>w gqip
 
+
+" For easymotion
+nmap s <Plug>(easymotion-bd-w)
+" Turn on case-insensitive feature
+let g:EasyMotion_smartcase = 1
+
+" JK motions: Line motions
+map <Leader>j <Plug>(easymotion-j)
+map <Leader>k <Plug>(easymotion-k)
+
+let g:EasyMotion_keys = 'abcdefghilkmnopqrstuvwxyz'
