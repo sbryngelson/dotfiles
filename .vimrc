@@ -108,11 +108,13 @@ let g:airline#extensions#wordcount#filetypes =
     \ ['asciidoc', 'help', 'mail', 'markdown', 'nroff', 'org', 'plaintex', 'rst', 'tex', 'text', 'pandoc', 'md']
 let g:airline_theme='angr'
 let g:airline#extensions#tabline#enabled = 1 
-" let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#disable_refresh = 0
 let g:airline#extensions#hunks#enabled = 0 
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline_section_y = ''
 let g:airline_section_z = '%3p%% %3l/%L:%3v'
+" let g:airline_powerline_fonts = 1
+
 
 " Vimtex
 let g:tex_flavor='latexmk'
@@ -183,6 +185,7 @@ set wildcharm=<tab>
 " set laststatus=2
 set noshowmode
 set clipboard=unnamed
+set showmatch
 
 " backslash
 noremap <plug>(slash-after) zz
@@ -363,3 +366,4 @@ map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 
 let g:EasyMotion_keys = 'abcdefghilkmnopqrstuvwxyz'
+" let g:EasyMotion_keys = 'sadfklewcmpgh'

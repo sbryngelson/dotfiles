@@ -77,7 +77,7 @@ export EXPAT_CFLAGS=' '
 
 bind '"\C-r": "\C-x1\e^\er"'
 bind -x '"\C-x1": __fzf_history';
-export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --inline-info'
+export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --inline-info --bind=ctrl-alt-k:up,ctrl-alt-j:down'
 export FZF_DEFAULT_COMMAND='fdd --no-ignore-vcs -t d --color=auto . $HOME'
 
 # Prompt 
