@@ -42,7 +42,6 @@ Plugin 'junegunn/seoul256.vim'
 Plugin 'junegunn/rainbow_parentheses.vim'
 " Plugin 'junegunn/vim-slash'
 Plugin 'davidbeckingsale/writegood.vim'
-Plugin 'easymotion/vim-easymotion'
 call vundle#end()
 filetype plugin indent on
 
@@ -354,16 +353,3 @@ endfunction
 
 set formatexpr=MyFormatExpr(v:lnum,v:lnum+v:count-1)
 nnoremap <leader>w gqip
-
-
-" For easymotion
-nmap s <Plug>(easymotion-bd-w)
-" Turn on case-insensitive feature
-let g:EasyMotion_smartcase = 1
-
-" JK motions: Line motions
-map <Leader>j <Plug>(easymotion-j)
-map <Leader>k <Plug>(easymotion-k)
-
-let g:EasyMotion_keys = 'abcdefghilkmnopqrstuvwxyz'
-" let g:EasyMotion_keys = 'sadfklewcmpgh'
