@@ -12,6 +12,10 @@ alias l='ls'
 alias la='ls -a'
 alias ll='ls -lhtr'
 
+#tmux
+alias t='tmux'
+
+
 alias dus='du -hs * | sort -h'
 
 # OS-specific stuff
@@ -133,6 +137,7 @@ export EXPANSE='bryngel@login.expanse.sdsc.edu'
 export SUMMIT='sbryngelson@summit.olcf.ornl.gov'
 export PHOENIX='sbryngelson3@login-phoenix.pace.gatech.edu'
 export WOMBAT='sbryngelson@wombat-login1.ccs.ornl.gov'
+export WINGTIP='sbryngelson3@wingtip-gpu3.cc.gatech.edu'
 
 alias golub='ssh -Y bryngel2@golub.campuscluster.illinois.edu'
 alias legolas='ssh -Y bryngel2@legolas2.mechse.illinois.edu'
@@ -148,6 +153,7 @@ alias summit='ssh -Y sbryngelson@summit.olcf.ornl.gov'
 alias phoenix='ssh -Y sbryngelson3@login-phoenix.pace.gatech.edu'
 alias cocice='ssh -Y sbryngelson3@coc-ice.pace.gatech.edu'
 alias wombat='ssh -Y sbryngelson@wombat-login1.ccs.ornl.gov'
+alias wingtip='ssh -Y sbryngelson3@wingtip-gpu3.cc.gatech.edu'
 
 # Dotfile stuff (some of this is deprecated?)
 alias dotpush="cd ~/ && git add ~/.bash_profile ~/.aliasrc ~/.inputrc ~/.gnuplotrc_x11 ~/.gnuplotrc_qt ~/.vimrc .vim/colors/SHB.vim && git commit -m 'update to dotfiles' && git push -u origin master"

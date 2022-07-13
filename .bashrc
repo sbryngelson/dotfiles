@@ -58,36 +58,36 @@ bind -m vi-command "H":vi-prev-word
 bind -m vi-command "L":vi-next-word
 bind '"\e[Z": menu-complete-backward'
 
-# Add to path
+## Add to path
 
 export PATH="/usr/local/sbin:$PATH"
 
-# Environment variables
+## Environment variables
 
 export EDITOR=vim
 export VISUAL="$EDITOR"
 export TERM=xterm-256color
 
-# Expat?
+## Expat?
 
 export EXPAT_LIBS='-L/opt/local/lib -lexpat'
 export EXPAT_CFLAGS=' '
 
-# Fuzzy file finder options
+## Fuzzy file finder options
 
 bind '"\C-r": "\C-x1\e^\er"'
 bind -x '"\C-x1": __fzf_history';
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --inline-info --bind=ctrl-alt-k:up,ctrl-alt-j:down'
 export FZF_DEFAULT_COMMAND='fdd --no-ignore-vcs -t d --color=auto . $HOME'
 
-# Prompt 
+## Prompt 
 
 ## Colors
 export CLICOLOR=1
 export LS_COLORS='di=1;34:ln=1;35:so=1;32:pi=1;33:ex=1;37:bd=34;46:cd=00;34:su=30;41:sg=30;46:tw=30;42:ow=1;34'
 
 ## Statement
-# takes a number argument of the number of last dirs to show
+## takes a number argument of the number of last dirs to show
 function DIR_LAST {
     # read -a didn't seem to work under bash 3
     IFS='/' array=($PWD)
@@ -106,22 +106,14 @@ function DIR_LAST {
     done
 }
 
-# if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_CONNECTION" ] ; then
-#     MYHOST=$(hostname -s)
-#     MYHOST='@'$MYHOST
-#     UNAME=$(whoami)
-#     PROMP=$UNAME$MYHOST
-# fi
 export PS1="\[$(tput bold)\]\[$(tput setaf 5)\]$PROMP \[$(tput setaf 3)\]\$(DIR_LAST 2)\[$(tput setaf 3)\] \[$(tput setaf 2)\]\\$ \[$(tput sgr0)\]"
 
 ## Push to bottom
-# tput cup $LINES
-# export PROMPT_COMMAND='(retval=$?;tput cup "$LINES";exit $retval)'
 export PROMPT_COMMAND='echo -ne "\033]0;${PWD/#$HOME/~}\007"'
 
-# export PATH="/usr/local/opt/ruby/bin:$PATH"
+## export PATH="/usr/local/opt/ruby/bin:$PATH"
 
-# Cargo
+## Cargo
 . "$HOME/.cargo/env"
 
 [ -f $HOME/.aliasrc ]   &&  source $HOME/.aliasrc
