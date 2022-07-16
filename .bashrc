@@ -106,10 +106,10 @@ function DIR_LAST {
     done
 }
 
-export PS1="\[$(tput bold)\]\[$(tput setaf 5)\]$PROMP \[$(tput setaf 3)\]\$(DIR_LAST 2)\[$(tput setaf 3)\] \[$(tput setaf 2)\]\\$ \[$(tput sgr0)\]"
+export PS1="\[$(tput bold)\]\[$(tput setaf 8)\]$(hostname -s):\[$(tput setaf 5)\]$PROMP \[$(tput setaf 3)\]\$(DIR_LAST 2)\[$(tput setaf 3)\] \[$(tput setaf 2)\]\\$ \[$(tput sgr0)\]"
 
 ## Push to bottom
-export PROMPT_COMMAND='echo -ne "\033]0;${PWD/#$HOME/~}\007"'
+export PROMPT_COMMAND='echo -ne "\033]0;$(hostname -s) - ${PWD/#$HOME/~}\007"'
 
 ## export PATH="/usr/local/opt/ruby/bin:$PATH"
 
