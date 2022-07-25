@@ -36,7 +36,11 @@ if [ "$(uname -s)" == "Darwin" ]; then
     
     # Fixed
     export PATH="$HOME/Fixed/bin:$PATH"
-    export PATH="$HOME/.julia/bin:$PATH"
+    # export PATH="$HOME/.julia/bin:$PATH"
+
+    export PATH="/opt/homebrew/opt/python@3.10/bin:$PATH"
+    export LDFLAGS="-L/opt/homebrew/opt/python@3.10/lib"
+    export PKG_CONFIG_PATH="/opt/homebrew/opt/python@3.10/lib/pkgconfig"
 else
     [ -f $HOME/.gnuplotrc_x11 ] &&  source $HOME/.gnuplotrc_x11
     export PATH="$HOME/.cargo/bin:$PATH"
@@ -115,5 +119,7 @@ export PROMPT_COMMAND='echo -ne "\033]0;$(hostname -s) - ${PWD/#$HOME/~}\007"'
 
 ## Cargo
 . "$HOME/.cargo/env"
+
+
 
 [ -f $HOME/.aliasrc ]   &&  source $HOME/.aliasrc
