@@ -99,3 +99,6 @@ research/
 .slocdata/
 .vscode/
 .wdm/
+
+.config/gh
+.semantic-highlight-cache

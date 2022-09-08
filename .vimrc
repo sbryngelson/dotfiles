@@ -38,12 +38,58 @@ Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
-Plugin 'junegunn/seoul256.vim'
+" Plugin 'junegunn/seoul256.vim'
 Plugin 'junegunn/rainbow_parentheses.vim'
 " Plugin 'junegunn/vim-slash'
 Plugin 'davidbeckingsale/writegood.vim'
+Plugin 'jaxbot/semantic-highlight.vim'
 call vundle#end()
 filetype plugin indent on
+
+
+syntax on
+
+let g:semanticBlacklistOverride = {
+	\ 'fortran': [
+    \	'end',
+	\	'subroutine',
+	\	'logical',
+	\	'integer',
+	\	'real',
+	\	'parameter',
+	\	'allocatable',
+	\	'allocate',
+	\	'dimension',
+	\	'function',
+	\	'sin',
+	\	'cos',
+	\	'tan',
+	\	'exp',
+	\	'sqrt',
+	\	'kind',
+	\	'character',
+	\	'type',
+	\	'print',
+	\	'and',
+	\	'if',
+    \	'else',
+    \	'do',
+    \	'intent',
+    \	'module',
+    \	'implicit',
+    \	'read',
+    \	'write',
+    \	'close',
+    \	'open',
+    \	'min',
+    \	'max',
+    \	'minval',
+    \	'maxval',
+    \	'program',
+    \	'log',
+    \	'use',
+	\ ]
+\ }
 
 
 " Livedown
@@ -129,14 +175,16 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " Don't wrap partial words
 set formatoptions+=w
 
-syntax on
+
+
 " colorscheme SHB
 
 " Switch
-colo seoul256
-set background=dark
-let g:seoul_background = 233
-colo seoul256
+" colo seoul256
+" set background=dark
+" let g:seoul_background = 233
+" colo seoul256
+colorscheme SHB-seoul
 
 set t_Co=256
 
@@ -353,3 +401,5 @@ endfunction
 
 set formatexpr=MyFormatExpr(v:lnum,v:lnum+v:count-1)
 nnoremap <leader>w gqip
+
+

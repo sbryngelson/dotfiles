@@ -33,7 +33,7 @@ if [ "$(uname -s)" == "Darwin" ]; then
 
     # Ruby 
     export PATH="/opt/homebrew/opt/ruby/bin:/opt/homebrew/lib/ruby/gems/3.0.0/bin:$PATH"
-    
+    export PATH="/Applications/MATLAB_R2021b.app/bin:$PATH" 
     # Fixed
     export PATH="$HOME/Fixed/bin:$PATH"
     # export PATH="$HOME/.julia/bin:$PATH"

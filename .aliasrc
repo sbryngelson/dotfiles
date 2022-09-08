@@ -15,6 +15,13 @@ alias ll='ls -lhtr'
 #tmux
 alias t='tmux'
 
+#git
+alias ga='git add'
+alias gc='git commit -m "dummy commit"'
+alias gp='git push'
+
+# python
+alias python='python3'
 
 alias dus='du -hs * | sort -h'
 
