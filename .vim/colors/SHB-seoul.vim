@@ -209,7 +209,7 @@ call s:hi('LineNr', [101, 101], [s:dark_bg + 1, s:light_bg - 2])
 call s:hi('Visual', ['', ''], [23, 152])
 call s:hi('VisualNOS', ['', ''], [23, 152])
 
-call s:hi('Comment', [12, 30], [s:dark_bg + 1, s:light_bg - 2])
+call s:hi('Comment', [65, 65], ['', ''])
 call s:hi('Number', [222, 95], ['', ''])
 call s:hi('Float', [222, 95], ['', ''])
 call s:hi('Boolean', [103, 168], ['', ''])
@@ -306,7 +306,9 @@ call s:hi('PmenuSel', [s:dark_fg, s:dark_fg], [95, 95])
 call s:hi('PmenuSbar', ['', ''], [65, 65])
 call s:hi('PmenuThumb', ['', ''], [23, 23])
 
-call s:hi('Search', [s:dark_fg, 255], [24, 74])
+" SHB change highlight color
+call s:hi('Search', [s:dark_fg, 255], [239, 200])
+"call s:hi('Search', [s:dark_fg, 255], [24, 74])
 call s:hi('IncSearch', [220, 220], [s:dark_bg + 1, 238])
 
 " String delimiter, interpolation

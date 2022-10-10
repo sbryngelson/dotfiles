@@ -1,3 +1,5 @@
+# Fig pre block. Keep at the top of this file.
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 
@@ -30,3 +32,9 @@ export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
 export JINA_DEFAULT_WORKSPACE_BASE="${HOME}/.jina/executor-workspace"
 
 # JINA_CLI_END
+
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"

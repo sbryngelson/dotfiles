@@ -38,11 +38,9 @@ Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'vim-pandoc/vim-pandoc-syntax'
-" Plugin 'junegunn/seoul256.vim'
 Plugin 'junegunn/rainbow_parentheses.vim'
-" Plugin 'junegunn/vim-slash'
 Plugin 'davidbeckingsale/writegood.vim'
-Plugin 'jaxbot/semantic-highlight.vim'
+Plugin 'Yggdroot/indentLine'
 call vundle#end()
 filetype plugin indent on
 
@@ -403,3 +401,18 @@ set formatexpr=MyFormatExpr(v:lnum,v:lnum+v:count-1)
 nnoremap <leader>w gqip
 
 
+set updatetime=30
+
+function! HighlightWordUnderCursor()
+    let disabled_ft = ["qf", "fugitive", "nerdtree", "gundo", "diff", "fzf", "floaterm", "tex", "md", "txt", "csv"]
+    if &diff || &buftype == "terminal" || index(disabled_ft, &filetype) >= 0
+        return
+    endif
+    if getline(".")[col(".")-1] !~# '[[:punct:][:blank:]]' 
+        exec 'match' 'Search' '/\V\<'.expand('<cword>').'\>/' 
+    else 
+        match none 
+    endif
+endfunction
+
+autocmd! CursorHold,CursorHoldI * call HighlightWordUnderCursor()

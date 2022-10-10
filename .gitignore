@@ -102,3 +102,18 @@ research/
 
 .config/gh
 .semantic-highlight-cache
+
+.bashrc-e
+.cabal/
+.config/fish/
+.config/lvim/
+.config/nvim/
+.epspdf/
+.fig/
+.ghcup/
+.mkshrc
+.rvm/
+.stack/
+.yarnrc
+.zlogin
+Parallels/

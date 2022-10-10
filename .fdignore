@@ -24,6 +24,7 @@ books
 .rustup
 *.aux
 *.bbl
+*.pdf
 *.blg
 *.log
 *_latexmk
