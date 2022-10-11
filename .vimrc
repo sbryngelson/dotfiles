@@ -163,9 +163,10 @@ let g:airline_powerline_fonts = 1
 let g:tex_flavor='latexmk'
 let g:vimtex_view_method='skim'
 let g:vimtex_quickfix_mode=0
-let g:tex_conceal='abdmg'
-let g:tex_comment_nospell= 1
-set conceallevel=1
+" let g:tex_conceal='abdmg'
+let g:vimtex_syntax_conceal_disable=1
+let g:tex_comment_nospell=1
+set conceallevel=0
 
 " Disables automatic commenting on newline:
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
