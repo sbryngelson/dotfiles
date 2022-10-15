@@ -1,9 +1,4 @@
-# Fig pre block. Keep at the top of this file.
-[[ -f "$HOME/.fig/shell/profile.pre.bash" ]] && builtin source "$HOME/.fig/shell/profile.pre.bash"
 . "$HOME/.cargo/env"
-
-# Fig post block. Keep at the bottom of this file.
-[[ -f "$HOME/.fig/shell/profile.post.bash" ]] && builtin source "$HOME/.fig/shell/profile.post.bash"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
