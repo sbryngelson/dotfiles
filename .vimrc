@@ -402,18 +402,31 @@ endfunction
 set formatexpr=MyFormatExpr(v:lnum,v:lnum+v:count-1)
 nnoremap <leader>w gqip
 
+" set updatetime=30
+" function! HighlightWordUnderCursor()
+"     let disabled_ft = ["qf", "fugitive", "nerdtree", "gundo", "diff", "fzf", "floaterm", "tex", "md", "txt", "csv", "pandoc", "yaml", "bib"]
+"     if &diff || &buftype == "terminal" || index(disabled_ft, &filetype) >= 0
+"         return
+"     endif
+"     if getline(".")[col(".")-1] !~# '[[:punct:][:blank:]]' 
+"         exec 'match' 'Search' '/\V\<'.expand('<cword>').'\>/' 
+"     else 
+"         match none 
+"     endif
+" endfunction
+
 
 set updatetime=30
-
 function! HighlightWordUnderCursor()
-    let disabled_ft = ["qf", "fugitive", "nerdtree", "gundo", "diff", "fzf", "floaterm", "tex", "md", "txt", "csv", "pandoc", "yaml", "bib"]
-    if &diff || &buftype == "terminal" || index(disabled_ft, &filetype) >= 0
+    let enabled_ft = ["python", "juila", "fortran", "c", "sh", "cpp"]
+    if index(enabled_ft, &filetype) >= 0
+        if getline(".")[col(".")-1] !~# '[[:punct:][:blank:]]' 
+            exec 'match' 'Search' '/\V\<'.expand('<cword>').'\>/' 
+        else 
+            match none 
+        endif
+    else
         return
-    endif
-    if getline(".")[col(".")-1] !~# '[[:punct:][:blank:]]' 
-        exec 'match' 'Search' '/\V\<'.expand('<cword>').'\>/' 
-    else 
-        match none 
     endif
 endfunction
 
