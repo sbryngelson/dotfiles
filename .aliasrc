@@ -12,14 +12,6 @@ alias l='ls'
 alias la='ls -a'
 alias ll='ls -lhtr'
 
-#tmux
-alias t='tmux'
-
-#git
-alias ga='git add'
-alias gc='git commit -m "dummy commit"'
-alias gp='git push'
-
 # python
 alias python='python3'
 
@@ -85,11 +77,6 @@ then
     alias diff='colordiff'
 fi
 
-if command -v blacktex &> /dev/null
-then
-    alias blacktex='blacktex -c -d'
-fi
-
 # FZF command
 alias ff="fdd --no-ignore-vcs -H -t f . | fzf"
 
@@ -124,11 +111,6 @@ else
 fi
 }
 
-
-# Common git commands 
-alias ga='git add'
-alias gc='git commit'
-alias gp='git push'
 alias gf='git fetch --all && git reset --hard origin/master'
 
 # Servers 
