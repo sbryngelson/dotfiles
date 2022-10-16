@@ -121,9 +121,8 @@ export PROMPT_COMMAND='echo -ne "\033]0;$(hostname -s) - ${PWD/#$HOME/~}\007"'
 ## Cargo
 . "$HOME/.cargo/env"
 
-[ -f $HOME/.aliasrc ]   &&  source $HOME/.aliasrc
-
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
-
 [ -f "/Users/spencer/.ghcup/env" ] && source "/Users/spencer/.ghcup/env" # ghcup-env
+
+[ -f $HOME/.aliasrc ] && source $HOME/.aliasrc
