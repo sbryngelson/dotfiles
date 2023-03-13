@@ -14,7 +14,6 @@ alias ll='ls -lhtr'
 
 # python
 alias python='python3'
-
 alias dus='du -hs * | sort -h'
 
 # OS-specific stuff
@@ -124,7 +123,7 @@ export CALTECH='spencer@login.hpc.caltech.edu'
 export ASCENT='sbryngelson@login1.ascent.olcf.ornl.gov'
 export EXPANSE='bryngel@login.expanse.sdsc.edu'
 export SUMMIT='sbryngelson@summit.olcf.ornl.gov'
-export PHOENIX='sbryngelson3@login-phoenix.pace.gatech.edu'
+export PHOENIX='sbryngelson3@login-phoenix-slurm.pace.gatech.edu'
 export WOMBAT='sbryngelson@wombat-login1.ccs.ornl.gov'
 export WINGTIP='sbryngelson3@wingtip-gpu3.cc.gatech.edu'
 export ROUGE='sbryngelson3@rg-login.crnch.gatech.edu'
@@ -141,7 +140,7 @@ alias caltech='ssh -Y spencer@login.hpc.caltech.edu'
 alias ascent='ssh -Y sbryngelson@login1.ascent.olcf.ornl.gov'
 alias expanse='ssh -Y bryngel@login.expanse.sdsc.edu'
 alias summit='ssh -Y sbryngelson@summit.olcf.ornl.gov'
-alias phoenix='ssh -Y sbryngelson3@login-phoenix.pace.gatech.edu'
+alias phoenix='ssh -Y sbryngelson3@login-phoenix-slurm.pace.gatech.edu'
 alias cocice='ssh -Y sbryngelson3@coc-ice.pace.gatech.edu'
 alias wombat='ssh -Y sbryngelson@wombat-login1.ccs.ornl.gov'
 alias wingtip='ssh -Y sbryngelson3@wingtip-gpu3.cc.gatech.edu'

@@ -255,7 +255,6 @@ autocmd FileType pandoc nmap <leader>lc :Pandoc pdf -Vgeometry:margin=1in<CR><CR
 let g:pandoc#folding#level = 9
 let g:pandoc#folding#mode = ''
 
-
 " Navigate splits
 map <C-J> <C-W>j
 map <C-K> <C-W>k
@@ -335,7 +334,7 @@ nnoremap j gj
 nnoremap k gk
 
 " Remap redo
-noremap U <C-r>
+nnoremap U <C-r>
 
 " Make delete really delete
 nnoremap d "_d
