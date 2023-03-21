@@ -47,49 +47,6 @@ filetype plugin indent on
 
 syntax on
 
-let g:semanticBlacklistOverride = {
-	\ 'fortran': [
-    \	'end',
-	\	'subroutine',
-	\	'logical',
-	\	'integer',
-	\	'real',
-	\	'parameter',
-	\	'allocatable',
-	\	'allocate',
-	\	'dimension',
-	\	'function',
-	\	'sin',
-	\	'cos',
-	\	'tan',
-	\	'exp',
-	\	'sqrt',
-	\	'kind',
-	\	'character',
-	\	'type',
-	\	'print',
-	\	'and',
-	\	'if',
-    \	'else',
-    \	'do',
-    \	'intent',
-    \	'module',
-    \	'implicit',
-    \	'read',
-    \	'write',
-    \	'close',
-    \	'open',
-    \	'min',
-    \	'max',
-    \	'minval',
-    \	'maxval',
-    \	'program',
-    \	'log',
-    \	'use',
-	\ ]
-\ }
-
-
 " Livedown
 "" should markdown preview get shown automatically upon opening markdown buffer
 nmap <leader>p :LivedownToggle<CR>
@@ -141,8 +98,6 @@ let g:fzf_colors =
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
 
-" nmap T :Tags
-
 " RainbowParentheses
 au VimEnter * RainbowParentheses
 
@@ -186,15 +141,6 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " Don't wrap partial words
 set formatoptions+=w
 
-
-
-" colorscheme SHB
-
-" Switch
-" colo seoul256
-" set background=dark
-" let g:seoul_background = 233
-" colo seoul256
 colorscheme SHB-seoul
 
 set t_Co=256
@@ -271,10 +217,8 @@ nnoremap <leader>s :call SpellToggle()<CR>
 function! SpellToggle()
     if &spell
         setlocal spell!
-        " set spellcapcheck=
     else
         setlocal spell
-        " set spellcapcheck=
     endif
 endfunction
 
@@ -291,7 +235,7 @@ vnoremap < <gv
 " Remap FZF
 nnoremap F :Files<CR>
 nnoremap S :Lines<CR>
-nnoremap T :Tags<CR>
+" nnoremap T :Tags<CR>
 
 
 " Remap delete around a word
