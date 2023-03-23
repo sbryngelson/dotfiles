@@ -147,6 +147,7 @@ alias wingtip='ssh -Y sbryngelson3@wingtip-gpu3.cc.gatech.edu'
 alias rouge='ssh -Y sbryngelson3@rg-login.crnch.gatech.edu'
 alias yellowstone='ssh -Y sbryngel@yellowstone-login.stanford.edu'
 alias swan='ssh -Y e63252@cy-gw1.hpcrb.rdlabs.ext.hpe.com'
+alias delta='ssh bryngel@login.delta.ncsa.illinois.edu'
 
 # Dotfile stuff (some of this is deprecated?)
 alias dotpush="cd ~/ && git add ~/.bash_profile ~/.aliasrc ~/.inputrc ~/.gnuplotrc_x11 ~/.gnuplotrc_qt ~/.vimrc .vim/colors/SHB.vim && git commit -m 'update to dotfiles' && git push -u origin master"
