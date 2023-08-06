@@ -111,6 +111,10 @@ fi
 }
 
 alias gf='git fetch --all && git reset --hard origin/master'
+alias ga='git add'
+alias gc='git commit'
+alias gp='git push'
+
 
 # Servers 
 export GOLUB="bryngel2@golub.campuscluster.illinois.edu"
