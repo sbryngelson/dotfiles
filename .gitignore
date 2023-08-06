@@ -26,7 +26,7 @@ research/
 .vim/undodir/%*
 .vim/bundle/*
 .vim/.netrwhist
-.vim/spell/*
+.vim/spell/
 
 .visit
 .ParaProf/
