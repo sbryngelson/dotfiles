@@ -13,7 +13,7 @@ alias la='ls -a'
 alias ll='ls -lhtr'
 
 # python
-alias python='python3'
+# alias python='python3'
 alias dus='du -hs * | sort -h'
 
 # OS-specific stuff
@@ -25,6 +25,7 @@ if [ "$(uname -s)" == "Darwin" ]; then
     alias copy="pbcopy"
     # eval "$(rbenv init -)"
     alias ls='gls -GFhN --color=always --group-directories-first'
+    alias r='. ranger'
 else
     if command -v xclip &> /dev/null
     then
@@ -133,28 +134,32 @@ export WINGTIP='sbryngelson3@wingtip-gpu3.cc.gatech.edu'
 export ROUGE='sbryngelson3@rg-login.crnch.gatech.edu'
 export YELLOWSTONE='sbryngel@yellowstone-login.stanford.edu'
 export CRUSHER='sbryngelson@crusher.olcf.ornl.gov'
+export FRONTIER='sbryngelson@frontier.olcf.ornl.gov'
+export ANVIL='x-bryngel2@anvil.rcac.purdue.edu'
 
-alias golub='ssh -Y bryngel2@golub.campuscluster.illinois.edu'
 alias legolas='ssh -Y bryngel2@legolas2.mechse.illinois.edu'
-alias richardson='ssh -Y spencer@richardson.caltech.edu'
+alias golub='ssh -Y bryngel2@golub.campuscluster.illinois.edu'
 alias comet='ssh -Y bryngel@comet.sdsc.xsede.org'
-alias bridges='ssh -Y bryngel@bridges2.psc.edu'
 alias stampede='ssh -Y bryngel@stampede2.tacc.utexas.edu'
 alias xsede='ssh -l bryngel login.xsede.org'
 alias caltech='ssh -Y spencer@login.hpc.caltech.edu'
-alias ascent='ssh -Y sbryngelson@login1.ascent.olcf.ornl.gov'
+alias richardson='ssh -Y spencer@richardson.caltech.edu'
 alias expanse='ssh -Y bryngel@login.expanse.sdsc.edu'
-alias summit='ssh -Y sbryngelson@summit.olcf.ornl.gov'
+alias bridges='ssh -Y bryngel@bridges2.psc.edu'
 alias phoenix='ssh -Y sbryngelson3@login-phoenix-slurm.pace.gatech.edu'
 alias cocice='ssh -Y sbryngelson3@login-ice.pace.gatech.edu'
-alias wombat='ssh -Y sbryngelson@wombat-login1.ccs.ornl.gov'
 alias wingtip='ssh -Y sbryngelson3@wingtip-gpu3.cc.gatech.edu'
 alias rouge='ssh -Y sbryngelson3@rg-login.crnch.gatech.edu'
 alias yellowstone='ssh -Y sbryngel@yellowstone-login.stanford.edu'
 alias swan='ssh -Y e63252@cy-gw1.hpcrb.rdlabs.ext.hpe.com'
 alias delta='ssh bryngel@login.delta.ncsa.illinois.edu'
+alias ascent='ssh -Y sbryngelson@login1.ascent.olcf.ornl.gov'
+alias wombat='ssh -Y sbryngelson@wombat-login1.ccs.ornl.gov'
+alias summit='ssh -Y sbryngelson@summit.olcf.ornl.gov'
 alias crusher='ssh -Y sbryngelson@crusher.olcf.ornl.gov'
+alias frontier='ssh -Y sbryngelson@frontier.olcf.ornl.gov'
 alias sandia='ssh shbryng@srngate.sandia.gov'
+alias anvil='ssh x-bryngel2@anvil.rcac.purdue.edu'
 
 # Dotfile stuff (some of this is deprecated?)
 alias dotpush="cd ~/ && git add ~/.bash_profile ~/.aliasrc ~/.inputrc ~/.gnuplotrc_x11 ~/.gnuplotrc_qt ~/.vimrc .vim/colors/SHB.vim && git commit -m 'update to dotfiles' && git push -u origin master"

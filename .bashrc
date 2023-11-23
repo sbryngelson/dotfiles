@@ -12,8 +12,6 @@ if [ "$(uname -s)" == "Darwin" ]; then
     export PATH="/opt/homebrew/bin:$PATH"
     export PATH="~/Applications/julia:$PATH"
 
-    export LDFLAGS="-L/opt/homebrew/opt/readline/lib"
-    export CPPFLAGS="-I/opt/homebrew/opt/readline/include"
     export PKG_CONFIG_PATH="/opt/homebrew/opt/readline/lib/pkgconfig"
     export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/lib/pkgconfig
     export JULIA_HDF5_PATH="/opt/homebrew/opt/hdf5"
@@ -25,7 +23,6 @@ if [ "$(uname -s)" == "Darwin" ]; then
 
     # Homebrew stuff
     # . $(brew --prefix bash-completion)/etc/bash_completion
-    # . /opt/homebrew/bin/bash-completion/etc/bash_completion
     . /opt/homebrew/etc/bash_completion
 
     export HOMEBREW_CC=gcc-11
@@ -34,21 +31,26 @@ if [ "$(uname -s)" == "Darwin" ]; then
     # Ruby 
     export PATH="/opt/homebrew/opt/ruby/bin:/opt/homebrew/lib/ruby/gems/3.0.0/bin:$PATH"
     export PATH="/Applications/MATLAB_R2021b.app/bin:$PATH" 
-    # Fixed
+
     export PATH="$HOME/Fixed/bin:$PATH"
-    # export PATH="$HOME/.julia/bin:$PATH"
 
     export PATH="/opt/homebrew/opt/python@3.10/bin:$PATH"
     export PATH="/opt/homebrew/sbin:$PATH"
-    export LDFLAGS="-L/opt/homebrew/opt/python@3.10/lib"
+    # export LDFLAGS="-L/opt/homebrew/opt/python@3.10/lib"
     export PKG_CONFIG_PATH="/opt/homebrew/opt/python@3.10/lib/pkgconfig"
+    # Homebrew setup
+    BREWPATH=/opt/homebrew/bin
+    export PATH=$BREWPATH:$PATH
+
+    export PATH="/opt/homebrew/opt/qt@5/bin:$PATH"
+    export LDFLAGS="-L/opt/homebrew/opt/readline/lib -L/opt/homebrew/opt/python@3.10/lib -L/opt/homebrew/opt/qt@5/lib"
+    export CPPFLAGS="-I/opt/homebrew/opt/readline/include -I/opt/homebrew/opt/qt@5/include"
 else
     [ -f $HOME/.gnuplotrc_x11 ] &&  source $HOME/.gnuplotrc_x11
     export PATH="$HOME/.cargo/bin:$PATH"
 fi
 
 # Input
-
 shopt -s autocd
 shopt -s cdspell
 shopt -s dirspell
@@ -56,7 +58,6 @@ shopt -s direxpand
 shopt -s cdable_vars
 
 # Vi mode in shell
-
 set -o vi
 bind -m vi-insert '"jk":vi-movement-mode'
 bind -m vi-command "H":vi-prev-word
@@ -64,22 +65,18 @@ bind -m vi-command "L":vi-next-word
 bind '"\e[Z": menu-complete-backward'
 
 ## Add to path
-
 export PATH="/usr/local/sbin:$PATH"
 
 ## Environment variables
-
 export EDITOR=vim
 export VISUAL="$EDITOR"
 export TERM=xterm-256color
 
 ## Expat?
-
 export EXPAT_LIBS='-L/opt/local/lib -lexpat'
 export EXPAT_CFLAGS=' '
 
 ## Fuzzy file finder options
-
 bind '"\C-r": "\C-x1\e^\er"'
 bind -x '"\C-x1": __fzf_history';
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --inline-info --bind=ctrl-alt-k:up,ctrl-alt-j:down'
@@ -115,8 +112,6 @@ export PS1="\[$(tput bold)\]\[$(tput setaf 8)\]$(hostname -s):\[$(tput setaf 5)\
 
 ## Push to bottom
 export PROMPT_COMMAND='echo -ne "\033]0;$(hostname -s) - ${PWD/#$HOME/~}\007"'
-
-## export PATH="/usr/local/opt/ruby/bin:$PATH"
 
 ## Cargo
 . "$HOME/.cargo/env"

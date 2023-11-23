@@ -41,9 +41,15 @@ Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'junegunn/rainbow_parentheses.vim'
 Plugin 'davidbeckingsale/writegood.vim'
 Plugin 'Yggdroot/indentLine'
+Plugin 'sirver/ultisnips'
+Plugin 'anufrievroman/vim-angry-reviewer'
 call vundle#end()
 filetype plugin indent on
 
+" ultisnips
+let g:UltiSnipsExpandTrigger = '<tab>'
+let g:UltiSnipsJumpForwardTrigger = '<tab>'
+let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
 
 syntax on
 
@@ -105,7 +111,6 @@ au VimEnter * RainbowParentheses
 let g:airline#extensions#wordcount#enabled = 1
 let g:airline#extensions#wordcount#filetypes =
     \ ['asciidoc', 'help', 'mail', 'markdown', 'nroff', 'org', 'plaintex', 'rst', 'tex', 'text', 'pandoc', 'md']
-" let g:airline_theme='angr'
 let g:airline_theme='seoul256'
 let g:airline#extensions#tabline#enabled = 1 
 let g:airline#extensions#tabline#disable_refresh = 0
@@ -113,16 +118,21 @@ let g:airline#extensions#hunks#enabled = 0
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline_section_y = ''
 let g:airline_section_z = '%3p%% %3l/%L:%3v'
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 
 " Vimtex
 let g:tex_flavor='latexmk'
-let g:vimtex_view_method='skim'
+let g:vimtex_view_method='sioyek'
 let g:vimtex_quickfix_mode=0
-" let g:tex_conceal='abdmg'
 let g:vimtex_syntax_conceal_disable=1
 let g:tex_comment_nospell=1
 set conceallevel=0
+let g:vimtex_view_automatic = 0
+
+augroup init_vimtex
+  autocmd!
+  autocmd User VimtexEventView call b:vimtex.viewer.xdo_focus_vim()
+augroup END
 
 let g:vimtex_compiler_latexmk = {
     \ 'options' : [

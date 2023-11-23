@@ -119,3 +119,10 @@ Parallels/
 .Trash/
 
 .config/karabiner/automatic_backups
+
+.conda/
+.dbus-keyrings/
+.localrc
+.vim-anywhere/
+go/
+miniforge3/
