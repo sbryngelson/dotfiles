@@ -130,3 +130,7 @@ miniforge3/
 .iterm2/
 .vim/spell/en.utf-8.add
 .config/op/
+
+.config/NVIDIA Corporation/
+Dropbox
+.tmux/plugins*

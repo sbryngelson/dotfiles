@@ -1,4 +1,3 @@
-# test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 [ -f $HOME/.fzf.bash ]  &&  source $HOME/.fzf.bash
 [ -f $HOME/.localrc ]   &&  source $HOME/.localrc
 
@@ -25,8 +24,8 @@ if [ "$(uname -s)" == "Darwin" ]; then
     # . $(brew --prefix bash-completion)/etc/bash_completion
     . /opt/homebrew/etc/bash_completion
 
-    export HOMEBREW_CC=gcc-11
-    export HOMEBREW_CXX=g++-11
+    export HOMEBREW_CC=gcc-13
+    export HOMEBREW_CXX=g++-13
 
     # Ruby 
     export PATH="/opt/homebrew/opt/ruby/bin:/opt/homebrew/lib/ruby/gems/3.0.0/bin:$PATH"
@@ -110,14 +109,12 @@ function DIR_LAST {
 
 export PS1="\[$(tput bold)\]\[$(tput setaf 8)\]$(hostname -s):\[$(tput setaf 5)\]$PROMP \[$(tput setaf 3)\]\$(DIR_LAST 2)\[$(tput setaf 3)\] \[$(tput setaf 2)\]\\$ \[$(tput sgr0)\]"
 
-## Push to bottom
-export PROMPT_COMMAND='echo -ne "\033]0;$(hostname -s) - ${PWD/#$HOME/~}\007"'
-
 ## Cargo
 . "$HOME/.cargo/env"
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
 [ -f "/Users/spencer/.ghcup/env" ] && source "/Users/spencer/.ghcup/env" # ghcup-env
 
 [ -f $HOME/.aliasrc ] && source $HOME/.aliasrc
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"

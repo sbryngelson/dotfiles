@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# LS commands
+# Improve some commands
 if ! command -v gls &> /dev/null
 then
     alias ls='ls -GFh --color'
@@ -8,13 +8,35 @@ else
     alias ls='gls -GFhN --color=always'
 fi
 
+if command -v colordiff &> /dev/null
+then
+    alias diff='colordiff'
+fi
+
 alias l='ls'
 alias la='ls -a'
 alias ll='ls -lhtr'
 
-# python
-# alias python='python3'
+# Common commands
+alias o='open'
+alias grep='grep --color=auto'
+alias untar='tar -zxvf '
+alias tarup='tar -zcvf'
+alias rs='rsync -avz '
+alias c="clear && printf '\e[3J'"
+alias ccat='highlight --out-format=ansi --force'
+alias v='vim'
+alias cnt='ls -1 | wc -l'
+alias jek='bundle exec jekyll serve'
+alias jekcheck="bundle exec jekyll build; bundle exec htmlproofer ./_site --alt-ignore '/.*/' --http_status_ignore='999,403,301,302' --assume-extension"
+alias pngtompeg="ffmpeg -y -f image2 -r 20 -i D/img_%04d.png -b 5000k movie.mpeg"
 alias dus='du -hs * | sort -h'
+
+# Git
+alias gf='git fetch --all && git reset --hard origin/master'
+alias ga='git add'
+alias gc='git commit'
+alias gp='git push'
 
 # OS-specific stuff
 if [ "$(uname -s)" == "Darwin" ]; then
@@ -47,35 +69,34 @@ else
 fi
 
 ## Auto show (ls) new directories
-function cd {
-    builtin cd "$@" && ls
+# function cd {
+#     builtin cd "$@" && ls
+# }
+
+prompt_cmd () {
+    echo -ne '\033]0;'"$(dirs)"'\a' >&2
 }
+
+export PROMPT_COMMAND=prompt_cmd
+
+#each console has its own file to save PWD
+PrevDir=$(tty) 
+PrevDir=/tmp/prev-dir${PrevDir////-}
+#don't ls when shell launched
+echo $PWD > $PrevDir
+LsAfterCd() {
+    [[ "$(< $PrevDir)" == "$PWD" ]] && return 0
+    ls 
+    echo $PWD > $PrevDir
+}
+export PROMPT_COMMAND="LsAfterCd;$PROMPT_COMMAND"
+
 
 # Directory navigation
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
-
-
-# Common commands
-alias grep='grep --color=auto'
-alias untar='tar -zxvf '
-alias tarup='tar -zcvf'
-alias rs='rsync -avz '
-alias c="clear && printf '\e[3J'"
-alias ccat='highlight --out-format=ansi --force'
-alias v='vim'
-alias cnt='ls -1 | wc -l'
-alias jek='bundle exec jekyll serve'
-alias jekcheck="bundle exec jekyll build; bundle exec htmlproofer ./_site --alt-ignore '/.*/' --http_status_ignore='999,403,301,302' --assume-extension"
-alias pngtompeg="ffmpeg -y -f image2 -r 20 -i D/img_%04d.png -b 5000k movie.mpeg"
-
-
-if command -v colordiff &> /dev/null
-then
-    alias diff='colordiff'
-fi
 
 # FZF command
 alias ff="fdd --no-ignore-vcs -H -t f . | fzf"
@@ -110,12 +131,6 @@ else
         bind '"\e^":'
 fi
 }
-
-alias gf='git fetch --all && git reset --hard origin/master'
-alias ga='git add'
-alias gc='git commit'
-alias gp='git push'
-
 
 # Servers 
 export GOLUB="bryngel2@golub.campuscluster.illinois.edu"
