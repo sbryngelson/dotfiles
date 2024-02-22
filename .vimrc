@@ -41,15 +41,9 @@ Plugin 'vim-pandoc/vim-pandoc'
 Plugin 'junegunn/rainbow_parentheses.vim'
 Plugin 'davidbeckingsale/writegood.vim'
 Plugin 'Yggdroot/indentLine'
-Plugin 'sirver/ultisnips'
 Plugin 'anufrievroman/vim-angry-reviewer'
 call vundle#end()
 filetype plugin indent on
-
-" ultisnips
-let g:UltiSnipsExpandTrigger = '<tab>'
-let g:UltiSnipsJumpForwardTrigger = '<tab>'
-let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
 
 syntax on
 
