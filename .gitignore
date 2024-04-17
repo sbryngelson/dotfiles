@@ -86,7 +86,8 @@ research/
 .rustup/
 .screenrc
 .serverauth.*
-.ssh/
+.ssh/known_hosts*
+.ssh/id_rsa*
 .swo
 .swt/
 .v8flags.*
