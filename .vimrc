@@ -42,6 +42,7 @@ Plugin 'junegunn/rainbow_parentheses.vim'
 Plugin 'davidbeckingsale/writegood.vim'
 Plugin 'Yggdroot/indentLine'
 Plugin 'anufrievroman/vim-angry-reviewer'
+Plugin 'tpope/vim-surround'
 call vundle#end()
 filetype plugin indent on
 
@@ -74,6 +75,7 @@ nmap <leader>w <plug>(ChopSentences)ip<CR>
 xmap <leader>w <plug>(ChopSentences)ip<CR>
 vmap <leader>w <plug>(ChopSentences)i<CR>
 " nnoremap <leader>w gqip
+
 
 " FZF
 let $FZF_DEFAULT_COMMAND='fdd -t f -H'
@@ -308,6 +310,12 @@ nnoremap m i<CR><ESC>
 nnoremap <Space> i<Space><Right><ESC>
 nnoremap <bs> <Left>x
 
+" vim-surround
+nmap <leader>bc ysiw}
+nmap <leader>bs ysiw]
+vmap <leader>bc ysiw}
+vmap <leader>bs ysiw]
+
 " Map (redraw screen) to turn off search highlighting until next search
 nnoremap <leader>d :nohl<CR><C-L>
 
@@ -338,7 +346,6 @@ endif
 
 let &t_SI .= "\<Esc>[?2004h"
 let &t_EI .= "\<Esc>[?2004l"
-
 
 inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 
@@ -378,3 +385,8 @@ function! HighlightWordUnderCursor()
 endfunction
 
 autocmd! CursorHold,CursorHoldI * call HighlightWordUnderCursor()
+
+  augroup VimTeX
+    autocmd!
+    autocmd QuickFixCmdPost lmake lwindow
+  augroup END
