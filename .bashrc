@@ -28,7 +28,8 @@ if [ "$(uname -s)" == "Darwin" ]; then
     export HOMEBREW_CXX=g++-13
 
     # Ruby 
-    export PATH="/opt/homebrew/opt/ruby/bin:/opt/homebrew/lib/ruby/gems/3.0.0/bin:$PATH"
+    # export PATH="/opt/homebrew/opt/ruby/bin:/opt/homebrew/lib/ruby/gems/3.0.0/bin:$PATH"
+
     export PATH="/Applications/MATLAB_R2021b.app/bin:$PATH" 
 
     export PATH="$HOME/Fixed/bin:$PATH"
@@ -42,8 +43,16 @@ if [ "$(uname -s)" == "Darwin" ]; then
     export PATH=$BREWPATH:$PATH
 
     export PATH="/opt/homebrew/opt/qt@5/bin:$PATH"
-    export LDFLAGS="-L/opt/homebrew/opt/readline/lib -L/opt/homebrew/opt/python@3.10/lib -L/opt/homebrew/opt/qt@5/lib"
-    export CPPFLAGS="-I/opt/homebrew/opt/readline/include -I/opt/homebrew/opt/qt@5/include"
+    # export LDFLAGS=$LDFLAGS:"-L/opt/homebrew/opt/readline/lib -L/opt/homebrew/opt/python@3.10/lib -L/opt/homebrew/opt/qt@5/lib"
+    # export CPPFLAGS=$CPPFLAGS:"-I/opt/homebrew/opt/readline/include -I/opt/homebrew/opt/qt@5/include"
+
+    # HPCMP
+    export PATH="/usr/local/krb5/bin:/usr/local/ossh/bin:$PATH"
+    export KRB5_CONFIG=/usr/local/krb5/etc/krb5.conf
+
+    # ruby
+    # export LDFLAGS=$LDFLAGS:"-L/opt/homebrew/opt/ruby/lib"
+    # export CPPFLAGS=$CPPFLAGS:"-I/opt/homebrew/opt/ruby/include"
 else
     [ -f $HOME/.gnuplotrc_x11 ] &&  source $HOME/.gnuplotrc_x11
     export PATH="$HOME/.cargo/bin:$PATH"
@@ -107,7 +116,8 @@ function DIR_LAST {
     done
 }
 
-export PS1="$(tput setab 0)\[$(tput bold)\]\[$(tput setaf 8)\]$(hostname -s):\[$(tput setaf 5)\]$PROMP \[$(tput setaf 3)\]\$(DIR_LAST 2)\[$(tput setaf 3)\] \[$(tput setaf 2)\]\\$ \[$(tput sgr0)\]"
+export PS1="\[$(tput bold)\]\[$(tput setaf 8)\]$(hostname -s):\[$(tput setaf 5)\]$PROMP \[$(tput setaf 3)\]\$(DIR_LAST 2)\[$(tput setaf 3)\] \[$(tput setaf 2)\]\\$ \[$(tput sgr0)\]"
+# export PS1="$(tput setab 0)\[$(tput bold)\]\[$(tput setaf 8)\]$(hostname -s):\[$(tput setaf 5)\]$PROMP \[$(tput setaf 3)\]\$(DIR_LAST 2)\[$(tput setaf 3)\] \[$(tput setaf 2)\]\\$ \[$(tput sgr0)\]"
 
 # Add colour to man pages
 export LESS_TERMCAP_mb=$'\e[01;31m'
@@ -126,6 +136,9 @@ export LESS_TERMCAP_us=$'\e[04;38;5;146m'
 [ -f $HOME/.aliasrc ] && source $HOME/.aliasrc
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
+# export PATH="$PATH:$HOME/.rvm/bin"
+
 source <(op completion bash)
 
+source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
+source /opt/homebrew/opt/chruby/share/chruby/auto.sh
