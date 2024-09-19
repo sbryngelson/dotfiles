@@ -359,10 +359,6 @@ function! XTermPasteBegin()
     return ""
 endfunction
 
-if empty(v:servername) && exists('*remote_startserver')
-  call remote_startserver('VIM')
-endif
-
 function! MyFormatExpr(start, end)
     silent execute a:start.','.a:end.'s/[.!?]\zs /\r/g'
 endfunction
