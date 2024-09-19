@@ -19,3 +19,8 @@
 	defaultBranch = master
 [url "https://"]
 	insteadOf = git://
+[http]
+	postBuffer = 52428800
+	version = HTTP/1.1
+[credential]
+	helper = store
