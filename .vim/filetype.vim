@@ -3,4 +3,5 @@ if exists("did_load_filetypes")
 endif
 augroup filetypedetect
     au! BufRead,BufNewFile *.mako setfiletype mako
+    au! BufRead,BufNewFile .*rc setfiletype bash
 augroup END
