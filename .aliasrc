@@ -32,6 +32,9 @@ alias jekcheck="bundle exec jekyll build; bundle exec htmlproofer ./_site --alt-
 alias pngtompeg="ffmpeg -y -f image2 -r 20 -i D/img_%04d.png -b 5000k movie.mpeg"
 alias dus='du -hs * | sort -h'
 
+#
+alias faster='ssh -J u.sb27915@faster-jump.hprc.tamu.edu:8822 u.sb27915@login.faster.hprc.tamu.edu'
+
 # Git
 alias gf='git fetch --all && git reset --hard origin/master'
 alias ga='git add'

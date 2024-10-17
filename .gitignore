@@ -89,7 +89,8 @@ research/
 .screenrc
 .serverauth.*
 .ssh/known_hosts*
-.ssh/id_rsa*
+.ssh/long*
+.ssh/id_*
 .swo
 .swt/
 .v8flags.*
