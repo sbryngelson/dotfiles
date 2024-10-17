@@ -140,3 +140,7 @@ Dropbox
 .tmux/plugins*
 
 .zshrc
+.zprofile
+
+.fzf.zsh 
+.fzf.bash
