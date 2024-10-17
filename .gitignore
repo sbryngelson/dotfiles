@@ -138,3 +138,5 @@ miniforge3/
 .config/NVIDIA Corporation/
 Dropbox
 .tmux/plugins*
+
+.zshrc
