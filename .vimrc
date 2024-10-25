@@ -37,7 +37,6 @@ Plugin 'danro/rename.vim'
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-pandoc/vim-pandoc'
-" Plugin 'vim-pandoc/vim-pandoc-syntax'
 Plugin 'junegunn/rainbow_parentheses.vim'
 Plugin 'davidbeckingsale/writegood.vim'
 Plugin 'Yggdroot/indentLine'
@@ -63,7 +62,6 @@ let g:livedown_port = 1337
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_new_list_item_indent = 2
 let g:vim_markdown_conceal = 0
-" let g:vim_markdown_math = 1
 
 " Wolfram language syntax highlighting
 autocmd BufNewFile,BufRead *.wl set syntax=wl
@@ -152,7 +150,6 @@ colorscheme SHB-seoul
 set t_Co=256
 
 set noswapfile
-" set number relativenumber
 set nobackup
 set cursorline
 set re=1
@@ -192,7 +189,6 @@ set linebreak
 set wildmenu
 set wildmode=longest:full,full
 set wildcharm=<tab>
-" set laststatus=2
 set noshowmode
 set clipboard=unnamed
 set showmatch
@@ -217,7 +213,6 @@ map <C-L> <C-W>l
 nnoremap <leader>r :%s//gc<Left><Left><Left>
 
 " Remap spellcheck
-" nmap <leader>s :setlocal spell<CR>
 nnoremap <leader>s :call SpellToggle()<CR>
 
 function! SpellToggle()
@@ -262,8 +257,6 @@ nmap <S-Tab> :bprev<CR>
 nmap <Tab> :bnext<CR>
 
 " Remap copy to clipboard
-" vnoremap <C-c> :w !pbcopy<CR><CR>
-" noremap <C-v> :r !pbpaste<CR><CR>
 vnoremap <C-x> "*y
 
 " Remap home row to escape
@@ -382,7 +375,7 @@ endfunction
 
 autocmd! CursorHold,CursorHoldI * call HighlightWordUnderCursor()
 
-  augroup VimTeX
+augroup VimTeX
     autocmd!
     autocmd QuickFixCmdPost lmake lwindow
-  augroup END
+augroup END
