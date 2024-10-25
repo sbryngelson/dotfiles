@@ -3,8 +3,11 @@
 [ -f $HOME/.localrc ]       &&  source $HOME/.localrc
 
 # Shell options
+
+# check if autocd exists [then it is a newer Bash version]
 shopt | grep 'autocd' &> /dev/null
 if [ $? == 0 ]; then
+    # Load newer Bash shopt's
     shopt -s autocd
     shopt -s dirspell
     shopt -s direxpand
