@@ -1,9 +1,6 @@
-[ -f $HOME/.fzf.bash ]      &&  source $HOME/.fzf.bash
 [ -f $HOME/.gnuplotrc_x11 ] &&  source $HOME/.gnuplotrc_x11
-[ -f $HOME/.localrc ]       &&  source $HOME/.localrc
 
 # Shell options
-
 # check if autocd exists [then it is a newer Bash version]
 shopt | grep 'autocd' &> /dev/null
 if [ $? == 0 ]; then
@@ -27,13 +24,81 @@ export EDITOR=vim
 export VISUAL="$EDITOR"
 export TERM=xterm-256color
 
+# Cargo
+if [ -f $HOME/.cargo/env ]; then
+    export PATH="$HOME/.cargo/bin:$PATH"
+    . "$HOME/.cargo/env"
+fi
+
+
+BREWPATH=/opt/homebrew/bin
+if test -d $BREWPATH; then
+    export PATH=$BREWPATH:$PATH
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+    export PATH="/opt/homebrew/opt/qt@5/bin:$PATH"
+    [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
+     ## 1PW
+    source <(op completion bash)
+
+     ##PKG_CONFIG_PATH
+    export PKG_CONFIG_PATH="$BREWPATH/readline/lib/pkgconfig"
+    export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/lib/pkgconfig
+
+     ## ruby
+    export PATH="/opt/homebrew/lib/ruby/gems/3.3.0/bin:$PATH"
+    export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+
+     ## chruby
+    source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
+    source /opt/homebrew/opt/chruby/share/chruby/auto.sh
+fi
+
 # Fuzzy file finder options
-if command -v fzf &> /dev/null
-then
+if [ -x "$(command -v fzf)" ]; then
     bind '"\C-r": "\C-x1\e^\er"'
     bind -x '"\C-x1": __fzf_history';
     export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --inline-info --bind=ctrl-alt-k:up,ctrl-alt-j:down'
     export FZF_DEFAULT_COMMAND='fdd --no-ignore-vcs -t d --color=auto . $HOME'
+
+    # FZF command
+    alias ff="fdd --no-ignore-vcs -H -t f . | fzf"
+
+    function fd() {
+        local dir="$(fzf --reverse --preview '
+        __cd_nxt="$(echo {})";
+        __cd_path="$(echo ${__cd_nxt} | sed "s;//;/;")";
+        echo $__cd_nxt; 
+        echo;
+        ls ${__cd_path};
+        ')"
+        cd "$dir"
+    }
+
+    __fzf_history ()
+    {
+    __ehc $(history | fzf --tac --tiebreak=index | perl -ne 'm/^\s*([0-9]+)/ and print "!$1"')
+    }
+
+    __ehc()
+    {
+    if
+        [[ -n $1 ]]
+    then
+        bind '"\er": redraw-current-line'
+        bind '"\e^": magic-space'
+        READLINE_LINE=${READLINE_LINE:+${READLINE_LINE:0:READLINE_POINT}}${1}${READLINE_LINE:+${READLINE_LINE:READLINE_POINT}}
+        READLINE_POINT=$(( READLINE_POINT + ${#1} ))
+    else
+        bind '"\er":'
+        bind '"\e^":'
+    fi
+    }
+
+fi
+
+if command -v bat &> /dev/null
+then
+    export BAT_THEME="Nord"
 fi
 
 # Prompt 
@@ -70,10 +135,70 @@ export LESS_TERMCAP_so=$'\e[38;5;246m'
 export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[04;38;5;146m'
 
-# Cargo
-if [ -f $HOME/.cargo/env ]; then
-    export PATH="$HOME/.cargo/bin:$PATH"
-    . "$HOME/.cargo/env"
+
+# Improve some commands
+if [ -x "$(command -v gls)" ]; then
+    alias ls='gls -GFhN --color=always --group-directories-first'
+else
+    alias ls='ls -GFh --color'
 fi
 
-[ -f $HOME/.aliasrc ] && source $HOME/.aliasrc
+if [ -x "$(command -v colordiff)" ]; then
+    alias diff='colordiff'
+fi
+
+# Common commands
+alias la='ls -a'
+alias ll='ls -lhtr'
+alias v='vim'
+alias grep='grep --color=auto'
+alias untar='tar -zxvf '
+alias tarup='tar -zcvf'
+alias pngtompeg="ffmpeg -y -f image2 -r 20 -i D/img_%04d.png -b 5000k movie.mpeg"
+alias dus='du -hs * | sort -h'
+
+# Website
+alias jek='bundle exec jekyll serve'
+alias jekcheck="bundle exec jekyll build; bundle exec htmlproofer ./_site --alt-ignore '/.*/' --http_status_ignore='999,403,301,302' --assume-extension"
+
+# Directory navigation
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+
+# Git
+alias ga='git add'
+alias gc='git commit'
+alias gp='git push'
+
+alias faster='ssh -J u.sb27915@faster-jump.hprc.tamu.edu:8822 u.sb27915@login.faster.hprc.tamu.edu'
+
+if [ -x "$(command -v sacct)" ]; then
+    export SLURM_TIME_FORMAT=relative
+    alias q='squeue -S "i" --format="%.9i %.11P %.30j %.8u %.8T %.10M %.12l %.6D %C" | grep --color=auto     "$(whoami)\|$"'
+fi 
+
+prompt_cmd () {
+    echo -ne '\033]0;'"$(dirs)"'\a' >&2
+}
+
+export PROMPT_COMMAND=prompt_cmd
+
+#each console has its own file to save PWD
+PrevDir=$(tty) 
+PrevDir=/tmp/prev-dir${PrevDir////-}
+#don't ls when shell launched
+echo $PWD > $PrevDir
+LsAfterCd() {
+    [[ "$(< $PrevDir)" == "$PWD" ]] && return 0
+    ls 
+    echo $PWD > $PrevDir
+}
+export PROMPT_COMMAND="LsAfterCd;$PROMPT_COMMAND"
+
+# Dotfile stuff
+alias installfzf="git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install"
+alias installfd="cd ~ && curl https://sh.rustup.rs -sSf | sh && source $HOME/.cargo/env && cargo install fd-find && mv .cargo/bin/fd .cargo/bin/fdd"
+
+[ -f $HOME/.localrc ] &&  source $HOME/.localrc
