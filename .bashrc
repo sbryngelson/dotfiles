@@ -19,24 +19,56 @@ bind -m vi-command "H":vi-prev-word
 bind -m vi-command "L":vi-next-word
 bind '"\e[Z": menu-complete-backward'
 
-# Environment variables
+# Basics
 export EDITOR=vim
 export VISUAL="$EDITOR"
 export TERM=xterm-256color
 
-# Cargo
+# Directory navigation
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+
+# Common commands
+alias la='ls -a'
+alias ll='ls -lhtr'
+alias v='vim'
+alias grep='grep --color=auto'
+alias untar='tar -zxvf '
+alias tarup='tar -zcvf'
+alias dus='du -hs * | sort -h'
+
+
+if [ -x "$(command -v ffmpeg)" ]; then
+    alias pngtompeg="ffmpeg -y -f image2 -r 20 -i D/img_%04d.png -b 5000k movie.mpeg"
+fi
+
+# Add colour to man pages
+export LESS_TERMCAP_mb=$'\e[01;31m'
+export LESS_TERMCAP_md=$'\e[01;38;5;74m'
+export LESS_TERMCAP_me=$'\e[0m'
+export LESS_TERMCAP_se=$'\e[0m'
+export LESS_TERMCAP_so=$'\e[38;5;246m'
+export LESS_TERMCAP_ue=$'\e[0m'
+export LESS_TERMCAP_us=$'\e[04;38;5;146m'
+
+# Cargo (rust)
 if [ -f $HOME/.cargo/env ]; then
     export PATH="$HOME/.cargo/bin:$PATH"
     . "$HOME/.cargo/env"
 fi
 
-
+# Homebrew business
 BREWPATH=/opt/homebrew/bin
 if test -d $BREWPATH; then
     export PATH=$BREWPATH:$PATH
     eval "$(/opt/homebrew/bin/brew shellenv)"
-    export PATH="/opt/homebrew/opt/qt@5/bin:$PATH"
     [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
+
+     ## qt
+    export PATH="$HOMEBREW_PREFIX/opt/qt@5/bin:$PATH"
+
      ## 1PW
     source <(op completion bash)
 
@@ -45,15 +77,15 @@ if test -d $BREWPATH; then
     export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/lib/pkgconfig
 
      ## ruby
-    export PATH="/opt/homebrew/lib/ruby/gems/3.3.0/bin:$PATH"
-    export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+    export PATH="$HOMEBREW_PREFIX/lib/ruby/gems/3.3.0/bin:$PATH"
+    export PATH="$HOMEBREW_PREFIX/opt/ruby/bin:$PATH"
 
      ## chruby
-    source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
-    source /opt/homebrew/opt/chruby/share/chruby/auto.sh
+    source $HOMEBREW_PREFIX/opt/chruby/share/chruby/chruby.sh
+    source $HOMEBREW_PREFIX/opt/chruby/share/chruby/auto.sh
 fi
 
-# Fuzzy file finder options
+# FZF options
 if [ -x "$(command -v fzf)" ]; then
     bind '"\C-r": "\C-x1\e^\er"'
     bind -x '"\C-x1": __fzf_history';
@@ -96,8 +128,7 @@ if [ -x "$(command -v fzf)" ]; then
 
 fi
 
-if command -v bat &> /dev/null
-then
+if [ -x "$(command -v bat)" ]; then
     export BAT_THEME="Nord"
 fi
 
@@ -126,14 +157,7 @@ function DIR_LAST {
     done
 }
 
-# Add colour to man pages
-export LESS_TERMCAP_mb=$'\e[01;31m'
-export LESS_TERMCAP_md=$'\e[01;38;5;74m'
-export LESS_TERMCAP_me=$'\e[0m'
-export LESS_TERMCAP_se=$'\e[0m'
-export LESS_TERMCAP_so=$'\e[38;5;246m'
-export LESS_TERMCAP_ue=$'\e[0m'
-export LESS_TERMCAP_us=$'\e[04;38;5;146m'
+
 
 
 # Improve some commands
@@ -147,30 +171,18 @@ if [ -x "$(command -v colordiff)" ]; then
     alias diff='colordiff'
 fi
 
-# Common commands
-alias la='ls -a'
-alias ll='ls -lhtr'
-alias v='vim'
-alias grep='grep --color=auto'
-alias untar='tar -zxvf '
-alias tarup='tar -zcvf'
-alias pngtompeg="ffmpeg -y -f image2 -r 20 -i D/img_%04d.png -b 5000k movie.mpeg"
-alias dus='du -hs * | sort -h'
-
 # Website
-alias jek='bundle exec jekyll serve'
-alias jekcheck="bundle exec jekyll build; bundle exec htmlproofer ./_site --alt-ignore '/.*/' --http_status_ignore='999,403,301,302' --assume-extension"
-
-# Directory navigation
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias .....='cd ../../../..'
+if [ -x "$(command -v bundle)" ]; then
+    alias jek='bundle exec jekyll serve'
+    alias jekcheck="bundle exec jekyll build; bundle exec htmlproofer ./_site --alt-ignore '/.*/' --http_status_ignore='999,403,301,302' --assume-extension"
+fi
 
 # Git
-alias ga='git add'
-alias gc='git commit'
-alias gp='git push'
+if [ -x "$(command -v git)" ]; then
+    alias ga='git add'
+    alias gc='git commit'
+    alias gp='git push'
+fi
 
 alias faster='ssh -J u.sb27915@faster-jump.hprc.tamu.edu:8822 u.sb27915@login.faster.hprc.tamu.edu'
 
@@ -179,12 +191,12 @@ if [ -x "$(command -v sacct)" ]; then
     alias q='squeue -S "i" --format="%.9i %.11P %.30j %.8u %.8T %.10M %.12l %.6D %C" | grep --color=auto     "$(whoami)\|$"'
 fi 
 
+# `ls after `cd`
 prompt_cmd () {
     echo -ne '\033]0;'"$(dirs)"'\a' >&2
 }
 
 export PROMPT_COMMAND=prompt_cmd
-
 #each console has its own file to save PWD
 PrevDir=$(tty) 
 PrevDir=/tmp/prev-dir${PrevDir////-}
