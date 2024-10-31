@@ -38,6 +38,7 @@ alias grep='grep --color=auto'
 alias untar='tar -zxvf '
 alias tarup='tar -zcvf'
 alias dus='du -hs * | sort -h'
+alias c='clear'
 
 
 if [ -x "$(command -v ffmpeg)" ]; then

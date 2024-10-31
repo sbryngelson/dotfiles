@@ -194,14 +194,15 @@ set clipboard=unnamed
 set showmatch
 set spellcapcheck=
 
-" backslash
-noremap <plug>(slash-after) zz
-
 " Pandoc 
-set nofoldenable    " disable folding
+set nofoldenable
 autocmd FileType pandoc nmap <leader>lc :Pandoc pdf -Vgeometry:margin=1in<CR><CR>
 let g:pandoc#folding#level = 9
 let g:pandoc#folding#mode = ''
+set conceallevel=0
+let g:vim_markdown_conceal = 0
+let g:pandoc#filetypes#pandoc_markdown = 0
+let g:pandoc#syntax#conceal#use = 0
 
 " Navigate splits
 map <C-J> <C-W>j
@@ -238,7 +239,6 @@ nnoremap F :Files<CR>
 nnoremap S :Lines<CR>
 " nnoremap T :Tags<CR>
 
-
 " Remap delete around a word
 nmap dw daw
 
@@ -250,7 +250,6 @@ xnoremap <C-a> <Esc><Esc>
 noremap <C-A> <Nop>
 noremap <C-A> <Esc><Esc>
 xnoremap <C-A> <Esc><Esc>
-
 
 " Remap tab switch
 nmap <S-Tab> :bprev<CR>
@@ -361,7 +360,7 @@ nnoremap <leader>w gqip
 
 set updatetime=30
 function! HighlightWordUnderCursor()
-    let enabled_ft = ["python", "juila", "fortran", "c", "sh", "cpp"]
+    let enabled_ft = ["python", "juila", "fortran", "c", "sh", "cpp", "bash"]
     if index(enabled_ft, &filetype) >= 0
         if getline(".")[col(".")-1] !~# '[[:punct:][:blank:]]' 
             exec 'match' 'Search' '/\V\<'.expand('<cword>').'\>/' 
