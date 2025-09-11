@@ -147,3 +147,12 @@ Dropbox
 .gvimrc
 .profile
 .gnuplotrc*
+
+.streamlit/
+.nvm/
+.klatexformula/
+.gk/
+.cursor*
+.claude*
+.amp*
+

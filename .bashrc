@@ -5,12 +5,22 @@
 shopt | grep 'autocd' &> /dev/null
 if [ $? == 0 ]; then
     # Load newer Bash shopt's
-    shopt -s autocd
-    shopt -s dirspell
+
+    #a command name that is the name of a directory is executed as if it were the argument to the cd command
+    shopt -s autocd 
+
+    # If set, Bash attempts spelling correction on directory names during word completion if the directory name initially supplied does not exist.
+    shopt -s dirspell 
+
+    # If set, Bash replaces directory names with the results of word expansion when performing filename completion. This changes the contents of the Readline editing buffer. If not set, Bash attempts to preserve what the user typed.
     shopt -s direxpand
 fi
+
+# If set, minor errors in the spelling of a directory component in a cd command will be corrected. The errors checked for are transposed characters, a missing character, and a character too many. If a correction is found, the corrected path is printed, and the command proceeds. This option is only used by interactive shells.
 shopt -s cdspell
-shopt -s cdable_vars
+
+# If this is set, an argument to the cd builtin command that is not a directory is assumed to be the name of a variable whose value is the directory to change to.
+# shopt -s cdable_vars
 
 # Vi mode in shell
 set -o vi
@@ -64,8 +74,8 @@ fi
 BREWPATH=/opt/homebrew/bin
 if test -d $BREWPATH; then
     export PATH=$BREWPATH:$PATH
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-    [[ -r "/opt/homebrew/etc/profile.d/bash_completion.sh" ]] && . "/opt/homebrew/etc/profile.d/bash_completion.sh"
+    eval "$(brew shellenv)"
+    [[ -r "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh" ]] && . "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh"
 
      ## qt
     export PATH="$HOMEBREW_PREFIX/opt/qt@5/bin:$PATH"
@@ -89,7 +99,9 @@ fi
 # FZF options
 if [ -x "$(command -v fzf)" ]; then
     bind '"\C-r": "\C-x1\e^\er"'
-    bind -x '"\C-x1": __fzf_history';
+    # bind -x '"\C-x1": __fzf_history';
+    bind -x '"\C-r": __fzf_history__'
+
     export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --inline-info --bind=ctrl-alt-k:up,ctrl-alt-j:down'
     export FZF_DEFAULT_COMMAND='fdd --no-ignore-vcs -t d --color=auto . $HOME'
 
@@ -107,24 +119,21 @@ if [ -x "$(command -v fzf)" ]; then
         cd "$dir"
     }
 
-    __fzf_history ()
-    {
-    __ehc $(history | fzf --tac --tiebreak=index | perl -ne 'm/^\s*([0-9]+)/ and print "!$1"')
-    }
+    __fzf_history__() {
+      local selected
+      # Build “plain command” list (strip the leading history numbers)
+      selected=$(
+        HISTTIMEFORMAT= history           \
+          | tac                            \
+          | sed -E 's/^ *[0-9]+[* ]+//'    \
+          | fzf --tac --height=40% \
+                --bind='ctrl-r:toggle-sort' \
+                --query="$READLINE_LINE"
+      ) || return                         # ^-- Esc/CTRL-C exits cleanly
 
-    __ehc()
-    {
-    if
-        [[ -n $1 ]]
-    then
-        bind '"\er": redraw-current-line'
-        bind '"\e^": magic-space'
-        READLINE_LINE=${READLINE_LINE:+${READLINE_LINE:0:READLINE_POINT}}${1}${READLINE_LINE:+${READLINE_LINE:READLINE_POINT}}
-        READLINE_POINT=$(( READLINE_POINT + ${#1} ))
-    else
-        bind '"\er":'
-        bind '"\e^":'
-    fi
+      # Drop the command on to the prompt and move cursor to the end
+      READLINE_LINE=$selected
+      READLINE_POINT=${#READLINE_LINE}
     }
 
 fi
@@ -157,9 +166,6 @@ function DIR_LAST {
         echo -n ${array[$i]}
     done
 }
-
-
-
 
 # Improve some commands
 if [ -x "$(command -v gls)" ]; then

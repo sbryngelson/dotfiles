@@ -215,6 +215,8 @@ nnoremap <leader>r :%s//gc<Left><Left><Left>
 
 " Remap spellcheck
 nnoremap <leader>s :call SpellToggle()<CR>
+" let g:tex_comment_nospell=1
+
 
 function! SpellToggle()
     if &spell
