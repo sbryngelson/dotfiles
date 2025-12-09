@@ -93,7 +93,7 @@ if test -d $BREWPATH; then
 
      ## chruby
     source $HOMEBREW_PREFIX/opt/chruby/share/chruby/chruby.sh
-    source $HOMEBREW_PREFIX/opt/chruby/share/chruby/auto.sh
+    # source $HOMEBREW_PREFIX/opt/chruby/share/chruby/auto.sh
 fi
 
 # FZF options
@@ -210,9 +210,12 @@ PrevDir=/tmp/prev-dir${PrevDir////-}
 #don't ls when shell launched
 echo $PWD > $PrevDir
 LsAfterCd() {
-    [[ "$(< $PrevDir)" == "$PWD" ]] && return 0
-    ls 
-    echo $PWD > $PrevDir
+    [[ "${TERM_PROGRAM:-}" == "vscode" || "${TERM_PROGRAM:-}" == "cursor" ]] && return 0
+    [[ -n "${IN_CURSOR:-}" ]] && return 0
+
+    [[ "$(< "$PrevDir")" == "$PWD" ]] && return 0
+    ls
+    echo "$PWD" > "$PrevDir"
 }
 export PROMPT_COMMAND="LsAfterCd;$PROMPT_COMMAND"
 

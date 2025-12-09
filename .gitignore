@@ -159,3 +159,10 @@ Dropbox
 .rubies/
 .codex
 
+perl5
+.spack
+.latexindent.yaml
+.kaggle
+.config/rstudio
+.config/btop
+.indentconfig.yaml

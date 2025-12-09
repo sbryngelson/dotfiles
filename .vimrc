@@ -42,10 +42,16 @@ Plugin 'davidbeckingsale/writegood.vim'
 Plugin 'Yggdroot/indentLine'
 Plugin 'anufrievroman/vim-angry-reviewer'
 Plugin 'tpope/vim-surround'
+Plugin 'vim-autoformat/vim-autoformat'
 call vundle#end()
 filetype plugin indent on
 
 syntax on
+
+" Formatter
+let g:formatdef_latexindent = '"' . exepath('latexindent') . ' -m"'
+let g:formatters_tex = ['latexindent']  
+let g:formatters_plaintex = ['latexindent']
 
 " Livedown
 "" should markdown preview get shown automatically upon opening markdown buffer
