@@ -19,7 +19,11 @@
 	defaultBranch = master
 [url "https://"]
 	insteadOf = git://
-# Machine-specific config (credential helpers, tool paths, http tweaks) lives in
-# ~/.gitconfig.local, which is gitignored so it doesn't travel between machines.
+# OS-specific config (credential helpers, tool paths). ~/.gitconfig.os is a
+# symlink that ~/.bashrc points at ~/.gitconfig-darwin or ~/.gitconfig-linux
+# based on `uname`. A missing include is silently ignored.
+[include]
+	path = ~/.gitconfig.os
+# Optional truly-per-machine overrides (gitignored; need not exist). Last wins.
 [include]
 	path = ~/.gitconfig.local

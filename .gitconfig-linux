@@ -1,0 +1,16 @@
+# ~/.gitconfig-linux — Linux git config (remote machines). Tracked, and selected
+# on Linux via the ~/.gitconfig.os symlink (maintained by ~/.bashrc). Included
+# from ~/.gitconfig.
+
+[credential]
+	# In-memory cache (no plaintext on disk), good for headless/HPC boxes with no
+	# desktop keyring. Cached for 1h. Alternatives, per machine, in ~/.gitconfig.local:
+	#   helper = libsecret            # if a GNOME keyring/secret-service is present
+	#   helper = cache --timeout=...  # longer/shorter window
+	helper = cache --timeout=3600
+
+# If a machine has the gh CLI installed + authed, drop this into its
+# ~/.gitconfig.local to route GitHub through it (PATH-resolved):
+#   [credential "https://github.com"]
+#       helper =
+#       helper = !gh auth git-credential

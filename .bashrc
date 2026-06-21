@@ -201,6 +201,19 @@ fi
 # dotfiles from ~; tracking of deep paths (.config/…) is fully intact.
 export GIT_CEILING_DIRECTORIES="$HOME"
 
+# Pick the per-OS git config: ~/.gitconfig includes ~/.gitconfig.os, which we
+# point at the tracked ~/.gitconfig-darwin or ~/.gitconfig-linux by OS.
+case "$(uname -s)" in
+    Darwin) __os_gitconfig="$HOME/.gitconfig-darwin" ;;
+    Linux)  __os_gitconfig="$HOME/.gitconfig-linux" ;;
+    *)      __os_gitconfig="" ;;
+esac
+if [ -n "$__os_gitconfig" ] && [ -e "$__os_gitconfig" ] && \
+   [ "$(readlink "$HOME/.gitconfig.os" 2>/dev/null)" != "$__os_gitconfig" ]; then
+    ln -sfn "$__os_gitconfig" "$HOME/.gitconfig.os"
+fi
+unset __os_gitconfig
+
 alias faster='ssh -J u.sb27915@faster-jump.hprc.tamu.edu:8822 u.sb27915@login.faster.hprc.tamu.edu'
 
 if [ -x "$(command -v sacct)" ]; then

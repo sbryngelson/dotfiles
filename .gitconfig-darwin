@@ -1,0 +1,19 @@
+# ~/.gitconfig-darwin — macOS git config. Tracked, and selected on Macs via the
+# ~/.gitconfig.os symlink (maintained by ~/.bashrc). Included from ~/.gitconfig.
+
+[credential]
+	# macOS Keychain — no plaintext credential store.
+	helper = osxkeychain
+
+# GitHub auth via the gh CLI. Empty first value clears inherited helpers so only
+# gh is used for these hosts. Absolute path is fine here (this file is macOS-only).
+[credential "https://github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/opt/homebrew/bin/gh auth git-credential
+
+[http]
+	postBuffer = 52428800
+	version = HTTP/1.1

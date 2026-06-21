@@ -129,6 +129,7 @@ Parallels/
 .localrc
 .secrets
 .gitconfig.local
+.gitconfig.os
 .vim-anywhere/
 go/
 miniforge3/
