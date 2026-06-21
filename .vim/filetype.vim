@@ -7,4 +7,5 @@ augroup filetypedetect
     au! BufRead,BufNewFile .*rc setfiletype bash
     au! BufRead,BufNewFile *.fypp setfiletype fortran
     au! BufRead,BufNewFile *.fpp setfiletype fortran
+    au! BufRead,BufNewFile *.mlir setfiletype mlir
 augroup END

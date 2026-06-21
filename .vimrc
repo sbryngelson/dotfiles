@@ -37,7 +37,7 @@ Plugin 'danro/rename.vim'
 Plugin 'bling/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-pandoc/vim-pandoc'
-Plugin 'junegunn/rainbow_parentheses.vim'
+Plugin 'luochen1990/rainbow'
 Plugin 'davidbeckingsale/writegood.vim'
 Plugin 'Yggdroot/indentLine'
 Plugin 'anufrievroman/vim-angry-reviewer'
@@ -47,6 +47,9 @@ call vundle#end()
 filetype plugin indent on
 
 syntax on
+
+let g:rainbow_active = 1 "set to 0 if you want to enable it later via :RainbowToggle
+
 
 " Formatter
 let g:formatdef_latexindent = '"' . exepath('latexindent') . ' -m"'
@@ -105,7 +108,7 @@ let g:fzf_colors =
   \ 'header':  ['fg', 'Comment'] }
 
 " RainbowParentheses
-au VimEnter * RainbowParentheses
+" au VimEnter * RainbowParentheses
 
 " Airline
 let g:airline#extensions#wordcount#enabled = 1

@@ -186,3 +186,9 @@ perl5
 .config/btop
 .indentconfig.yaml
 .aider*
+
+.config/opencode/
+.config/raycast/
+.homebrew/
+.vnc
+.vscode-shared/
