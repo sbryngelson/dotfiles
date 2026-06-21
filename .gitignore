@@ -131,6 +131,22 @@ Parallels/
 .gitconfig.local
 .gitconfig.os
 .vim-anywhere/
+
+# Cloud / tool credentials & tokens — must never be committed (repo is public)
+.aws/
+.boto
+.config/gcloud/
+.config/zotero-mcp/
+.config/parallel-web-tools/
+.copilot/
+.agents/
+.ms-365-mcp-server/
+
+# Shell / editor noise & local state
+.zcompdump
+.zcompdump-*
+.zsh_sessions/
+.bashrc.broken-perl-backup
 go/
 miniforge3/
 
