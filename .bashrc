@@ -1,3 +1,8 @@
+# Safety guard: recover if shell starts in inaccessible/deleted directory
+if ! /bin/pwd >/dev/null 2>&1; then
+  cd "$HOME" 2>/dev/null || cd / 2>/dev/null || true
+fi
+
 [ -f $HOME/.gnuplotrc_x11 ] &&  source $HOME/.gnuplotrc_x11
 
 # Shell options
@@ -74,14 +79,11 @@ fi
 BREWPATH=/opt/homebrew/bin
 if test -d $BREWPATH; then
     export PATH=$BREWPATH:$PATH
-    eval "$(brew shellenv)"
+    eval "$(/opt/homebrew/bin/brew shellenv)"
     [[ -r "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh" ]] && . "$HOMEBREW_PREFIX/etc/profile.d/bash_completion.sh"
 
      ## qt
     export PATH="$HOMEBREW_PREFIX/opt/qt@5/bin:$PATH"
-
-     ## 1PW
-    source <(op completion bash)
 
      ##PKG_CONFIG_PATH
     export PKG_CONFIG_PATH="$BREWPATH/readline/lib/pkgconfig"
@@ -92,7 +94,7 @@ if test -d $BREWPATH; then
     export PATH="$HOMEBREW_PREFIX/opt/ruby/bin:$PATH"
 
      ## chruby
-    source $HOMEBREW_PREFIX/opt/chruby/share/chruby/chruby.sh
+    # source $HOMEBREW_PREFIX/opt/chruby/share/chruby/chruby.sh
     # source $HOMEBREW_PREFIX/opt/chruby/share/chruby/auto.sh
 fi
 
@@ -180,7 +182,8 @@ fi
 
 # Website
 if [ -x "$(command -v bundle)" ]; then
-    alias jek='bundle exec jekyll serve'
+    # alias jek='LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 bundle exec jekyll serve'
+    alias jek='LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 bundle exec jekyll build && npx pagefind --site _site && LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 bundle exec jekyll serve --skip-initial-build'
     alias jekcheck="bundle exec jekyll build; bundle exec htmlproofer ./_site --alt-ignore '/.*/' --http_status_ignore='999,403,301,302' --assume-extension"
 fi
 
@@ -190,6 +193,13 @@ if [ -x "$(command -v git)" ]; then
     alias gc='git commit'
     alias gp='git push'
 fi
+
+# Dotfiles repo lives at ~/.git (work-tree = $HOME). Stop git's upward repo
+# search at $HOME so subdirectories of home aren't treated as part of the
+# dotfiles repo. $HOME itself still works (git checks the current dir first),
+# and real nested repos under home (e.g. ~/.vim) are unaffected. Manage
+# dotfiles from ~; tracking of deep paths (.config/…) is fully intact.
+export GIT_CEILING_DIRECTORIES="$HOME"
 
 alias faster='ssh -J u.sb27915@faster-jump.hprc.tamu.edu:8822 u.sb27915@login.faster.hprc.tamu.edu'
 
@@ -219,8 +229,23 @@ LsAfterCd() {
 }
 export PROMPT_COMMAND="LsAfterCd;$PROMPT_COMMAND"
 
+shopt -s histappend           # Append to the history file on exit
+PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+
+
 # Dotfile stuff
 alias installfzf="git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf && ~/.fzf/install"
 alias installfd="cd ~ && curl https://sh.rustup.rs -sSf | sh && source $HOME/.cargo/env && cargo install fd-find && mv .cargo/bin/fd .cargo/bin/fdd"
 
 [ -f $HOME/.localrc ] &&  source $HOME/.localrc
+
+
+# MFC shell completion
+[ -f "/Users/spencer/.local/share/mfc/completions/mfc.bash" ] && source "/Users/spencer/.local/share/mfc/completions/mfc.bash"
+
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/spencer/Downloads/google-cloud-sdk/path.bash.inc' ]; then . '/Users/spencer/Downloads/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/spencer/Downloads/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/spencer/Downloads/google-cloud-sdk/completion.bash.inc'; fi
