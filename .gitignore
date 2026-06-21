@@ -63,7 +63,7 @@ research/
 .fzf/
 .gem/
 .gervill/
-.git-credentials
+.git-credentials*
 .globusonline/
 .gnupg/
 .gtk-bookmarks
@@ -127,6 +127,8 @@ Parallels/
 .conda/
 .dbus-keyrings/
 .localrc
+.secrets
+.gitconfig.local
 .vim-anywhere/
 go/
 miniforge3/
@@ -166,3 +168,4 @@ perl5
 .config/rstudio
 .config/btop
 .indentconfig.yaml
+.aider*
