@@ -3,8 +3,6 @@ if ! /bin/pwd >/dev/null 2>&1; then
   cd "$HOME" 2>/dev/null || cd / 2>/dev/null || true
 fi
 
-[ -f $HOME/.gnuplotrc_x11 ] &&  source $HOME/.gnuplotrc_x11
-
 # Shell options
 # check if autocd exists [then it is a newer Bash version]
 shopt | grep 'autocd' &> /dev/null
