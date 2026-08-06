@@ -11,3 +11,9 @@ if [ -f '/Users/spencer/Downloads/google-cloud-sdk/path.bash.inc' ]; then . '/Us
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/spencer/Downloads/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/spencer/Downloads/google-cloud-sdk/completion.bash.inc'; fi
 
+
+# Scaleway CLI autocomplete initialization.
+eval "$(scw autocomplete script shell=bash)"
+
+# Created by `pipx` on 2026-06-27 22:02:46
+export PATH="$PATH:/Users/spencer/.local/bin"

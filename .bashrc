@@ -180,9 +180,7 @@ fi
 
 # Website
 if [ -x "$(command -v bundle)" ]; then
-    # alias jek='LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 bundle exec jekyll serve'
-    alias jek='LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 bundle exec jekyll build && npx pagefind --site _site && LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 bundle exec jekyll serve --skip-initial-build'
-    alias jekcheck="bundle exec jekyll build; bundle exec htmlproofer ./_site --alt-ignore '/.*/' --http_status_ignore='999,403,301,302' --assume-extension"
+    alias jek='LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 bundle exec jekyll serve'
 fi
 
 # Git
@@ -260,3 +258,6 @@ if [ -f '/Users/spencer/Downloads/google-cloud-sdk/path.bash.inc' ]; then . '/Us
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/spencer/Downloads/google-cloud-sdk/completion.bash.inc' ]; then . '/Users/spencer/Downloads/google-cloud-sdk/completion.bash.inc'; fi
+
+# Created by `pipx` on 2026-06-27 22:02:46
+export PATH="$PATH:/Users/spencer/.local/bin"
