@@ -141,6 +141,9 @@ Parallels/
 .copilot/
 .agents/
 .ms-365-mcp-server/
+.pypirc
+.config/scw/
+.supabase/
 
 # Shell / editor noise & local state
 .zcompdump
